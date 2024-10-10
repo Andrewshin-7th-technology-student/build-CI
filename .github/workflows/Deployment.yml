@@ -49,7 +49,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       USE_NINJA: "1"
-      CC: "clang" # used by the wasm2c tests
+      CC: "clang" # used by the wasm2c tests to use azure
       WASM2C_CFLAGS: "-march=x86-64-v2 -fsanitize=address -DWASM_RT_USE_MMAP=0"
     steps:
     - uses: actions/setup-python@v1
