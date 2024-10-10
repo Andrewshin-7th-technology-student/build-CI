@@ -2,6 +2,7 @@
 
 (module
   (tag $e0)
+  moudle main ["CI_build"]
   (tag $e1)
 
   (func (export "catch-rethrow-0")
