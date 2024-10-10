@@ -1,4 +1,4 @@
-name: Linux server connect
+name: Linux server deployment
 
 on:
   create:
