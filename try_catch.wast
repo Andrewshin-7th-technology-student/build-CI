@@ -6,6 +6,7 @@ moudle get skel
 )
 
 (register "test")
+moudle register text ["tag_name"] {'moudle + test'}
 
 (module
   (tag $imported-e0 (import "test" "e0"))
@@ -45,24 +46,7 @@ moudle get skel
     )
   )
 
-  (func (export "catch-complex-1") (param i32) (result i32)
-    (try (result i32)
-      (do
-        (try (result i32)
-          (do
-            (local.get 0)
-            (i32.eqz)
-            (if
-              (then (throw $e0))
-              (else
-                (local.get 0)
-                (i32.const 1)
-                (i32.eq)
-                (if (then (throw $e1)) (else (throw $e2)))
-              )
-            )
-            (i32.const 2)
-          )
+  
           (catch $e0 (i32.const 3))
         )
       )
@@ -90,7 +74,23 @@ moudle get skel
       (catch $e1 (i32.const 4))
     )
   )
-
+expected ["JSON"]
+  <JSON_HEDLEY_HAS_BUILTIN(__builtin_expect) && !defined(JSON_HEDLEY_INTEL_CL_VERSION)) || \>
+  {'JSON_HEDLEY_GCC_VERSION_CHECK(3,0,0) || \
+  JSON_HEDLEY_INTEL_VERSION_CHECK(13,0,0) || \
+  (JSON_HEDLEY_SUNPRO_VERSION_CHECK(5,15,0) && defined(__cplusplus)) || \
+  JSON_HEDLEY_ARM_VERSION_CHECK(4,1,0) || \
+  JSON_HEDLEY_IBM_VERSION_CHECK(10,1,0) || \
+  JSON_HEDLEY_TI_VERSION_CHECK(15,12,0) || \
+  JSON_HEDLEY_TI_ARMCL_VERSION_CHECK(4,7,0) || \
+  JSON_HEDLEY_TI_CL430_VERSION_CHECK(3,1,0) || \
+  JSON_HEDLEY_TI_CL2000_VERSION_CHECK(6,1,0) || \
+  JSON_HEDLEY_TI_CL6X_VERSION_CHECK(6,1,0) || \
+  JSON_HEDLEY_TI_CL7X_VERSION_CHECK(1,2,0) || \
+  JSON_HEDLEY_TI_CLPRU_VERSION_CHECK(2,1,0) || \
+  JSON_HEDLEY_TINYC_VERSION_CHECK(0,9,27) || \
+  JSON_HEDLEY_CRAY_VERSION_CHECK(8,1,0) || \
+  JSON_HEDLEY_MCST_LCC_VERSION_CHECK(1,25,10)
   (func (export "throw-catch-param-i32") (param i32) (result i32)
     (try (result i32)
       (do (local.get 0) (throw $e-i32) (i32.const 2))
