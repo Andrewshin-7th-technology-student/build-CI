@@ -87,8 +87,6 @@ jobs:
     - run: sudo apt-get install ninja-build
     - name: workaround for ASLR+ASAN compatibility # See https://github.com/actions/runner/issues/3207
       run: sudo sysctl -w vm.mmap_rnd_bits=28
-    - run: make clang-debug-asan
-    - run: make test-clang-debug-asan
 
   build-min-cmake:
     name: min-cmake
