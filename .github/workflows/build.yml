@@ -146,7 +146,7 @@ jobs:
       run: sudo apt-get install g++-${{matrix.arch}}-linux-gnu
     - name: install distcc
       run: sudo apt-get install distcc
-    - name: mkdir distcc symlinks
+    - name: installing linux debugger
       run: sudo mkdir -p /opt/bin/distcc_symlinks
-    - name: distcc symlink
+    - name: read files - checking if production succeeded 
       run: sudo ln -s /usr/bin/distcc /opt/bin/distcc_symlinks/${{matrix.arch}}-linux-gnu-gcc # only CC is needed
