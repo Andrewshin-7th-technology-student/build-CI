@@ -1,0 +1,5 @@
+ - run: sudo apt-get install ninja-build
+    - name: workaround for ASLR+ASAN compatibility # See https://github.com/actions/runner/issues/3207
+      run: sudo sysctl -w vm.mmap_rnd_bits=28
+    - name: Lowercase the repo name and username
+      run: echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
