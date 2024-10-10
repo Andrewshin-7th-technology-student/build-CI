@@ -9,13 +9,10 @@ on:
   pull_request:
 
 jobs:
-  setup-build-publish-deploy:
-    name: 'Setup, Build, Publish, and Deploy'
-    runs-on: 'ubuntu-latest'
-    environment: 'dev'
   lint:
     name: connect to linux server
     runs-on: ubuntu-latest
+    environment: 'dev'
     steps:
     - uses: actions/setup-python@v1
       with:
