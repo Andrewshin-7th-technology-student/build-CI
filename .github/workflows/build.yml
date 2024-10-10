@@ -106,15 +106,6 @@ jobs:
       run: >
         awk 'match($0, /cmake_minimum_required\(VERSION *([0-9]+\.[0-9]+)\)/, a)
         { print "WABT_CMAKE_VER=" a[1]; exit; }' CMakeLists.txt | tee $GITHUB_ENV
-    - name: build (OpenSSL)
-      run: cmake --build out
-    - name: install (OpenSSL)
-      run: cmake --install out --prefix install
-
-    - name: configure (PicoSHA2)
-      run: cmake -G Ninja -S . -B out-picosha -DCMAKE_BUILD_TYPE=Release -DUSE_INTERNAL_SHA256=ON
-    - name: build (PicoSHA2)
-      run: cmake --build out-picosha
   build-rlbox:
     name: rlbox
     runs-on: ubuntu-latest
