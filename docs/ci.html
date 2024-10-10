@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>jdeb</artifactId>
+        <groupId>org.vafer</groupId>
+        <version>1.11</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>jdeb</goal>
+            </goals>
+            <configuration>
+              <signPackage>true</signPackage>
+              <signMethod>dpkg-sig</signMethod>
+              <signRole>builder</signRole>
+              <keyring>/home/user/.gnupg/secring.gpg</keyring>
+              <key>8306FE21</key>
+              <passphrase>abcdef</passphrase>
+
+              <dataSet>
+
+                <!-- Tarball example -->
+                <data>
+                  <src>${project.basedir}/target/my_archive.tar.gz</src>
+                  <type>archive</type>
+                  <includes>...</includes>
+                  <excludes>...</excludes>
+                  <mapper>
+                    <type>perm</type>
+                    <strip>1</strip>
+                    <prefix>/somewhere/else</prefix>
+                    <user>tcurdt</user>
+                    <group>tcurdt</group>
+                    <filemode>600</filemode>
+                  </mapper>
+                </data>
+
+                <!-- Directory example -->
+                <data>
+                  <src>${project.build.directory}/data</src>
+                  <type>directory</type>
+                  <includes/>
+                  <excludes>**/.svn</excludes>
+                  <mapper>
+                    <type>ls</type>
+                    <src>mapping.txt</src>
+                  </mapper>
+                </data>
+
+                <!-- File example -->
+                <data>
+                  <src>${project.basedir}/README.txt</src>
+                  <dst>README</dst>
+                  <type>file</type>
+                  <missingSrc>ignore</missingSrc>
+                </data>
+
+                <!-- Multiple files example -->
+                <data>
+                  <type>files</type>
+                  <paths>
+                    <path>README.txt</path>
+                    <path>CHANGES.txt</path>
+                  </paths>
+                  <dst>/var/lib/${artifactId}</dst>
+                </data>
+
+                <!-- Template example -->
+                <data>
+                  <type>template</type>
+                  <paths>
+                    <path>/etc/${artifactId}</path>
+                    <path>/var/lib/${artifactId}</path>
+                    <path>/var/log/${artifactId}</path>
+                    <path>/var/run/${artifactId}</path>
+                  </paths>
+                </data>
+
+                <!-- Hard link example -->
+                <data>
+                  <type>link</type>
+                  <linkName>/a/path/on/the/target/fs</linkName>
+                  <linkTarget>/a/link/to/the/scr/file</linkTarget>
+                  <symlink>false</symlink>
+                </data>
+
+                <!-- Symbolic link example -->
+                <data>
+                  <type>link</type>
+                  <linkName>/a/path/on/the/target/fs</linkName>
+                  <linkTarget>/a/sym/link/to/the/scr/file</linkTarget>
+                  <symlink>true</symlink>
+                </data>
+
+                <!-- Conffiles example -->
+                <data>
+                  <src>${project.build.directory}/data</src>
+                  <type>directory</type>
+                  <includes/>
+                  <excludes>**/.svn</excludes>
+                  <conffile>true</conffile>
+                  <mapper>
+                    <type>ls</type>
+                    <src>mapping.txt</src>
+                  </mapper>
+                </data>
+              </dataSet>
+
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
