@@ -10,7 +10,7 @@ on:
 
 jobs:
   lint:
-    name: lint
+    name: connect to linux server
     runs-on: ubuntu-latest
     steps:
     - uses: actions/setup-python@v1
