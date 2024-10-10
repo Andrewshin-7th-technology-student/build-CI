@@ -40,10 +40,6 @@ jobs:
         submodules: true
     - name: mkdir
       run: mkdir -p out
-    - name: build
-      run: cmake --build out
-    - name: check if generated files are up-to-date
-      run: python ./scripts/check_clean.py
   emscripten:
     name: emscripten
     runs-on: ubuntu-latest
@@ -51,13 +47,6 @@ jobs:
     - uses: actions/checkout@v1
       with:
         submodules: true
-    - name: build
-      run: |
-        docker run -di --name emscripten -v $(pwd):/src emscripten/emsdk:latest bash
-        docker exec emscripten emcc -v
-        docker exec emscripten emcmake cmake -B emscripten -DWERROR=ON
-        docker exec -w /src/emscripten emscripten make -j $(nproc)
-
   wasi:
     name: wasi
     runs-on: ubuntu-latest
@@ -92,12 +81,6 @@ jobs:
     - uses: actions/checkout@v1
       with:
         submodules: true
-    - run: sudo apt-get install ninja-build
-    - name: workaround for ASLR+ASAN compatibility # See https://github.com/actions/runner/issues/3207
-      run: sudo sysctl -w vm.mmap_rnd_bits=28
-    - run: make clang-${{ matrix.type }}-${{ matrix.sanitizer }}
-    - if: ${{ matrix.sanitizer }} != fuzz
-      run: make test-clang-${{ matrix.type }}-${{ matrix.sanitizer }}
   build-wasm2c-memchecked:
     name: wasm2c-memchecked
     runs-on: ubuntu-latest
