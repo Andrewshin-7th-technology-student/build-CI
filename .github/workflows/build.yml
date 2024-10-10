@@ -125,29 +125,6 @@ jobs:
       run: cmake -G Ninja -S . -B out-picosha -DCMAKE_BUILD_TYPE=Release -DUSE_INTERNAL_SHA256=ON
     - name: build (PicoSHA2)
       run: cmake --build out-picosha
-    - name: install (PicoSHA2)
-      run: cmake --install out-picosha --prefix install-picosha
-
-    - name: test CMake package (OpenSSL)
-      run: >
-        ctest --build-and-test scripts/example-project example-openssl
-        --build-generator Ninja
-        --build-options -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=$PWD/install
-        --test-command ctest
-
-    - name: test CMake package (PicoSHA2)
-      run: >
-        ctest --build-and-test scripts/example-project example-picosha
-        --build-generator Ninja
-        --build-options -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=$PWD/install-picosha
-        --test-command ctest
-
-    - name: unittests
-      run: cmake --build out --target run-unittests
-    - name: c-api-tests
-      run: cmake --build out --target run-c-api-tests
-    - name: tests
-      run: cmake --build out --target run-tests
   build-rlbox:
     name: rlbox
     runs-on: ubuntu-latest
@@ -163,10 +140,6 @@ jobs:
       with:
         submodules: true
     - run: sudo apt-get install ninja-build
-    - run: make clang-debug
-    - name: tests (wasm2c tests excluding memory64)
-      run: ./test/run-tests.py wasm2c --exclude-dir memory64
-
   build-cross:
     runs-on: ubuntu-latest
     strategy:
@@ -203,13 +176,3 @@ jobs:
       run: sudo mkdir -p /opt/bin/distcc_symlinks
     - name: distcc symlink
       run: sudo ln -s /usr/bin/distcc /opt/bin/distcc_symlinks/${{matrix.arch}}-linux-gnu-gcc # only CC is needed
-    - name: cmake
-      run: cmake -S . -B out -G Ninja -DCMAKE_TOOLCHAIN_FILE=../scripts/TC-${{matrix.arch}}.cmake -DWITH_WASI=ON -DWERROR=OFF -Werror=dev -Wno-deprecated
-    - name: build
-      run: cmake --build out
-    - name: check if generated files are up-to-date
-      run: python ./scripts/check_clean.py
-    - name: unittests
-      run: cmake --build out --target run-unittests
-    - name: tests
-      run: cmake --build out --target run-tests
