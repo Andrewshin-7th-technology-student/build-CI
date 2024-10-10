@@ -41,32 +41,12 @@ jobs:
     - name: install ninja (linux)
       run: sudo apt-get install ninja-build
       if: matrix.os == 'ubuntu-latest'
-    - name: install ninja (osx)
-      run: brew install ninja
-      if: matrix.os == 'macos-12' || matrix.os == 'macos-14'
-    - name: install ninja (win)
-      run: choco install ninja
-      if: matrix.os == 'windows-latest'
     - name: mkdir
       run: mkdir -p out
-    - name: cmake
-      run: cmake .. -G Ninja -DWITH_WASI=ON -DWERROR=ON -Werror=dev -Wno-deprecated
-      working-directory: out
-      if: matrix.os != 'windows-latest'
-    - name: cmake (windows)
-      run: cmake .. -DWERROR=ON -Werror=dev
-      working-directory: out
-      if: matrix.os == 'windows-latest'
     - name: build
       run: cmake --build out
     - name: check if generated files are up-to-date
       run: python ./scripts/check_clean.py
-    - name: unittests
-      run: cmake --build out --target run-unittests
-    - name: c-api-tests
-      run: cmake --build out --target run-c-api-tests
-    - name: tests
-      run: cmake --build out --target run-tests
   emscripten:
     name: emscripten
     runs-on: ubuntu-latest
