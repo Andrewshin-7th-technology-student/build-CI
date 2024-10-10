@@ -1,5 +1,5 @@
 ;; Test throw instruction.
-
+wast file
 (module
   (tag $e0)
   (tag $e-i32 (param i32))
