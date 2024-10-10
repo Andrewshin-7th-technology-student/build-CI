@@ -17,12 +17,6 @@ jobs:
       with:
         python-version: '3.x'
     - uses: actions/checkout@v1
-    - name: install tools
-      run: |
-        pip3 install flake8==3.7.8
-        sudo apt-get install clang-format
-      env:
-        GITHUB_EVENT_BEFORE: ${{ github.event.before }}
   build:
     name: build
     runs-on: ${{ matrix.os }}
@@ -120,6 +114,7 @@ jobs:
         submodules: true
     - run: sudo apt-get install ninja-build
   build-cross:
+    name: Disconnect from linux server and deploy
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
