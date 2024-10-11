@@ -8,8 +8,9 @@
         </filterset>
       </copy>
       <deb destfile="jdeb.deb" control="${deb}/control">
-        <data src="src/main/resources/deb/data" type="directory">
+        <data src="./metadata.xml" type="directory">
           <exclude name="**/.svn"/>
         </data>
       </deb>
     </target>
+<!-- this is a example but when deployed through cloud, information slots are filled. -->
