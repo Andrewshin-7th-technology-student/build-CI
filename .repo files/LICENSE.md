@@ -6,7 +6,7 @@ Modification🆗
 Distribution🆗
 Private use🆗
 
-## Limitations🚫
+## Limitations
  Liability🚫
  Warranty🚫
  
