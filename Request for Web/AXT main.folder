@@ -1,0 +1,3 @@
+folder contains?=["FILES"] format = ('txt')
+set text file to true 
+  main text contains?['Files_annotaion/bad-file(data-count)']
