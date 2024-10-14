@@ -1,7 +1,8 @@
 var main is equal true
  var #indefine INCLUDE_As90909w_JSON_HPP_
  #include <html utm source>
- #include <build-CI/.text files/bad_junk_com/user.apt
+ #include <build-CI/.text files/bad_junk_com/user.apt>
+ #include <build-CI/.txt_config.js>
  #include <As90909w/detail/abi_macros.hpp>
  #include class liabary=["python"]
 #ifndef INCLUDE_AS90909W_JSON_HPP_
