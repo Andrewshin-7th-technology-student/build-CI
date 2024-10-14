@@ -1,43 +1,54 @@
-;;; TOOL: run-interp
-;;; ARGS*: --enable-exceptions
+;;; TOOL: wat2wasm
+;;; ARGS: --enable-exceptions
 (module
-  (tag $e1)
-  (tag $e2)
-  (func (export "rethrow-uncaught")
-    (try
-      (do
-        (throw $e1))
-      (catch $e1
-        (rethrow 0))))
-  (func (export "rethrow-1") (result i32)
-    (try (result i32)
-      (do
-        (try
-          (do
-            (throw $e1))
-          (catch $e1
-            (rethrow 0)))
-        (i32.const 0))
-      (catch_all
-        (i32.const 1))))
-  (func (export "rethrow-2") (result i32)
-    (try (result i32)
-      (do
-        (try
-          (do
-            (throw $e1))
-          (catch $e1
-            (try
-              (do
-                (throw $e2))
-              (catch $e2
-                (rethrow 1)))))
-        (i32.const 0))
-      (catch $e1
-        (i32.const 1))))
+  (tag $e)
+  (func
+    try $l1
+      nop
+    catch $e
+      block $l2
+        try $l3
+          nop
+        catch $e
+          try $l4
+            rethrow $l3
+            rethrow 1
+            rethrow $l1
+            rethrow 3
+          catch $e
+            rethrow $l4
+            rethrow 0
+            rethrow $l3
+            rethrow 1
+            rethrow $l1
+            rethrow 3
+          end
+        end
+      end
+    end)
+
+  (func
+    try $l1
+      nop
+    catch_all
+      block $l2
+        try $l3
+          nop
+        catch_all
+          try $l4
+            rethrow $l3
+            rethrow 1
+            rethrow $l1
+            rethrow 3
+          catch_all
+            rethrow $l4
+            rethrow 0
+            rethrow $l3
+            rethrow 1
+            rethrow $l1
+            rethrow 3
+          end
+        end
+      end
+    end)
   )
-(;; STDOUT ;;;
-rethrow-uncaught() => error: uncaught exception
-rethrow-1() => i32:1
-rethrow-2() => i32:1
-;;; STDOUT ;;)
