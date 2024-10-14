@@ -1,4 +1,6 @@
-;;; TOOL: run-gen-wasm-strip
+;;; RUN: %(gen_wasm_py)s %(in_file)s -o %(temp_file)s.wasm
+;;; RUN: %(wasm-strip)s %(temp_file)s.wasm -o %(temp_file)s_stripped.wasm
+;;; RUN: %(wasm-objdump)s -h %(temp_file)s_stripped.wasm
 magic
 version
 section("one") { "Lorem ipsum dolor sit amet," }
@@ -20,7 +22,7 @@ section(CODE) {
 section("five") { "Ut enim ad minim veniam," }
 (;; STDOUT ;;;
 
-basic.wasm:	file format wasm 0x1
+out_file_stripped.wasm:	file format wasm 0x1
 
 Sections:
 
