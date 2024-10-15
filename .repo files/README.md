@@ -10,3 +10,5 @@ but README.MD files may be alterd by contributors. The origin of this
 software must not be misrepresented; you must not claim thatyou wrote the
 original software. If you use this software in a product, an acknowledgment
 in the product documentation would be appreciated but is not required.
+
+## NOTE THAT ONLY THE LICENSE.MD , SECURITY.MD, COPYRIGHT.MD, UPGRADE.MD, AND CODE_OF_CONDUCT.MD FILES MAY HAVE AFFECT ON THIS REPOSITORY.NONE PRESSED CHANGES. CONTRIBUTORS.MD ARE PEOPLE WHO HAVE CONTRIBUTED CODE TO THIS REPO. NONE OF THE PEOPLE IN THE FILE ARE NOT SUPPORTING CODE.
