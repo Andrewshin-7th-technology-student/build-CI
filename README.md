@@ -6,6 +6,8 @@
 Progress indicators show that connecting to Linux servers will upload the Cmake code.
 And I don't believe that it is my fault that there are a lot of coding languages in this repo. I DON'T THINK YOU SHOULD BLAME ME FOR THIS. IT'S FOR YML [CI] VITE CONFIG BUILD  :(
 
+## SEE THIS LINK FOR REPO RULES. [LINK CLICK ME](https://github.com/Andrewshin-7th-technology-student/build-CI/blob/main/.repo%20files/README.md)
+
 ## Updates 💫
 GNU PUBLIC LICENSE UPDATED
 Updated blockers
