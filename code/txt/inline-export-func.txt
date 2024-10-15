@@ -1,0 +1,12 @@
+;;; TOOL: run-roundtrip
+;;; ARGS: --stdout --inline-export
+(module
+  (func $foo (param i32)
+    nop)
+  (export "foo" (func $foo)))
+(;; STDOUT ;;;
+(module
+  (type (;0;) (func (param i32)))
+  (func (;0;) (export "foo") (type 0) (param i32)
+    nop))
+;;; STDOUT ;;)
