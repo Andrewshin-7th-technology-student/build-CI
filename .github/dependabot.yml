@@ -4,28 +4,10 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "hourly"
     commit-message:
       # Prefix all commit messages with "npm: "
       prefix: "npm"
-
-  - package-ecosystem: "docker"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-    commit-message:
-      # Prefix all commit messages with "[docker] " (no colon, but a trailing whitespace)
-      prefix: "[docker] "
-
-  - package-ecosystem: "composer"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-    # Prefix all commit messages with "Composer" plus its scope, that is, a
-    # list of updated dependencies
-    commit-message:
-      prefix: "Composer"
-      include: "scope"
 
   - package-ecosystem: "pip"
     directory: "/"
