@@ -11,6 +11,7 @@ updates:
 
   - package-ecosystem: "pip"
     directory: "/"
+    applies-to: repository-updates
     schedule:
       interval: "daily"
     # Include a list of updated dependencies
@@ -18,3 +19,9 @@ updates:
     commit-message:
       prefix: "pip prod"
       prefix-development: "pip dev"
+      
+ - package-ecosystem: "python"
+    groups:
+      python:
+        applies-to: repository-updates
+      
