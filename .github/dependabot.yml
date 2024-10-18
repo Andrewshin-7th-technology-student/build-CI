@@ -16,9 +16,3 @@ updates:
     open-pull-requests-limit: 102
     registries:
       - package-python
-  - package-ecosystem: "gomod"
-    groups:
-      golang:
-        applies-to: security-updates
-        patterns:
-          - "golang.org*"
