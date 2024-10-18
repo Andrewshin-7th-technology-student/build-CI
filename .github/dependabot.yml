@@ -1,27 +1,24 @@
-# weekly updates.
 version: 2
+registries:
+  example:
+    type: npm-registry
+    url: https://apcha.org
+    token: ${{secrets.NPM_TOKEN}}
 updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "daily"
-    commit-message:
-      # Prefix all commit messages with "npm: "
-      prefix: "npm"
-
-  - package-ecosystem: "pip"
-    directory: "/"
-    applies-to: repository-updates
-    schedule:
-      interval: "daily"
-    # Include a list of updated dependencies
-    # with a prefix determined by the dependency group
-    commit-message:
-      prefix: "pip prod"
-      prefix-development: "pip dev"
-      
- - package-ecosystem: "python"
+    # For Lodash, ignore all updates
+    ignore:
+      - dependency-name: "lodash"
+    # Disable version updates for npm dependencies
+    open-pull-requests-limit: 102
+    registries:
+      - package-python
+  - package-ecosystem: "gomod"
     groups:
-      python:
-        applies-to: repository-updates
-      
+      golang:
+        applies-to: security-updates
+        patterns:
+          - "golang.org*"
