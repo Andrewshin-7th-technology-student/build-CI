@@ -31,7 +31,7 @@ jobs:
           build-mode: none
   
     steps:
-    - name: Checkout repository
+    - name: Scan dependabot packages [bin root]
       uses: actions/checkout@v4
 
     # Initializes the CodeQL tools for scanning.
@@ -44,9 +44,10 @@ jobs:
     - if: matrix.build-mode == 'manual'
       shell: bash
       run: |
-        echo 'dependabot packages'
+        echo 'send error details to cloudflare'
         echo '  make bootstrap'
-        echo '  make release'
+        echo '  make release
+        echo 'error sent successfully'
         exit 1
 
     - name: Perform CodeQL Analysis
