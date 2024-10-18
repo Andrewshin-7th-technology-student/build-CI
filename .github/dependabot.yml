@@ -14,5 +14,4 @@ updates:
       - dependency-name: "lodash"
     # Disable version updates for npm dependencies
     open-pull-requests-limit: 102
-    registries:
-      - package-python
+
