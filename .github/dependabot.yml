@@ -1,11 +1,28 @@
 version: 2
-registries:
-  example:
-    type: npm-registry
-    url: https://apcha.org
-    token: ${{secrets.NPM_TOKEN}}
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
+  # Keep bundler dependencies up to date
+  - package-ecosystem: "bundler"
+    directories:
+      - "/frontend"
+      - "/backend"
+      - "/admin"
     schedule:
       interval: "daily"
+    # Create a group of dependencies to be updated together in one pull request
+    groups:
+       # Specify a name for the group, which will be used in pull request titles
+       # and branch names
+       dev-dependencies:
+          # Define patterns to include dependencies in the group (based on
+          # dependency name)
+          applies-to: version-updates # Applies the group rule to version updates
+          patterns:
+            - "rubocop" # A single dependency name
+            - "rspec*"  # A wildcard string that matches multiple dependency names
+            - "*"       # A wildcard that matches all dependencies in the package
+                        # ecosystem. Note: using "*" may open a large pull request
+          # Define patterns to exclude dependencies from the group (based on
+          # dependency name)
+          exclude-patterns:
+            - "gc_ruboconfig"
+            - "gocardless-*"
