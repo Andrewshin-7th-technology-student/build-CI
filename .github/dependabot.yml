@@ -5,7 +5,6 @@ updates:
     directories:
       - "/frontend"
       - "/backend"
-      - "/admin"
     schedule:
       interval: "daily"
     # Create a group of dependencies to be updated together in one pull request
