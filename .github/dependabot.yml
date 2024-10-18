@@ -1,20 +1,25 @@
-# weekly updates.
 version: 2
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
+  # Keep bundler dependencies up to date
+  - package-ecosystem: "bundler"
+    directories:
     schedule:
       interval: "daily"
-    commit-message:
-      # Prefix all commit messages with "npm: "
-      prefix: "npm"
-
-  - package-ecosystem: "pip"
-    directory: "/"
-    schedule:
-      interval: "daily"
-    # Include a list of updated dependencies
-    # with a prefix determined by the dependency group
-    commit-message:
-      prefix: "pip prod"
-      prefix-development: "pip dev"
+    # Create a group of dependencies to be updated together in one pull request
+    groups:
+       # Specify a name for the group, which will be used in pull request titles
+       # and branch names
+       dev-dependencies:
+          # Define patterns to include dependencies in the group (based on
+          # dependency name)
+          applies-to: version-updates # Applies the group rule to version updates
+          patterns:
+            - "rubocop" # A single dependency name
+            - "rspec*"  # A wildcard string that matches multiple dependency names
+            - "*"       # A wildcard that matches all dependencies in the package
+                        # ecosystem. Note: using "*" may open a large pull request
+          # Define patterns to exclude dependencies from the group (based on
+          # dependency name)
+          exclude-patterns:
+            - "gc_ruboconfig"
+            - "gocardless-*"
