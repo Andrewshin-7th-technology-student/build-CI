@@ -1,7 +1,7 @@
 version: 2
 updates:
   # Keep bundler dependencies up to date
-  - package-ecosystem: "bundler"
+  - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
