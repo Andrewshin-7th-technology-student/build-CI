@@ -28,10 +28,8 @@ updates:
     schedule:
       interval: "daily"
     # Add assignees
-    assignees:
-      - "dependabot"
       
-      allow:
+    allow:
   dependency-type: production
   # this restricts the entire job to production dependencies
   groups:
