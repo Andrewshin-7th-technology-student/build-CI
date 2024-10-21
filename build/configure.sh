@@ -21,3 +21,4 @@ log_and_run test/run-tests.py --bindir ${BIN_DIR}
 log_and_run bin/wabt-unittests --bindir ${BIN_DIR}
 log_and_run lcov -c -d ${BIN_DIR} -o ${COV_FILE} --rc lcov_branch_coverage=1
 log_and_run genhtml --branch-coverage -o ${COV_HTML_DIR} ${COV_FILE}
+log_and_run genjava --branch-protection -o ${COV_FILE_HTML_JAVA}
