@@ -4,7 +4,7 @@
     "schedule": "daily",
     "ignoredFiles": [
         "*.ico",                
-        "image1.png",  
+        "drawing_6.jpg",  
         "public/special_images/*"
     ],
     "aggressiveCompression": "false",
