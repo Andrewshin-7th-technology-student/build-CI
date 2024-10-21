@@ -1,6 +1,6 @@
 version: 1
 auto-merge-settings:
-    merge_level: "minor"
+    merge_level: "minor", "major", "push"
     merge_strategy: "squash"
     skip_ci: false
     delete_branch: false
