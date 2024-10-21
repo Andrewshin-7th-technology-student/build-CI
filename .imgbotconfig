@@ -5,7 +5,7 @@
     "ignoredFiles": [
         "*.ico",                
         "drawing_6.jpg",  
-        "public/special_images/*"
+        "docs*"
     ],
     "aggressiveCompression": "false",
     "compressWiki": "true",
