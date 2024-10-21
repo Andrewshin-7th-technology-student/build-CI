@@ -7,7 +7,6 @@
     ],
     "aggressiveCompression": "false",
     "compressWiki": "true",
-    "minKBReduced": null
-    "createPullRequest": true
+    "createPullRequest": "true",
     "pullRequestTemplate": "template.md"
 }
