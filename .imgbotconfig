@@ -1,6 +1,6 @@
 {
     "createPullRequest": "true",
-    "pullRequestTemplate": "template.md"
+    "pullRequestTemplate": "template.md",
     "schedule": "daily",
     "ignoredFiles": [
         "*.ico",                
