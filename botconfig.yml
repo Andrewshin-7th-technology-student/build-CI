@@ -1,0 +1,5 @@
+Preview: 'unsupported'
+  config: 'main'
+    review: 'dependabot''main'
+    codespace_config: 'self-hosted'
+    env: dev

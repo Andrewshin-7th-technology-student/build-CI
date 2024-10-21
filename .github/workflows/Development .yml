@@ -14,10 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     environment: 'Development'
     steps:
-    - uses: actions/setup-python@v1
+    - uses: actions/setup-python@v5
       with:
         python-version: '3.x'
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
   build:
     name: build
     runs-on: ${{ matrix.os }}
@@ -28,7 +28,7 @@ jobs:
     - uses: actions/setup-python@v5
       with:
         python-version: '3.x'
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
       with:
         submodules: true
     - name: mkdir
@@ -37,14 +37,14 @@ jobs:
     name: emscripten
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
       with:
         submodules: true
   wasi:
     name: wasi
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: true
   sanitize:
@@ -59,10 +59,10 @@ jobs:
         sanitizer: [asan, ubsan, fuzz]
         type: [debug, release]
     steps:
-    - uses: actions/setup-python@v1
+    - uses: actions/setup-python@v5
       with:
         python-version: '3.x'
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
       with:
         submodules: true
   build-wasm2c-memchecked:
@@ -73,10 +73,10 @@ jobs:
       CC: "clang" # used by the wasm2c tests
       WASM2C_CFLAGS: "-march=x86-64-v2 -fsanitize=address -DWASM_RT_USE_MMAP=0"
     steps:
-    - uses: actions/setup-python@v1
+    - uses: actions/setup-python@v5
       with:
         python-version: '3.x'
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
       with:
         submodules: true
     - run: sudo apt-get install ninja-build
@@ -87,10 +87,10 @@ jobs:
     name: min-cmake
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
       with:
         submodules: true
-    - uses: actions/setup-python@v1
+    - uses: actions/setup-python@v5
       with:
         python-version: '3.x'
     - name: Install Ninja
@@ -107,10 +107,10 @@ jobs:
       WASM2C_CC: "clang"
       WASM2C_CFLAGS: "-DWASM_RT_USE_MMAP=1 -DWASM_RT_SKIP_SIGNAL_RECOVERY=1 -DWASM_RT_NONCONFORMING_UNCHECKED_STACK_EXHAUSTION=1 -DWASM2C_TEST_EMBEDDER_SIGNAL_HANDLING -DWASM_RT_ALLOW_SEGUE=1 -DWASM_RT_SEGUE_FREE_SEGMENT=1 -mfsgsbase -DWASM_RT_SANITY_CHECKS=1 -Wno-pass-failed"
     steps:
-    - uses: actions/setup-python@v1
+    - uses: actions/setup-python@v5
       with:
         python-version: '3.x'
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
       with:
         submodules: true
     - run: sudo apt-get install ninja-build
@@ -130,14 +130,14 @@ jobs:
     env:
       QEMU_LD_PREFIX: /usr/${{matrix.arch}}-linux-gnu/
     steps:
-    - uses: actions/setup-python@v1
+    - uses: actions/setup-python@v5
       with:
         python-version: '3.x'
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
       with:
         submodules: true
     - name: Set up QEMU
-      uses: docker/setup-qemu-action@v2
+      uses: docker/setup-qemu-action@v3
       with:
         platforms: ${{matrix.arch}}
         image: "tonistiigi/binfmt:master"

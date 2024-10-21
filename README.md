@@ -3,7 +3,7 @@
 ## NOTES
 Please regard that the repo  will clone another repo, then clone this repo, due to an unsuppported github coding language.
 
-## 🔥🔥🔥 The files in this repo are not meant for public exporting. this is only beta Linux testing for the CI-vite config build 🔥🔥🔥
+## 🔥🔥🔥 The files in this repo are not meant for public exporting. this is only beta Linux testing for the CI-vite config build ( This repo is for Proxy site builds, to configure your own website to a proxy and create a git repo for you.🔥🔥🔥
 
 🔥🔥🔥Ci vite build may be exceptional for the UBUNTU Linux building.🔥🔥🔥
 Progress indicators show that connecting to Linux servers will upload the Cmake code.
