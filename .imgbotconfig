@@ -1,7 +1,7 @@
 {
     "schedule": "daily",
     "ignoredFiles": [
-        "*.jpg",                
+        "*.ico",                
         "image1.png",  
         "public/special_images/*"
     ],
