@@ -13,4 +13,4 @@ jobs:
         uses: imagebot/imagebot@v1
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-          imagebotConfig: .imagebotconfig
+          imagebotConfig: .imgbotconfig
