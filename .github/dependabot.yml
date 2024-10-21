@@ -30,3 +30,11 @@ updates:
     # Add assignees
     assignees:
       - "dependabot"
+      
+      allow:
+  dependency-type: production
+  # this restricts the entire job to production dependencies
+  groups:
+      development-dependencies:
+        dependency-type: "development"
+        # this group will always be empty
