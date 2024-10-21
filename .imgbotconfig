@@ -1,4 +1,6 @@
 {
+    "createPullRequest": "true",
+    "pullRequestTemplate": "template.md"
     "schedule": "daily",
     "ignoredFiles": [
         "*.ico",                
@@ -7,6 +9,4 @@
     ],
     "aggressiveCompression": "false",
     "compressWiki": "true",
-    "createPullRequest": "true",
-    "pullRequestTemplate": "template.md"
 }
