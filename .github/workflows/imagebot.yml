@@ -9,8 +9,5 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Run ImageBot
-        uses: imgbot/Imgbot@v1
-        with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-          imagebotConfig: .imgbotconfig
+      - name: Run Imagebot
+        uses: actions/checkout@v4
