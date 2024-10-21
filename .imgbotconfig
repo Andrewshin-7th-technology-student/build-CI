@@ -1,0 +1,10 @@
+{
+    "schedule": "daily",
+    "ignoredFiles": [
+        "*.jpg",                   
+    ],
+    "aggressiveCompression": "true", 
+    "compressWiki": "true", 
+    "minKBReduced": 100, 
+    "prTitle" : "Image reduced",        
+}
