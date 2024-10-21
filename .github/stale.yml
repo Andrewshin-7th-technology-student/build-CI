@@ -1,5 +1,5 @@
-daysUntilStale: 0
-daysUntilClose: 3
+daysUntilStale: 1
+daysUntilClose: 2
 exemptLabels:
   - duplicate
   - invalid
