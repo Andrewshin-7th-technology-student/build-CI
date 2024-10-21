@@ -1,4 +1,4 @@
-version: 2
+ version: 2
 updates:
   # Keep bundler dependencies up to date
   - package-ecosystem: "github-actions"
@@ -16,17 +16,19 @@ updates:
         exclude-patterns:
           - "gc_ruboconfig"
           - "gocardless-*"
-    open-pull-requests-limit: 20
-    reviewers:
-      - "Andrewshin-7th-technology-student" # Replace with your GitHub username
-    assignees:
-      - "Andrewshin-7th-technology-student" # Replace with your GitHub username
+    commit-message:
+      prefix: "Update"
+      include: "scope"
+    pull-request-title:
+      prefix: "Update"
+      include: "scope"
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "daily"
-    open-pull-requests-limit: 20
-    reviewers:
-      - "Andrewshin-7th-technology-student" # Replace with your GitHub username
-    assignees:
-      - "Andrewshin-7th-technology-student" # Replace with your GitHub username
+    commit-message:
+      prefix: "Update"
+      include: "scope"
+    pull-request-title:
+      prefix: "Update"
+      include: "scope"
