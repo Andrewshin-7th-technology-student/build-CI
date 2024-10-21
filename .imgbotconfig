@@ -9,5 +9,5 @@
     "compressWiki": "true",
     "minKBReduced": null
     "createPullRequest": true
-    "pullRequestTemplate": "path/to/template.md"
+    "pullRequestTemplate": "template.md"
 }
