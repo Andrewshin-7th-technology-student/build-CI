@@ -2,7 +2,7 @@
     "schedule": "daily",
     "ignoredFiles": [
         "*.jpg",
-        "image1.png",
+        "image1.jpg",
         "public/special_images/*",
     ],
     "aggressiveCompression": "true"
