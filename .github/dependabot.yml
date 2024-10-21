@@ -1,20 +1,25 @@
-# weekly updates.
 version: 2
 updates:
+  # Keep bundler dependencies up to date
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    groups:
+  
+       dev-dependencies:
+          applies-to: version-updates # Applies the group rule to version updates
+          patterns:
+            - "rubocop" 
+            - "rspec*"  
+            - "*"       
+            - "*"            
+            
+          exclude-patterns:
+            - "gc_ruboconfig"
+            - "gocardless-*"
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "daily"
-    commit-message:
-      # Prefix all commit messages with "npm: "
-      prefix: "npm"
-
-  - package-ecosystem: "pip"
-    directory: "/"
-    schedule:
-      interval: "daily"
-    # Include a list of updated dependencies
-    # with a prefix determined by the dependency group
-    commit-message:
-      prefix: "pip prod"
-      prefix-development: "pip dev"
+    # Add assignees

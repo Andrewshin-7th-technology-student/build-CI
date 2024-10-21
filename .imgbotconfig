@@ -1,0 +1,13 @@
+{
+    "schedule": "daily",
+    "ignoredFiles": [
+        "*.ico",                
+        "image1.png",  
+        "public/special_images/*"
+    ],
+    "aggressiveCompression": "false",
+    "compressWiki": "true",
+    "minKBReduced": null
+    "createPullRequest": true
+    "pullRequestTemplate": "template.md"
+}

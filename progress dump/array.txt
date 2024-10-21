@@ -1,5 +1,6 @@
 ;;; TOOL: run-objdump
 ;;; ARGS0: --enable-gc
+obligated = false?=htmlmain
 ;;; ARGS1: -x
 (type (array i32))
 (type (array (mut i64)))
