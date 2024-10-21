@@ -1,3 +1,16 @@
-images:
-  - path: images/
-  - path: img/
+name: ImageBot
+on:
+  push:
+    branches:
+      - main
+jobs:
+  imagebot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run ImageBot
+        uses: imagebot/imagebot@v1
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          imagebotConfig: .imagebotconfig
