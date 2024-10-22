@@ -15,4 +15,5 @@ And I don't believe that it is my fault that there are a lot of coding languages
 ## Updates 💫
 
 GNU PUBLIC LICENSE UPDATED
-`So like we had to get a lot of bots into this repo because, without it, we can not deploy this properly, and security will fail, causing branch problems.`
+
+## So like we had to get a lot of bots into this repo because, without it, we can not deploy this properly, and security will fail, causing branch problems. Lets see, we have dependabot, imgbot, renovatebot, deepsource auto fix bot, deepsource io bot, pre-commit ci bot, pixeebot, and probaly more bots. (I wish we haden't decided to do this but we all had to agree that was the best option after our last meeting.) (also, that meeting lasted 3:19:?? (3 hours, 19 minutes, and ?? seconds.)
