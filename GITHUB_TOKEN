@@ -1,0 +1,15 @@
+permissions:
+  actions: write
+  attestations: write
+  checks: write
+  contents: write
+  deployments: write
+  id-token: write
+  issues: write
+  discussions: read
+  packages: write
+  pages: read
+  pull-requests: read
+  repository-projects: write
+  security-events: write
+  statuses: write
