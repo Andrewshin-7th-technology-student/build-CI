@@ -6,6 +6,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Set up pre-commit.ci
-        uses: pre-commit/action@v2.0.0
+        uses: pre-commit/action@v2.0.3
         with:
           config: .pre-commit-config.yaml
