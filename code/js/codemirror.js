@@ -121,7 +121,7 @@ function activeElt() {
   } catch(e) {
     activeElement = document.body || null
   }
-  while (activeElement && activeElement.shadowRoot && activeElement.shadowRoot.activeElement)
+  while (activeElement?.shadowRoot && activeElement.shadowRoot.activeElement)
     { activeElement = activeElement.shadowRoot.activeElement }
   return activeElement
 }
@@ -1230,7 +1230,7 @@ var on = function(emitter, type, f) {
 }
 
 function getHandlers(emitter, type) {
-  return emitter._handlers && emitter._handlers[type] || noHandlers
+  return emitter._handlers?.[type] || noHandlers
 }
 
 function off(emitter, type, f) {
@@ -1239,7 +1239,7 @@ function off(emitter, type, f) {
   } else if (emitter.detachEvent) {
     emitter.detachEvent("on" + type, f)
   } else {
-    var map = emitter._handlers, arr = map && map[type]
+    var map = emitter._handlers, arr = map?.[type]
     if (arr) {
       var index = indexOf(arr, f)
       if (index > -1)
@@ -1266,7 +1266,7 @@ function signalDOMEvent(cm, e, override) {
 }
 
 function signalCursorActivity(cm) {
-  var arr = cm._handlers && cm._handlers.cursorActivity
+  var arr = cm._handlers?.cursorActivity
   if (!arr) { return }
   var set = cm.curOp.cursorActivityHandlers || (cm.curOp.cursorActivityHandlers = [])
   for (var i = 0; i < arr.length; ++i) { if (indexOf(set, arr[i]) == -1)
@@ -2468,7 +2468,7 @@ function prepareMeasureForLine(cm, line) {
   var view = findViewForLine(cm, lineN)
   if (view && !view.text) {
     view = null
-  } else if (view && view.changes) {
+  } else if (view?.changes) {
     updateLineForChanges(cm, view, lineN, getDimensions(cm))
     cm.curOp.forceUpdate = true
   }
@@ -2785,7 +2785,7 @@ function coordsChar(cm, x, y) {
   for (;;) {
     var found = coordsCharInner(cm, lineObj, lineN, x, y)
     var merged = collapsedSpanAtEnd(lineObj)
-    var mergedPos = merged && merged.find(0, true)
+    var mergedPos = merged?.find(0, true)
     if (merged && (found.ch > mergedPos.from.ch || found.ch == mergedPos.from.ch && found.xRel > 0))
       { lineN = lineNo(lineObj = mergedPos.to.line) }
     else
@@ -3234,7 +3234,7 @@ function visibleLines(display, doc, viewport) {
   var from = lineAtHeight(doc, top), to = lineAtHeight(doc, bottom)
   // Ensure is a {from: {line, ch}, to: {line, ch}} object, and
   // forces those lines into the viewport (if possible).
-  if (viewport && viewport.ensure) {
+  if (viewport?.ensure) {
     var ensureFrom = viewport.ensure.from.line, ensureTo = viewport.ensure.to.line
     if (ensureFrom < from) {
       from = ensureFrom
@@ -4693,7 +4693,7 @@ function selectionEventCanBeMerged(doc, origin, prev, sel) {
 // selection into the 'done' array when it was significantly
 // different (in number of selected ranges, emptiness, or time).
 function addSelectionToHistory(doc, sel, opId, options) {
-  var hist = doc.history, origin = options && options.origin
+  var hist = doc.history, origin = options?.origin
 
   // A new event is started when the previous origin does not match
   // the current, or the origins don't allow matching. Origins
@@ -4716,7 +4716,7 @@ function addSelectionToHistory(doc, sel, opId, options) {
 
 function pushSelectionToHistory(sel, dest) {
   var top = lst(dest)
-  if (!(top && top.ranges && top.equals(sel)))
+  if (!(top?.ranges && top.equals(sel)))
     { dest.push(sel) }
 }
 
@@ -4813,7 +4813,7 @@ function copyHistoryArray(events, newGroup, instantiateSel) {
 // Otherwise, simply returns the range between the given positions.
 // Used for cursor motion and such.
 function extendRange(doc, range, head, other) {
-  if (doc.cm && doc.cm.display.shift || doc.extend) {
+  if (doc.cm?.display.shift || doc.extend) {
     var anchor = range.anchor
     if (other) {
       var posBefore = cmp(head, anchor) < 0
@@ -4870,7 +4870,7 @@ function filterSelectionChange(doc, sel, options) {
         { this$1.ranges[i] = new Range(clipPos(doc, ranges[i].anchor),
                                    clipPos(doc, ranges[i].head)) }
     },
-    origin: options && options.origin
+    origin: options?.origin
   }
   signal(doc, "beforeSelectionChange", doc, obj)
   if (doc.cm) { signal(doc.cm, "beforeSelectionChange", doc.cm, obj) }
@@ -4880,7 +4880,7 @@ function filterSelectionChange(doc, sel, options) {
 
 function setSelectionReplaceHistory(doc, sel, options) {
   var done = doc.history.done, last = lst(done)
-  if (last && last.ranges) {
+  if (last?.ranges) {
     done[done.length - 1] = sel
     setSelectionNoUndo(doc, sel, options)
   } else {
@@ -4898,7 +4898,7 @@ function setSelectionNoUndo(doc, sel, options) {
   if (hasHandler(doc, "beforeSelectionChange") || doc.cm && hasHandler(doc.cm, "beforeSelectionChange"))
     { sel = filterSelectionChange(doc, sel, options) }
 
-  var bias = options && options.bias ||
+  var bias = options?.bias ||
     (cmp(sel.primary().head, doc.sel.primary().head) < 0 ? -1 : 1)
   setSelectionInner(doc, skipAtomicInSelection(doc, sel, bias, true))
 
@@ -4931,8 +4931,8 @@ function skipAtomicInSelection(doc, sel, bias, mayClear) {
   for (var i = 0; i < sel.ranges.length; i++) {
     var range = sel.ranges[i]
     var old = sel.ranges.length == doc.sel.ranges.length && doc.sel.ranges[i]
-    var newAnchor = skipAtomic(doc, range.anchor, old && old.anchor, bias, mayClear)
-    var newHead = skipAtomic(doc, range.head, old && old.head, bias, mayClear)
+    var newAnchor = skipAtomic(doc, range.anchor, old?.anchor, bias, mayClear)
+    var newHead = skipAtomic(doc, range.head, old?.head, bias, mayClear)
     if (out || newAnchor != range.anchor || newHead != range.head) {
       if (!out) { out = sel.ranges.slice(0, i) }
       out[i] = new Range(newAnchor, newHead)
@@ -5071,7 +5071,7 @@ function makeChangeInner(doc, change) {
 
 // Revert a change stored in a document's history.
 function makeChangeFromHistory(doc, type, allowSelectionOnly) {
-  if (doc.cm && doc.cm.state.suppressEdits && !allowSelectionOnly) { return }
+  if (doc.cm?.state.suppressEdits && !allowSelectionOnly) { return }
 
   var hist = doc.history, event, selAfter = doc.sel
   var source = type == "undo" ? hist.done : hist.undone, dest = type == "undo" ? hist.undone : hist.done
@@ -5548,7 +5548,7 @@ LineWidget.prototype.changed = function () {
 eventMixin(LineWidget)
 
 function adjustScrollWhenAboveVisible(cm, line, diff) {
-  if (heightAtLine(line) < ((cm.curOp && cm.curOp.scrollTop) || cm.doc.scrollTop))
+  if (heightAtLine(line) < ((cm.curOp?.scrollTop) || cm.doc.scrollTop))
     { addToScrollPos(cm, null, diff) }
 }
 
@@ -5716,7 +5716,7 @@ function markText(doc, from, to, options, type) {
   // Shared markers (across linked documents) are handled separately
   // (markTextShared will call out to this again, once per
   // document).
-  if (options && options.shared) { return markTextShared(doc, from, to, options, type) }
+  if (options?.shared) { return markTextShared(doc, from, to, options, type) }
   // Ensure we are in an operation.
   if (doc.cm && !doc.cm.curOp) { return operation(doc.cm, markText)(doc, from, to, options, type) }
 
@@ -5927,7 +5927,7 @@ Doc.prototype = createObj(BranchChunk.prototype, {
     return lines.join(lineSep || this.lineSeparator())
   },
 
-  getLine: function(line) {var l = this.getLineHandle(line); return l && l.text},
+  getLine: function(line) {var l = this.getLineHandle(line); return l?.text},
 
   getLineHandle: function(line) {if (isLine(this, line)) { return getLine(this, line) }},
   getLineNumber: function(line) {return lineNo(line)},
@@ -6080,7 +6080,7 @@ Doc.prototype = createObj(BranchChunk.prototype, {
     var this$1 = this;
 
     this.iter(function (line) {
-      if (line.gutterMarkers && line.gutterMarkers[gutterID]) {
+      if (line.gutterMarkers?.[gutterID]) {
         changeLine(this$1, line, "gutter", function () {
           line.gutterMarkers[gutterID] = null
           if (isEmpty(line.gutterMarkers)) { line.gutterMarkers = null }
@@ -6141,13 +6141,13 @@ Doc.prototype = createObj(BranchChunk.prototype, {
   removeLineWidget: function(widget) { widget.clear() },
 
   markText: function(from, to, options) {
-    return markText(this, clipPos(this, from), clipPos(this, to), options, options && options.type || "range")
+    return markText(this, clipPos(this, from), clipPos(this, to), options, options?.type || "range")
   },
   setBookmark: function(pos, options) {
     var realOpts = {replacedWith: options && (options.nodeType == null ? options.widget : options),
-                    insertLeft: options && options.insertLeft,
-                    clearWhenEmpty: false, shared: options && options.shared,
-                    handleMouseEvents: options && options.handleMouseEvents}
+                    insertLeft: options?.insertLeft,
+                    clearWhenEmpty: false, shared: options?.shared,
+                    handleMouseEvents: options?.handleMouseEvents}
     pos = clipPos(this, pos)
     return markText(this, pos, pos, realOpts, "bookmark")
   },
@@ -6294,7 +6294,7 @@ function onDrop(e) {
   if (!pos || cm.isReadOnly()) { return }
   // Might be a file drop, in which case we simply extract the text
   // and insert it.
-  if (files && files.length && window.FileReader && window.File) {
+  if (files?.length && window.FileReader && window.File) {
     var n = files.length, text = Array(n), read = 0
     var loadFile = function (file, i) {
       if (cm.options.allowDropFileTypes &&
@@ -7299,7 +7299,7 @@ function defineOptions(CodeMirror) {
   option("keyMap", "default", function (cm, val, old) {
     var next = getKeyMap(val)
     var prev = old != Init && getKeyMap(old)
-    if (prev && prev.detach) { prev.detach(cm, next) }
+    if (prev?.detach) { prev.detach(cm, next) }
     if (next.attach) { next.attach(cm, prev || null) }
   })
   option("extraKeys", null)
@@ -7693,7 +7693,7 @@ function applyTextInput(cm, inserted, deleted, sel, origin) {
         { from = Pos(from.line, from.ch - deleted) }
       else if (cm.state.overwrite && !paste) // Handle overwrite
         { to = Pos(to.line, Math.min(getLine(doc, to.line).text.length, to.ch + lst(textLines).length)) }
-      else if (lastCopied && lastCopied.lineWise && lastCopied.text.join("\n") == inserted)
+      else if (lastCopied?.lineWise && lastCopied.text.join("\n") == inserted)
         { from = to = Pos(from.line, 0) }
     }
     updateInput = cm.curOp.updateInput
@@ -7712,7 +7712,7 @@ function applyTextInput(cm, inserted, deleted, sel, origin) {
 }
 
 function handlePaste(e, cm) {
-  var pasted = e.clipboardData && e.clipboardData.getData("Text")
+  var pasted = e.clipboardData?.getData("Text")
   if (pasted) {
     e.preventDefault()
     if (!cm.isReadOnly() && !cm.options.disableInput)
@@ -7822,8 +7822,8 @@ function addEditorMethods(CodeMirror) {
       var mode = spec.token ? spec : CodeMirror.getMode(this.options, spec)
       if (mode.startState) { throw new Error("Overlays may not be stateful.") }
       insertSorted(this.state.overlays,
-                   {mode: mode, modeSpec: spec, opaque: options && options.opaque,
-                    priority: (options && options.priority) || 0},
+                   {mode: mode, modeSpec: spec, opaque: options?.opaque,
+                    priority: (options?.priority) || 0},
                    function (overlay) { return overlay.priority; })
       this.state.modeGen++
       regChange(this)
@@ -8270,7 +8270,7 @@ function findPosH(doc, pos, dir, unit, visually) {
     moveOnce(true)
   } else if (unit == "word" || unit == "group") {
     var sawType = null, group = unit == "group"
-    var helper = doc.cm && doc.cm.getHelper(pos, "wordChars")
+    var helper = doc.cm?.getHelper(pos, "wordChars")
     for (var first = true;; first = false) {
       if (dir < 0 && !moveOnce(!first)) { break }
       var cur = lineObj.text.charAt(pos.ch) || "\n"
