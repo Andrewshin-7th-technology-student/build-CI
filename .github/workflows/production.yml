@@ -2,19 +2,19 @@ name: Production
 
 on:
   push:
-    branches: ["main"]
+    branches: [main]
 
 env:
-  AZURE_FUNCTIONAPP_NAME: 'node'   # set this to your function app name on Azure
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'       # set this to the path to your function app project, defaults to the repository root
-  NODE_VERSION: '20.x'                      # set this to the node version to use (e.g. '8.x', '10.x', '12.x')
+  AZURE_FUNCTIONAPP_NAME: node     # set this to your function app name on Azure
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: .         # set this to the path to your function app project, defaults to the repository root
+  NODE_VERSION: 20.x                        # set this to the node version to use (e.g. '8.x', '10.x', '12.x')
 
 jobs:
   Production:
     runs-on: ubuntu-latest # For Linux, use ubuntu-latest
     environment: Production
     steps:
-    - name: 'connect to linux server'
+    - name: connect to linux server
       uses: actions/checkout@v4
 
     # If you want to use Azure RBAC instead of Publish Profile, then uncomment the task below
