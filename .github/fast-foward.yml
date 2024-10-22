@@ -1,6 +1,6 @@
 name: Fast-Forward
 
-on: 
+on:
   issue_comment:
     types: [created]
   push:
@@ -10,7 +10,7 @@ jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-      - uses: APN-Pucky/fast-forward-action@main
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SSH_PRIVATE_KEY: ${{ secrets.GH_SSH }}
+    - uses: APN-Pucky/fast-forward-action@main
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SSH_PRIVATE_KEY: ${{ secrets.GH_SSH }}

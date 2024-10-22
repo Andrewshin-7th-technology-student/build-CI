@@ -5,18 +5,18 @@ on:
     tags:
   push:
     branches:
-      - main
+    - main
   pull_request:
 
 jobs:
   lint:
     name: connect to linux server
     runs-on: ubuntu-latest
-    environment: 'Development'
+    environment: Development
     steps:
     - uses: actions/setup-python@v5
       with:
-        python-version: '3.x'
+        python-version: 3.x
     - uses: actions/checkout@v4
   build:
     name: build
@@ -27,7 +27,7 @@ jobs:
     steps:
     - uses: actions/setup-python@v5
       with:
-        python-version: '3.x'
+        python-version: 3.x
     - uses: actions/checkout@v4
       with:
         submodules: true
@@ -44,16 +44,16 @@ jobs:
     name: wasi
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          submodules: true
+    - uses: actions/checkout@v4
+      with:
+        submodules: true
   sanitize:
     name: sanitize
     runs-on: ubuntu-24.04
     env:
-      USE_NINJA: "1"
-      CC: "clang"
-      WASM2C_CFLAGS: "-march=x86-64-v2" # currently required for SIMDe to pass some tests on x86-64
+      USE_NINJA: '1'
+      CC: clang
+      WASM2C_CFLAGS: -march=x86-64-v2   # currently required for SIMDe to pass some tests on x86-64
     strategy:
       matrix:
         sanitizer: [asan, ubsan, fuzz]
@@ -61,7 +61,7 @@ jobs:
     steps:
     - uses: actions/setup-python@v5
       with:
-        python-version: '3.x'
+        python-version: 3.x
     - uses: actions/checkout@v4
       with:
         submodules: true
@@ -69,13 +69,13 @@ jobs:
     name: wasm2c-memchecked
     runs-on: ubuntu-latest
     env:
-      USE_NINJA: "1"
-      CC: "clang" # used by the wasm2c tests
-      WASM2C_CFLAGS: "-march=x86-64-v2 -fsanitize=address -DWASM_RT_USE_MMAP=0"
+      USE_NINJA: '1'
+      CC: clang   # used by the wasm2c tests
+      WASM2C_CFLAGS: -march=x86-64-v2 -fsanitize=address -DWASM_RT_USE_MMAP=0
     steps:
     - uses: actions/setup-python@v5
       with:
-        python-version: '3.x'
+        python-version: 3.x
     - uses: actions/checkout@v4
       with:
         submodules: true
@@ -92,7 +92,7 @@ jobs:
         submodules: true
     - uses: actions/setup-python@v5
       with:
-        python-version: '3.x'
+        python-version: 3.x
     - name: Install Ninja
       run: sudo apt-get install ninja-build
     - name: Detect minimum CMake version
@@ -103,13 +103,13 @@ jobs:
     name: rlbox
     runs-on: ubuntu-latest
     env:
-      USE_NINJA: "1"
-      WASM2C_CC: "clang"
-      WASM2C_CFLAGS: "-DWASM_RT_USE_MMAP=1 -DWASM_RT_SKIP_SIGNAL_RECOVERY=1 -DWASM_RT_NONCONFORMING_UNCHECKED_STACK_EXHAUSTION=1 -DWASM2C_TEST_EMBEDDER_SIGNAL_HANDLING -DWASM_RT_ALLOW_SEGUE=1 -DWASM_RT_SEGUE_FREE_SEGMENT=1 -mfsgsbase -DWASM_RT_SANITY_CHECKS=1 -Wno-pass-failed"
+      USE_NINJA: '1'
+      WASM2C_CC: clang
+      WASM2C_CFLAGS: -DWASM_RT_USE_MMAP=1 -DWASM_RT_SKIP_SIGNAL_RECOVERY=1 -DWASM_RT_NONCONFORMING_UNCHECKED_STACK_EXHAUSTION=1 -DWASM2C_TEST_EMBEDDER_SIGNAL_HANDLING -DWASM_RT_ALLOW_SEGUE=1 -DWASM_RT_SEGUE_FREE_SEGMENT=1 -mfsgsbase -DWASM_RT_SANITY_CHECKS=1 -Wno-pass-failed
     steps:
     - uses: actions/setup-python@v5
       with:
-        python-version: '3.x'
+        python-version: 3.x
     - uses: actions/checkout@v4
       with:
         submodules: true
@@ -126,13 +126,13 @@ jobs:
         image: debian:latest
         options: --health-cmd distccmon-text --health-interval 5s --health-start-period 5m debian:latest bash -c "apt-get update && apt-get install -y g++-s390x-linux-gnu distcc && distccd --daemon --no-detach"
         ports:
-          - 3632:3632
+        - 3632:3632
     env:
       QEMU_LD_PREFIX: /usr/${{matrix.arch}}-linux-gnu/
     steps:
     - uses: actions/setup-python@v5
       with:
-        python-version: '3.x'
+        python-version: 3.x
     - uses: actions/checkout@v4
       with:
         submodules: true
@@ -140,7 +140,7 @@ jobs:
       uses: docker/setup-qemu-action@v3
       with:
         platforms: ${{matrix.arch}}
-        image: "tonistiigi/binfmt:master"
+        image: tonistiigi/binfmt:master
     - name: install ninja
       run: sudo apt-get install ninja-build
     - name: install the toolchain
@@ -149,5 +149,5 @@ jobs:
       run: sudo apt-get install distcc
     - name: installing linux debugger
       run: sudo mkdir -p /opt/bin/distcc_symlinks
-    - name: read files - checking if production succeeded 
+    - name: read files - checking if production succeeded
       run: sudo ln -s /usr/bin/distcc /opt/bin/distcc_symlinks/${{matrix.arch}}-linux-gnu-gcc # only CC is needed

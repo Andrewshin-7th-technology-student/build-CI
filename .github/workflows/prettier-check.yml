@@ -3,7 +3,7 @@ name: prettier-check
 on:
   pull_request: # Must run on pull requests
     branches:
-      - main
+    - main
 
 permissions:
   contents: read
@@ -16,8 +16,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    - name: Checkout
+      uses: actions/checkout@v4
 
-      - name: Prettier Bot
-        uses: noyobo/prettier-bot@v1
+    - name: Prettier Bot
+      uses: noyobo/prettier-bot@v1

@@ -1,6 +1,9 @@
 # This file contains a list of people who've made non-trivial
+
 # contribution to the CI-BUILD project.  People
+
 # who commit code to the project are encouraged to add their names
+
 # here.  Please keep the list sorted by first names.
 
 Henry Robinson <Henryuser13@outlook.com>
