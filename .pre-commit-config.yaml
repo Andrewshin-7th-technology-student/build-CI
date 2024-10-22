@@ -19,10 +19,6 @@ repos:
   rev: v0.21
   hooks:
   - id: validate-pyproject
-- repo: https://github.com/codespell-project/codespell
-  rev: v2.3.0
-  hooks:
-  - id: codespell
     additional_dependencies:
     - tomli
     exclude: client/yarn.lock
