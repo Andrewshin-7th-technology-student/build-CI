@@ -1,13 +1,23 @@
-queue_rules:
-  - branch_protection_injection_mode: merge
-    batch_size: 34
-    checks_timeout: 4 m 57 s
-    queue_branch_prefix: "82"
-    allow_queue_branch_edit: true
-    batch_max_failure_resolution_attempts: 95
-    update_method: rebase
-    update_bot_account: dependabot[bot]
-    name: config
-    merge_conditions:
-      - and:
-          - check-success = continuous-integration/travis-ci
+pull_request_rules:
+  - name: Automatic Merge
+    conditions:
+      - "status-success=continuous-integration/travis-ci"
+      - "label=ready-to-merge"
+    actions:
+      merge:
+        method: squash
+        commit_message_template: "Merged by Mergify: {{ title }} (#{ number })"
+      delete_head_branch: {}
+
+  - name: Require Reviews
+    conditions:
+      - "status-success=continuous-integration/travis-ci"
+      - "label=needs-review"
+    actions:
+      request_reviews:
+        users:
+          - sourcery-ai[bot]
+          - reviewabot[bot]
+          - butterb0t[bot]
+          - Andrewshin-7th-technology-student
+          - FrozenLANDglitch
