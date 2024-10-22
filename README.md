@@ -15,5 +15,4 @@ And I don't believe that it is my fault that there are a lot of coding languages
 ## Updates 💫
 
 GNU PUBLIC LICENSE UPDATED
-Updated blockers
-created network list, XCAW sponsor.
+`So like we had to get a lot of bots into this repo because, without it, we can not deploy this properly, and security will fail, causing branch problems.`
