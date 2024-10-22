@@ -19,7 +19,7 @@ var features = getLocalStorageFeatures();
 
 function getLocalStorageFeatures() {
   try {
-    return JSON.parse(localStorage && localStorage.getItem("features")) || {};
+    return JSON.parse(localStorage?.getItem("features")) || {};
   } catch (e) {
     console.log(e);
     return {};
