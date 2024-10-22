@@ -9,6 +9,6 @@
         "docs*"
     ],
     "aggressiveCompression": "false",
-    "minKBReduced" : "0",
+    "minKBReduced" : 0,
     "compressWiki": "true",
 }
