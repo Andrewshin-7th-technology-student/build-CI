@@ -19,7 +19,7 @@ var features = getLocalStorageFeatures();
 
 function getLocalStorageFeatures() {
   try {
-    return JSON.parse(localStorage && localStorage.getItem("features")) || {};
+    return JSON.parse(localStorage?.getItem("features")) || {};
   } catch (e) {
     console.log(e);
     return {};
@@ -52,7 +52,7 @@ editorContainer.ondrop = function(e) {
 var fileBuffer = null;
 for (const [f, v] of Object.entries(wabt.FEATURES)) {
   var featureEl = document.getElementById(f);
-  featureEl.checked = !!(features[f] !== undefined ? features[f] : v);
+  featureEl.checked = Boolean(features[f] !== undefined ? features[f] : v);
   featureEl.addEventListener('change', event => {
     var feature = event.target.id;
     features[feature] = event.target.checked;
