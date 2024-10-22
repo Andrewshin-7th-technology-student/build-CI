@@ -145,7 +145,7 @@ else if (ie) // Suppress mysterious IE10 errors
 
 function bind(f) {
   var args = Array.prototype.slice.call(arguments, 1)
-  return function(){return f.apply(null, args)}
+  return function(){return f(...args);};
 }
 
 function copyObj(obj, target, overwrite) {
@@ -250,7 +250,7 @@ function createObj(base, props) {
 var nonASCIISingleCaseWordChar = /[\u00df\u0587\u0590-\u05f4\u0600-\u06ff\u3040-\u309f\u30a0-\u30ff\u3400-\u4db5\u4e00-\u9fcc\uac00-\ud7af]/
 function isWordCharBasic(ch) {
   return /\w/.test(ch) || ch > "\x80" &&
-    (ch.toUpperCase() != ch.toLowerCase() || nonASCIISingleCaseWordChar.test(ch))
+    (ch.toUpperCase() != ch.toLowerCase() || nonASCIISingleCaseWordChar.test(ch));
 }
 function isWordChar(ch, helper) {
   if (!helper) { return isWordCharBasic(ch) }
@@ -685,7 +685,7 @@ function removeReadOnlyRanges(doc, from, to) {
         { newParts.push({from: p.from, to: m.from}) }
       if (dto > 0 || !mk.inclusiveRight && !dto)
         { newParts.push({from: m.to, to: p.to}) }
-      parts.splice.apply(parts, newParts)
+      parts.splice(...newParts)
       j += newParts.length - 3
     }
   }
@@ -1093,7 +1093,7 @@ var bidiOrdering = (function() {
     }
 
     return direction == "rtl" ? order.reverse() : order
-  }
+  };
 })()
 
 // Get the bidi ordering for the given line (and cache it). Returns
@@ -1807,7 +1807,7 @@ function interpretTokenStyle(style, options) {
   if (!style || /^\s*$/.test(style)) { return null }
   var cache = options.addModeClass ? styleToClassCacheWithMode : styleToClassCache
   return cache[style] ||
-    (cache[style] = style.replace(/\S+/g, "cm-$&"))
+    (cache[style] = style.replace(/\S+/g, "cm-$&"));
 }
 
 // Render the DOM representation of the text of a line. Also builds
@@ -6848,7 +6848,7 @@ function handleKeyBinding(cm, e) {
         || dispatchKey(cm, name, e, function (b) {
              if (typeof b == "string" ? /^go[A-Z]/.test(b) : b.motion)
                { return doHandleBinding(cm, b) }
-           })
+           });
   } else {
     return dispatchKey(cm, name, e, function (b) { return doHandleBinding(cm, b); })
   }
