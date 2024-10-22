@@ -8,5 +8,6 @@
         "docs*"
     ],
     "aggressiveCompression": "false",
+    "minKBReduced" : "0",
     "compressWiki": "true",
 }
