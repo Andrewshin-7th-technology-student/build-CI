@@ -15,5 +15,3 @@ And I don't believe that it is my fault that there are a lot of coding languages
 ## Updates 💫
 
 GNU PUBLIC LICENSE UPDATED
-Updated blockers
-created network list, XCAW sponsor.
