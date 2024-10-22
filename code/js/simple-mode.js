@@ -20,7 +20,7 @@
   CodeMirror.simpleMode = function(config, states) {
     ensureState(states, "start");
     var states_ = {}, meta = states.meta || {}, hasIndentation = false;
-    for (var state in states) if (state != meta && states.hasOwnProperty(state)) {
+    for (var state in states) if (state != meta && Object.prototype.hasOwnProperty.call(states, state)) {
       var list = states_[state] = [], orig = states[state];
       for (var i = 0; i < orig.length; i++) {
         var data = orig[i];
@@ -53,13 +53,13 @@
       innerMode: function(state) { return state.local && {mode: state.local.mode, state: state.localState}; },
       indent: indentFunction(states_, meta)
     };
-    if (meta) for (var prop in meta) if (meta.hasOwnProperty(prop))
+    if (meta) for (var prop in meta) if (Object.prototype.hasOwnProperty.call(meta, prop))
       mode[prop] = meta[prop];
     return mode;
   };
 
   function ensureState(states, name) {
-    if (!states.hasOwnProperty(name))
+    if (!Object.prototype.hasOwnProperty.call(states, name))
       throw new Error("Undefined state " + name + " in simple mode");
   }
 
@@ -156,11 +156,11 @@
     if (a === b) return true;
     if (!a || typeof a != "object" || !b || typeof b != "object") return false;
     var props = 0;
-    for (var prop in a) if (a.hasOwnProperty(prop)) {
-      if (!b.hasOwnProperty(prop) || !cmp(a[prop], b[prop])) return false;
+    for (var prop in a) if (Object.prototype.hasOwnProperty.call(a, prop)) {
+      if (!Object.prototype.hasOwnProperty.call(b, prop) || !cmp(a[prop], b[prop])) return false;
       props++;
     }
-    for (var prop in b) if (b.hasOwnProperty(prop)) props--;
+    for (var prop in b) if (Object.prototype.hasOwnProperty.call(b, prop)) props--;
     return props == 0;
   }
 

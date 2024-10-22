@@ -151,7 +151,7 @@ function bind(f) {
 function copyObj(obj, target, overwrite) {
   if (!target) { target = {} }
   for (var prop in obj)
-    { if (obj.hasOwnProperty(prop) && (overwrite !== false || !target.hasOwnProperty(prop)))
+    { if (Object.prototype.hasOwnProperty.call(obj, prop) && (overwrite !== false || !Object.prototype.hasOwnProperty.call(target, prop)))
       { target[prop] = obj[prop] } }
   return target
 }
@@ -259,7 +259,7 @@ function isWordChar(ch, helper) {
 }
 
 function isEmpty(obj) {
-  for (var n in obj) { if (obj.hasOwnProperty(n) && obj[n]) { return false } }
+  for (var n in obj) { if (Object.prototype.hasOwnProperty.call(obj, n) && obj[n]) { return false } }
   return true
 }
 
@@ -1412,9 +1412,9 @@ function defineMIME(mime, spec) {
 // Given a MIME type, a {name, ...options} config object, or a name
 // string, return a mode config object.
 function resolveMode(spec) {
-  if (typeof spec == "string" && mimeModes.hasOwnProperty(spec)) {
+  if (typeof spec == "string" && Object.prototype.hasOwnProperty.call(mimeModes, spec)) {
     spec = mimeModes[spec]
-  } else if (spec && typeof spec.name == "string" && mimeModes.hasOwnProperty(spec.name)) {
+  } else if (spec && typeof spec.name == "string" && Object.prototype.hasOwnProperty.call(mimeModes, spec.name)) {
     var found = mimeModes[spec.name]
     if (typeof found == "string") { found = {name: found} }
     spec = createObj(found, spec)
@@ -1435,11 +1435,11 @@ function getMode(options, spec) {
   var mfactory = modes[spec.name]
   if (!mfactory) { return getMode(options, "text/plain") }
   var modeObj = mfactory(options, spec)
-  if (modeExtensions.hasOwnProperty(spec.name)) {
+  if (Object.prototype.hasOwnProperty.call(modeExtensions, spec.name)) {
     var exts = modeExtensions[spec.name]
     for (var prop in exts) {
-      if (!exts.hasOwnProperty(prop)) { continue }
-      if (modeObj.hasOwnProperty(prop)) { modeObj["_" + prop] = modeObj[prop] }
+      if (!Object.prototype.hasOwnProperty.call(exts, prop)) { continue }
+      if (Object.prototype.hasOwnProperty.call(modeObj, prop)) { modeObj["_" + prop] = modeObj[prop] }
       modeObj[prop] = exts[prop]
     }
   }
@@ -1455,7 +1455,7 @@ function getMode(options, spec) {
 // outside the actual mode definition.
 var modeExtensions = {}
 function extendMode(mode, properties) {
-  var exts = modeExtensions.hasOwnProperty(mode) ? modeExtensions[mode] : (modeExtensions[mode] = {})
+  var exts = Object.prototype.hasOwnProperty.call(modeExtensions, mode) ? modeExtensions[mode] : (modeExtensions[mode] = {})
   copyObj(properties, exts)
 }
 
@@ -2276,7 +2276,7 @@ function updateLineGutter(cm, lineView, lineN, dims) {
             "CodeMirror-linenumber CodeMirror-gutter-elt",
             ("left: " + (dims.gutterLeft["CodeMirror-linenumbers"]) + "px; width: " + (cm.display.lineNumInnerWidth) + "px"))) }
     if (markers) { for (var k = 0; k < cm.options.gutters.length; ++k) {
-      var id = cm.options.gutters[k], found = markers.hasOwnProperty(id) && markers[id]
+      var id = cm.options.gutters[k], found = Object.prototype.hasOwnProperty.call(markers, id) && markers[id]
       if (found)
         { gutterWrap.appendChild(elt("div", [found], "CodeMirror-gutter-elt",
                                    ("left: " + (dims.gutterLeft[id]) + "px; width: " + (dims.gutterWidth[id]) + "px"))) }
@@ -2488,7 +2488,7 @@ function prepareMeasureForLine(cm, line) {
 function measureCharPrepared(cm, prepared, ch, bias, varHeight) {
   if (prepared.before) { ch = -1 }
   var key = ch + (bias || ""), found
-  if (prepared.cache.hasOwnProperty(key)) {
+  if (Object.prototype.hasOwnProperty.call(prepared.cache, key)) {
     found = prepared.cache[key]
   } else {
     if (!prepared.rect)
@@ -5505,7 +5505,7 @@ BranchChunk.prototype.iterN = function (at, n, op) {
 var LineWidget = function(doc, node, options) {
   var this$1 = this;
 
-  if (options) { for (var opt in options) { if (options.hasOwnProperty(opt))
+  if (options) { for (var opt in options) { if (Object.prototype.hasOwnProperty.call(options, opt))
     { this$1[opt] = options[opt] } } }
   this.doc = doc
   this.node = node
@@ -6516,7 +6516,7 @@ function normalizeKeyName(name) {
 // this.
 function normalizeKeyMap(keymap) {
   var copy = {}
-  for (var keyname in keymap) { if (keymap.hasOwnProperty(keyname)) {
+  for (var keyname in keymap) { if (Object.prototype.hasOwnProperty.call(keymap, keyname)) {
     var value = keymap[keyname]
     if (/^(name|fallthrough|(de|at)tach)$/.test(keyname)) { continue }
     if (value == "...") { delete keymap[keyname]; continue }
@@ -7461,7 +7461,7 @@ function CodeMirror(place, options) {
   else
     { onBlur(this) }
 
-  for (var opt in optionHandlers) { if (optionHandlers.hasOwnProperty(opt))
+  for (var opt in optionHandlers) { if (Object.prototype.hasOwnProperty.call(optionHandlers, opt))
     { optionHandlers[opt](this$1, options[opt], Init) } }
   maybeUpdateLineNumberWidth(this)
   if (options.finishInit) { options.finishInit(this) }
@@ -7798,7 +7798,7 @@ function addEditorMethods(CodeMirror) {
       var options = this.options, old = options[option]
       if (options[option] == value && option != "mode") { return }
       options[option] = value
-      if (optionHandlers.hasOwnProperty(option))
+      if (Object.prototype.hasOwnProperty.call(optionHandlers, option))
         { operation(this, optionHandlers[option])(this, value, old) }
       signal(this, "optionChange", this, option)
     },
@@ -7913,7 +7913,7 @@ function addEditorMethods(CodeMirror) {
       var this$1 = this;
 
       var found = []
-      if (!helpers.hasOwnProperty(type)) { return found }
+      if (!Object.prototype.hasOwnProperty.call(helpers, type)) { return found }
       var help = helpers[type], mode = this.getModeAt(pos)
       if (typeof mode[type] == "string") {
         if (help[mode[type]]) { found.push(help[mode[type]]) }
@@ -8021,7 +8021,7 @@ function addEditorMethods(CodeMirror) {
     triggerOnKeyUp: onKeyUp,
 
     execCommand: function(cmd) {
-      if (commands.hasOwnProperty(cmd))
+      if (Object.prototype.hasOwnProperty.call(commands, cmd))
         { return commands[cmd].call(null, this) }
     },
 
@@ -8218,7 +8218,7 @@ function addEditorMethods(CodeMirror) {
   eventMixin(CodeMirror)
 
   CodeMirror.registerHelper = function(type, name, value) {
-    if (!helpers.hasOwnProperty(type)) { helpers[type] = CodeMirror[type] = {_global: []} }
+    if (!Object.prototype.hasOwnProperty.call(helpers, type)) { helpers[type] = CodeMirror[type] = {_global: []} }
     helpers[type][name] = value
   }
   CodeMirror.registerGlobalHelper = function(type, name, predicate, value) {
@@ -9284,7 +9284,7 @@ addEditorMethods(CodeMirror)
 
 // Set up methods on CodeMirror's prototype to redirect to the editor's document.
 var dontDelegate = "iter insert remove copy getEditor constructor".split(" ")
-for (var prop in Doc.prototype) { if (Doc.prototype.hasOwnProperty(prop) && indexOf(dontDelegate, prop) < 0)
+for (var prop in Doc.prototype) { if (Object.prototype.hasOwnProperty.call(Doc.prototype, prop) && indexOf(dontDelegate, prop) < 0)
   { CodeMirror.prototype[prop] = (function(method) {
     return function() {return method.apply(this.doc, arguments)}
   })(Doc.prototype[prop]) } }
