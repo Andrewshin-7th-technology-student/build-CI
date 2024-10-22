@@ -1,0 +1,6 @@
+domains: 
+    - name: Staging 
+      url: https://staging.example.com/
+
+    - name: Storybook
+      url: https://storybook.example.com/

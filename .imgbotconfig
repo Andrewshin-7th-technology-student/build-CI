@@ -1,0 +1,14 @@
+{
+    "createPullRequest": "true",
+    "pullRequestTemplate": "template.md",
+    "prTitle": "Image optimized"
+    "schedule": "daily",
+    "ignoredFiles": [
+        "*.ico",                
+        "drawing_6.jpg",  
+        "docs*"
+    ],
+    "aggressiveCompression": "false",
+    "minKBReduced" : 0,
+    "compressWiki": "true",
+}

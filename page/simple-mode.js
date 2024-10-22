@@ -20,7 +20,7 @@
   CodeMirror.simpleMode = function(config, states) {
     ensureState(states, "start");
     var states_ = {}, meta = states.meta || {}, hasIndentation = false;
-    for (var state in states) if (state != meta && states.hasOwnProperty(state)) {
+    for (var state in states) if (state != meta && Object.prototype.hasOwnProperty.call(states, state)) {
       var list = states_[state] = [], orig = states[state];
       for (var i = 0; i < orig.length; i++) {
         var data = orig[i];
@@ -37,7 +37,7 @@
       copyState: function(state) {
         var s = {state: state.state, pending: state.pending,
                  local: state.local, localState: null,
-                 indent: state.indent && state.indent.slice(0)};
+                 indent: state.indent?.slice(0)};
         if (state.localState)
           s.localState = CodeMirror.copyState(state.local.mode, state.localState);
         if (state.stack)
@@ -53,13 +53,13 @@
       innerMode: function(state) { return state.local && {mode: state.local.mode, state: state.localState}; },
       indent: indentFunction(states_, meta)
     };
-    if (meta) for (var prop in meta) if (meta.hasOwnProperty(prop))
+    if (meta) for (var prop in meta) if (Object.prototype.hasOwnProperty.call(meta, prop))
       mode[prop] = meta[prop];
     return mode;
   };
 
   function ensureState(states, name) {
-    if (!states.hasOwnProperty(name))
+    if (!Object.prototype.hasOwnProperty.call(states, name))
       throw new Error("Undefined state " + name + " in simple mode");
   }
 
@@ -80,7 +80,7 @@
     if (typeof val == "string") return val.replace(/\./g, " ");
     var result = [];
     for (var i = 0; i < val.length; i++)
-      result.push(val[i] && val[i].replace(/\./g, " "));
+      result.push(val[i]?.replace(/\./g, " "));
     return result;
   }
 
@@ -140,7 +140,7 @@
                 state.pending.push({text: matches[j], token: rule.token[j - 1]});
             stream.backUp(matches[0].length - (matches[1] ? matches[1].length : 0));
             return rule.token[0];
-          } else if (rule.token && rule.token.join) {
+          } else if (rule.token?.join) {
             return rule.token[0];
           } else {
             return rule.token;
@@ -156,11 +156,11 @@
     if (a === b) return true;
     if (!a || typeof a != "object" || !b || typeof b != "object") return false;
     var props = 0;
-    for (var prop in a) if (a.hasOwnProperty(prop)) {
-      if (!b.hasOwnProperty(prop) || !cmp(a[prop], b[prop])) return false;
+    for (var prop in a) if (Object.prototype.hasOwnProperty.call(a, prop)) {
+      if (!Object.prototype.hasOwnProperty.call(b, prop) || !cmp(a[prop], b[prop])) return false;
       props++;
     }
-    for (var prop in b) if (b.hasOwnProperty(prop)) props--;
+    for (var prop in b) if (Object.prototype.hasOwnProperty.call(b, prop)) props--;
     return props == 0;
   }
 
@@ -177,7 +177,7 @@
     state.local = {mode: mode,
                    end: spec.end && toRegex(spec.end),
                    endScan: spec.end && spec.forceEnd !== false && toRegex(spec.end, false),
-                   endToken: token && token.join ? token[token.length - 1] : token};
+                   endToken: token?.join ? token[token.length - 1] : token};
   }
 
   function indexOf(val, arr) {
@@ -186,7 +186,7 @@
 
   function indentFunction(states, meta) {
     return function(state, textAfter, line) {
-      if (state.local && state.local.mode.indent)
+      if (state.local?.mode.indent)
         return state.local.mode.indent(state.localState, textAfter, line);
       if (state.indent == null || state.local || meta.dontIndentStates && indexOf(state.state, meta.dontIndentStates) > -1)
         return CodeMirror.Pass;
@@ -197,7 +197,7 @@
           var rule = rules[i];
           if (rule.data.dedent && rule.data.dedentIfLineStart !== false) {
             var m = rule.regex.exec(textAfter);
-            if (m && m[0]) {
+            if (m?.[0]) {
               pos--;
               if (rule.next || rule.push) rules = states[rule.next || rule.push];
               textAfter = textAfter.slice(m[0].length);

@@ -6,6 +6,7 @@
             <Files>
                 <File DestinationPath="**" SourcePath="x86-binaries\**"/>
                 <File DestinationPath="Assets\**" SourcePath="Assets\**"/>
+                <./>
             </Files>
         </Package>
 
