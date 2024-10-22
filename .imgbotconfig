@@ -1,6 +1,7 @@
 {
     "createPullRequest": "true",
     "pullRequestTemplate": "template.md",
+    "prTitle": "Image optimized"
     "schedule": "daily",
     "ignoredFiles": [
         "*.ico",                
