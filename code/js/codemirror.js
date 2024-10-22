@@ -23,7 +23,7 @@ var ie_upto10 = /MSIE \d/.test(userAgent)
 var ie_11up = /Trident\/(?:[7-9]|\d{2,})\..*rv:(\d+)/.exec(userAgent)
 var edge = /Edge\/(\d+)/.exec(userAgent)
 var ie = ie_upto10 || ie_11up || edge
-var ie_version = ie && (ie_upto10 ? document.documentMode || 6 : +(edge || ie_11up)[1])
+var ie_version = ie && (ie_upto10 ? document.documentMode || 6 : Number((edge || ie_11up)[1]))
 var webkit = !edge && /WebKit\//.test(userAgent)
 var qtwebkit = webkit && /Qt\/\d+\.\d+/.test(userAgent)
 var chrome = !edge && /Chrome\//.test(userAgent)
@@ -4048,7 +4048,7 @@ function highlightWorker(cm) {
   var doc = cm.doc
   if (doc.frontier < doc.first) { doc.frontier = doc.first }
   if (doc.frontier >= cm.display.viewTo) { return }
-  var end = +new Date + cm.options.workTime
+  var end = Number(new Date) + cm.options.workTime
   var state = copyState(doc.mode, getStateBefore(cm, doc.frontier))
   var changedLines = []
 
@@ -4071,7 +4071,7 @@ function highlightWorker(cm) {
       line.stateAfter = doc.frontier % 5 == 0 ? copyState(doc.mode, state) : null
     }
     ++doc.frontier
-    if (+new Date > end) {
+    if (Number(new Date) > end) {
       startWorker(cm, cm.options.workDelay)
       return true
     }
@@ -4639,7 +4639,7 @@ function lastChangeEvent(hist, force) {
 function addChangeToHistory(doc, change, selAfter, opId) {
   var hist = doc.history
   hist.undone.length = 0
-  var time = +new Date, cur
+  var time = Number(new Date), cur
   var last
 
   if ((hist.lastOp == opId ||
@@ -4707,7 +4707,7 @@ function addSelectionToHistory(doc, sel, opId, options) {
   else
     { pushSelectionToHistory(sel, hist.done) }
 
-  hist.lastSelTime = +new Date
+  hist.lastSelTime = Number(new Date)
   hist.lastSelOrigin = origin
   hist.lastSelOp = opId
   if (options && options.clearRedo !== false)
@@ -6289,7 +6289,7 @@ function onDrop(e) {
   if (signalDOMEvent(cm, e) || eventInWidget(cm.display, e))
     { return }
   e_preventDefault(e)
-  if (ie) { lastDrop = +new Date }
+  if (ie) { lastDrop = Number(new Date) }
   var pos = posFromMouse(cm, e, true), files = e.dataTransfer.files
   if (!pos || cm.isReadOnly()) { return }
   // Might be a file drop, in which case we simply extract the text
@@ -6344,7 +6344,7 @@ function onDrop(e) {
 }
 
 function onDragStart(cm, e) {
-  if (ie && (!cm.state.draggingText || +new Date - lastDrop < 100)) { e_stop(e); return }
+  if (ie && (!cm.state.draggingText || Number(new Date) - lastDrop < 100)) { e_stop(e); return }
   if (signalDOMEvent(cm, e) || eventInWidget(cm.display, e)) { return }
 
   e.dataTransfer.setData("Text", cm.getSelection())
@@ -6832,7 +6832,7 @@ function dispatchKey(cm, name, e, handle) {
     e_preventDefault(e)
     return true
   }
-  return !!result
+  return Boolean(result)
 }
 
 // Handle a key from the keydown event.
@@ -6949,7 +6949,7 @@ function onMouseDown(e) {
       { e_preventDefault(e) }
     break
   case 2:
-    if (webkit) { cm.state.lastMiddleDown = +new Date }
+    if (webkit) { cm.state.lastMiddleDown = Number(new Date) }
     if (start) { extendSelection(cm.doc, start) }
     setTimeout(function () { return display.input.focus(); }, 20)
     e_preventDefault(e)
@@ -6967,7 +6967,7 @@ function leftButtonDown(cm, e, start) {
   if (ie) { setTimeout(bind(ensureFocus, cm), 0) }
   else { cm.curOp.focus = activeElt() }
 
-  var now = +new Date, type
+  var now = Number(new Date), type
   if (lastDoubleClick && lastDoubleClick.time > now - 400 && cmp(lastDoubleClick.pos, start) == 0) {
     type = "triple"
   } else if (lastClick && lastClick.time > now - 400 && cmp(lastClick.pos, start) == 0) {
@@ -7506,7 +7506,7 @@ function registerEventHandlers(cm) {
     if (d.activeTouch) {
       touchFinished = setTimeout(function () { return d.activeTouch = null; }, 1000)
       prevTouch = d.activeTouch
-      prevTouch.end = +new Date
+      prevTouch.end = Number(new Date)
     }
   }
   function isMouseLikeTouchEvent(e) {
@@ -7523,7 +7523,7 @@ function registerEventHandlers(cm) {
     if (!signalDOMEvent(cm, e) && !isMouseLikeTouchEvent(e)) {
       d.input.ensurePolled()
       clearTimeout(touchFinished)
-      var now = +new Date
+      var now = Number(new Date)
       d.activeTouch = {start: now, moved: false,
                        prev: now - prevTouch.end <= 300 ? prevTouch : null}
       if (e.touches.length == 1) {
@@ -7759,7 +7759,7 @@ function copyableRanges(cm) {
 function disableBrowserMagic(field, spellcheck) {
   field.setAttribute("autocorrect", "off")
   field.setAttribute("autocapitalize", "off")
-  field.setAttribute("spellcheck", !!spellcheck)
+  field.setAttribute("spellcheck", Boolean(spellcheck))
 }
 
 function hiddenTextarea() {
@@ -8126,7 +8126,7 @@ function addEditorMethods(CodeMirror) {
       signal(this, "overwriteToggle", this, this.state.overwrite)
     },
     hasFocus: function() { return this.display.input.getField() == activeElt() },
-    isReadOnly: function() { return !!(this.options.readOnly || this.doc.cantEdit) },
+    isReadOnly: function() { return Boolean(this.options.readOnly || this.doc.cantEdit) },
 
     scrollTo: methodOp(function(x, y) {
       if (x != null || y != null) { resolveScrollToPos(this) }
@@ -8727,7 +8727,7 @@ function domTextBetween(cm, from, to, fromLine, toLine) {
       }
       var markerID = node.getAttribute("cm-marker"), range
       if (markerID) {
-        var found = cm.findMarks(Pos(fromLine, 0), Pos(toLine + 1, 0), recognizeMarker(+markerID))
+        var found = cm.findMarks(Pos(fromLine, 0), Pos(toLine + 1, 0), recognizeMarker(Number(markerID)))
         if (found.length && (range = found[0].find()))
           { addText(getBetween(cm.doc, range.from, range.to).join(lineSep)) }
         return
