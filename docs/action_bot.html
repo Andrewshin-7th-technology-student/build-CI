@@ -1,16 +1,16 @@
-    <target name="package">
-      <taskdef name="deb" classname="org.vafer.jdeb.ant.DebAntTask"/>
-      <copy todir="${deb}/control">
-        <fileset dir="src/main/resources/deb/control"/>
-        <filterset begintoken="[[" endtoken="]]">
-          <filter token="version" value="${version}"/>
-          <filter token="name" value="${ant.project.name}"/>
-        </filterset>
-      </copy>
-      <deb destfile="jdeb.deb" control="${deb}/control">
-        <data src="./metadata.xml" type="directory">
-          <exclude name="**/.svn"/>
-        </data>
-      </deb>
-    </target>
+<target name="package">
+  <taskdef name="deb" classname="org.vafer.jdeb.ant.DebAntTask" />
+  <copy todir="${deb}/control">
+    <fileset dir="src/main/resources/deb/control" />
+    <filterset begintoken="[[" endtoken="]]">
+      <filter token="version" value="${version}" />
+      <filter token="name" value="${ant.project.name}" />
+    </filterset>
+  </copy>
+  <deb destfile="jdeb.deb" control="${deb}/control">
+    <data src="./metadata.xml" type="directory">
+      <exclude name="**/.svn" />
+    </data>
+  </deb>
+</target>
 <!-- this is a example but when deployed through cloud, information slots are filled. -->
