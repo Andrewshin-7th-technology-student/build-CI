@@ -19,30 +19,30 @@
 
   CodeMirror.simpleMode = function(config, states) {
     ensureState(states, "start");
-    var states_ = {}, meta = states.meta || {}, hasIndentation = false;
-    for (var state in states) if (state != meta && Object.prototype.hasOwnProperty.call(states, state)) {
-      var list = states_[state] = [], orig = states[state];
-      for (var i = 0; i < orig.length; i++) {
-        var data = orig[i];
+    const states_ = {}, meta = states.meta || {}, hasIndentation = false;
+    for (const state in states) if (state != meta && Object.prototype.hasOwnProperty.call(states, state)) {
+      const list = states_[state] = [], orig = states[state];
+      for (let i = 0; i < orig.length; i++) {
+        const data = orig[i];
         list.push(new Rule(data, states));
         if (data.indent || data.dedent) hasIndentation = true;
       }
     }
-    var mode = {
+    const mode = {
       startState: function() {
         return {state: "start", pending: null,
                 local: null, localState: null,
                 indent: hasIndentation ? [] : null};
       },
       copyState: function(state) {
-        var s = {state: state.state, pending: state.pending,
+        const s = {state: state.state, pending: state.pending,
                  local: state.local, localState: null,
                  indent: state.indent?.slice(0)};
         if (state.localState)
           s.localState = CodeMirror.copyState(state.local.mode, state.localState);
         if (state.stack)
           s.stack = state.stack.slice(0);
-        for (var pers = state.persistentStates; pers; pers = pers.next)
+        for (const pers = state.persistentStates; pers; pers = pers.next)
           s.persistentStates = {mode: pers.mode,
                                 spec: pers.spec,
                                 state: pers.state == state.localState ? s.localState : CodeMirror.copyState(pers.mode, pers.state),
@@ -53,7 +53,7 @@
       innerMode: function(state) { return state.local && {mode: state.local.mode, state: state.localState}; },
       indent: indentFunction(states_, meta)
     };
-    if (meta) for (var prop in meta) if (Object.prototype.hasOwnProperty.call(meta, prop))
+    if (meta) for (const prop in meta) if (Object.prototype.hasOwnProperty.call(meta, prop))
       mode[prop] = meta[prop];
     return mode;
   };
@@ -65,7 +65,7 @@
 
   function toRegex(val, caret) {
     if (!val) return /(?:)/;
-    var flags = "";
+    const flags = "";
     if (val instanceof RegExp) {
       if (val.ignoreCase) flags = "i";
       val = val.source;
@@ -78,8 +78,8 @@
   function asToken(val) {
     if (!val) return null;
     if (typeof val == "string") return val.replace(/\./g, " ");
-    var result = [];
-    for (var i = 0; i < val.length; i++)
+    const result = [];
+    for (let i = 0; i < val.length; i++)
       result.push(val[i]?.replace(/\./g, " "));
     return result;
   }
@@ -94,7 +94,7 @@
   function tokenFunction(states, config) {
     return function(stream, state) {
       if (state.pending) {
-        var pend = state.pending.shift();
+        const pend = state.pending.shift();
         if (state.pending.length == 0) state.pending = null;
         stream.pos += pend.text.length;
         return pend.token;
@@ -102,21 +102,21 @@
 
       if (state.local) {
         if (state.local.end && stream.match(state.local.end)) {
-          var tok = state.local.endToken || null;
+          const tok = state.local.endToken || null;
           state.local = state.localState = null;
           return tok;
         } else {
-          var tok = state.local.mode.token(stream, state.localState), m;
+          const tok = state.local.mode.token(stream, state.localState), m;
           if (state.local.endScan && (m = state.local.endScan.exec(stream.current())))
             stream.pos = stream.start + m.index;
           return tok;
         }
       }
 
-      var curState = states[state.state];
-      for (var i = 0; i < curState.length; i++) {
-        var rule = curState[i];
-        var matches = (!rule.data.sol || stream.sol()) && stream.match(rule.regex);
+      const curState = states[state.state];
+      for (const i = 0; i < curState.length; i++) {
+        const rule = curState[i];
+        const matches = (!rule.data.sol || stream.sol()) && stream.match(rule.regex);
         if (matches) {
           if (rule.data.next) {
             state.state = rule.data.next;
@@ -135,7 +135,7 @@
             state.indent.pop();
           if (matches.length > 2) {
             state.pending = [];
-            for (var j = 2; j < matches.length; j++)
+            for (const j = 2; j < matches.length; j++)
               if (matches[j])
                 state.pending.push({text: matches[j], token: rule.token[j - 1]});
             stream.backUp(matches[0].length - (matches[1] ? matches[1].length : 0));
@@ -155,21 +155,21 @@
   function cmp(a, b) {
     if (a === b) return true;
     if (!a || typeof a != "object" || !b || typeof b != "object") return false;
-    var props = 0;
-    for (var prop in a) if (Object.prototype.hasOwnProperty.call(a, prop)) {
+    const props = 0;
+    for (const prop in a) if (Object.prototype.hasOwnProperty.call(a, prop)) {
       if (!Object.prototype.hasOwnProperty.call(b, prop) || !cmp(a[prop], b[prop])) return false;
       props++;
     }
-    for (var prop in b) if (Object.prototype.hasOwnProperty.call(b, prop)) props--;
+    for (const prop in b) if (Object.prototype.hasOwnProperty.call(b, prop)) props--;
     return props == 0;
   }
 
   function enterLocalMode(config, state, spec, token) {
-    var pers;
-    if (spec.persistent) for (var p = state.persistentStates; p && !pers; p = p.next)
+    const pers;
+    if (spec.persistent) for (const p = state.persistentStates; p && !pers; p = p.next)
       if (spec.spec ? cmp(spec.spec, p.spec) : spec.mode == p.mode) pers = p;
-    var mode = pers ? pers.mode : spec.mode || CodeMirror.getMode(config, spec.spec);
-    var lState = pers ? pers.state : CodeMirror.startState(mode);
+    const mode = pers ? pers.mode : spec.mode || CodeMirror.getMode(config, spec.spec);
+    const lState = pers ? pers.state : CodeMirror.startState(mode);
     if (spec.persistent && !pers)
       state.persistentStates = {mode: mode, spec: spec.spec, state: lState, next: state.persistentStates};
 
@@ -181,7 +181,7 @@
   }
 
   function indexOf(val, arr) {
-    for (var i = 0; i < arr.length; i++) if (arr[i] === val) return true;
+    for (let i = 0; i < arr.length; i++) if (arr[i] === val) return true;
   }
 
   function indentFunction(states, meta) {
@@ -191,12 +191,12 @@
       if (state.indent == null || state.local || meta.dontIndentStates && indexOf(state.state, meta.dontIndentStates) > -1)
         return CodeMirror.Pass;
 
-      var pos = state.indent.length - 1, rules = states[state.state];
+      const pos = state.indent.length - 1, rules = states[state.state];
       scan: for (;;) {
-        for (var i = 0; i < rules.length; i++) {
-          var rule = rules[i];
+        for (let i = 0; i < rules.length; i++) {
+          const rule = rules[i];
           if (rule.data.dedent && rule.data.dedentIfLineStart !== false) {
-            var m = rule.regex.exec(textAfter);
+            const m = rule.regex.exec(textAfter);
             if (m?.[0]) {
               pos--;
               if (rule.next || rule.push) rules = states[rule.next || rule.push];

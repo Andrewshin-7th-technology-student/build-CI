@@ -24,19 +24,19 @@ function cap(str){return str.charAt(0).toUpperCase()+str.slice(1);}
 function romanize(num){
     if (isNaN(num))
         return NaN;
-    var digits = String(Number(num)).split(""),
-        key = ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM",
-               "","X","XX","XXX","XL","L","LX","LXX","LXXX","XC",
-               "","I","II","III","IV","V","VI","VII","VIII","IX"],
-        roman = "",
-        i = 3;
+    const digits = String(Number(num)).split(""),
+          key = ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM",
+                 "","X","XX","XXX","XL","L","LX","LXX","LXXX","XC",
+                 "","I","II","III","IV","V","VI","VII","VIII","IX"],
+          roman = "",
+          i = 3;
     while (i--)
         roman = (key[Number(digits.pop()) + (i * 10)] || "") + roman;
     return Array(Number(digits.join("")) + 1).join("M") + roman;
 }
 
 //disable sounds coming from soundjay.com (sorry)
-var realAudio=typeof Audio!=='undefined'?Audio:function(){return {}};//backup real audio
+const realAudio=typeof Audio!=='undefined'?Audio:function(){return {}};//backup real audio
 Audio=function(src){
 	if (src && src.indexOf('soundjay')>-1) {Game.Popup('Sorry, no sounds hotlinked from soundjay.com.');this.play=function(){};}
 	else return new realAudio(src);
@@ -44,7 +44,7 @@ Audio=function(src){
 
 if(!Array.prototype.indexOf) {
     Array.prototype.indexOf = function(needle) {
-        for(var i = 0; i < this.length; i++) {
+        for(let i = 0; i < this.length; i++) {
             if(this[i] === needle) {return i;}
         }
         return -1;
