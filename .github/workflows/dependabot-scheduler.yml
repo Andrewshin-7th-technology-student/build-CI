@@ -3,7 +3,6 @@ name: Dependabot Scheduler
 on:
   schedule:
     - cron: '0 * * * *'  # Runs every hour
-  workflow_dispatch:  # Allows manual triggering
 
 jobs:
   dependabot:
@@ -13,7 +12,7 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with:
           title: "Dependabot updates"
-          branch: "dependabot-update-branch"
+          branch: "main"
           commit-message: "Trigger Dependabot update"
           committer: "dependabot[bot] <dependabot@users.noreply.github.com>"
           author: "dependabot[bot] <dependabot@users.noreply.github.com>"
