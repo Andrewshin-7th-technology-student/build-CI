@@ -17,6 +17,6 @@ jobs:
           commit-message: "Trigger Dependabot update"
           committer: "dependabot[bot] <dependabot@users.noreply.github.com>"
           author: "dependabot[bot] <dependabot@users.noreply.github.com>"
-          signoff: true
+          signoff: false
           branch-suffix: timestamp
           body: "This pull request was created by Dependabot."
