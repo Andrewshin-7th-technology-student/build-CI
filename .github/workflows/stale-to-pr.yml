@@ -12,10 +12,10 @@ jobs:
       pull-requests: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Check for stale issues
-        uses: actions/stale@v5
+        uses: actions/stale@v9
         with:
           days-before-issue-stale: 30
           days-before-issue-close: 7
