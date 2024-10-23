@@ -1,0 +1,41 @@
+name: KeployNavigator
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install KeployNavigator
+        run: |
+          curl --silent -O -L https://keploy.io/install.sh && source install.sh
+
+      - name: Record Test Cases
+        run: keploy record -c "CMD_TO_RUN_APP"
+
+      - name: Run Tests
+        run: keploy test -c "CMD_TO_RUN_APP" --delay 10
+
+      - name: Commit changes
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add .
+          git commit -m "Add Keploy test results" || echo "No changes to commit"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Add Keploy test results
+          title: "[AUTO] Add Keploy test results"
+          body: "This PR contains Keploy test results."
+          branch: "keploy-test-results"
