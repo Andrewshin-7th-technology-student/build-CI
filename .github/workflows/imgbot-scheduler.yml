@@ -25,5 +25,5 @@ jobs:
         with:
           title: 'Imgbot Image Optimization'
           body: 'Automated image optimization by Imgbot.'
-          branch: 'main'
+          branch: 'imgbot-optimization'
           commit-message: 'Optimize images using Imgbot'
