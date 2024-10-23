@@ -18,4 +18,3 @@ jobs:
           GITHUB_PUSH_BASE_SHA: ${{ github.event.base }}
           GITHUB_PULL_BASE_SHA: ${{ github.event.pull_request.base.sha }}
           GITHUB_DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
-          GITGUARDIAN_API_KEY: ${{ ddcE7f24d7df942Ddda2d9Ebe9CBAa6fd7e0b081E5FE74f0A671ecf67f3be1bA856C4Aa }}
