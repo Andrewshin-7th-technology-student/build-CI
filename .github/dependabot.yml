@@ -4,9 +4,8 @@ updates:
 - package-ecosystem: github-actions
   directory: /
   schedule:
-    - cron: '0 0 * * *'
     interval: daily
-
+- cron: '0 0 * * *'
   groups:
     dev-dependencies:
       applies-to: version-updates   # Applies the group rule to version updates
