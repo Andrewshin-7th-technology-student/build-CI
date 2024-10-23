@@ -23,7 +23,7 @@ var ie_upto10 = /MSIE \d/.test(userAgent)
 var ie_11up = /Trident\/(?:[7-9]|\d{2,})\..*rv:(\d+)/.exec(userAgent)
 var edge = /Edge\/(\d+)/.exec(userAgent)
 var ie = ie_upto10 || ie_11up || edge
-var ie_version = ie && (ie_upto10 ? document.documentMode || 6 : +(edge || ie_11up)[1])
+var ie_version = ie && (ie_upto10 ? document.documentMode || 6 : Number((edge || ie_11up)[1]))
 var webkit = !edge && /WebKit\//.test(userAgent)
 var qtwebkit = webkit && /Qt\/\d+\.\d+/.test(userAgent)
 var chrome = !edge && /Chrome\//.test(userAgent)
@@ -121,7 +121,7 @@ function activeElt() {
   } catch(e) {
     activeElement = document.body || null
   }
-  while (activeElement && activeElement.shadowRoot && activeElement.shadowRoot.activeElement)
+  while (activeElement?.shadowRoot && activeElement.shadowRoot.activeElement)
     { activeElement = activeElement.shadowRoot.activeElement }
   return activeElement
 }
@@ -145,13 +145,13 @@ else if (ie) // Suppress mysterious IE10 errors
 
 function bind(f) {
   var args = Array.prototype.slice.call(arguments, 1)
-  return function(){return f.apply(null, args)}
+  return function(){return f(...args);};
 }
 
 function copyObj(obj, target, overwrite) {
   if (!target) { target = {} }
   for (var prop in obj)
-    { if (obj.hasOwnProperty(prop) && (overwrite !== false || !target.hasOwnProperty(prop)))
+    { if (Object.prototype.hasOwnProperty.call(obj, prop) && (overwrite !== false || !Object.prototype.hasOwnProperty.call(target, prop)))
       { target[prop] = obj[prop] } }
   return target
 }
@@ -250,7 +250,7 @@ function createObj(base, props) {
 var nonASCIISingleCaseWordChar = /[\u00df\u0587\u0590-\u05f4\u0600-\u06ff\u3040-\u309f\u30a0-\u30ff\u3400-\u4db5\u4e00-\u9fcc\uac00-\ud7af]/
 function isWordCharBasic(ch) {
   return /\w/.test(ch) || ch > "\x80" &&
-    (ch.toUpperCase() != ch.toLowerCase() || nonASCIISingleCaseWordChar.test(ch))
+    (ch.toUpperCase() != ch.toLowerCase() || nonASCIISingleCaseWordChar.test(ch));
 }
 function isWordChar(ch, helper) {
   if (!helper) { return isWordCharBasic(ch) }
@@ -259,7 +259,7 @@ function isWordChar(ch, helper) {
 }
 
 function isEmpty(obj) {
-  for (var n in obj) { if (obj.hasOwnProperty(n) && obj[n]) { return false } }
+  for (var n in obj) { if (Object.prototype.hasOwnProperty.call(obj, n) && obj[n]) { return false } }
   return true
 }
 
@@ -685,7 +685,7 @@ function removeReadOnlyRanges(doc, from, to) {
         { newParts.push({from: p.from, to: m.from}) }
       if (dto > 0 || !mk.inclusiveRight && !dto)
         { newParts.push({from: m.to, to: p.to}) }
-      parts.splice.apply(parts, newParts)
+      parts.splice(...newParts)
       j += newParts.length - 3
     }
   }
@@ -958,10 +958,10 @@ var bidiOrdering = (function() {
   var arabicTypes = "nnnnnnNNr%%r,rNNmmmmmmmmmmmrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrmmmmmmmmmmmmmmmmmmmmmnnnnnnnnnn%nnrrrmrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrmmmmmmmnNmmmmmmrrmmNmmmmrr1111111111"
   function charType(code) {
     if (code <= 0xf7) { return lowTypes.charAt(code) }
-    else if (0x590 <= code && code <= 0x5f4) { return "R" }
-    else if (0x600 <= code && code <= 0x6f9) { return arabicTypes.charAt(code - 0x600) }
-    else if (0x6ee <= code && code <= 0x8ac) { return "r" }
-    else if (0x2000 <= code && code <= 0x200b) { return "w" }
+    else if (code >= 0x590 && code <= 0x5f4) { return "R" }
+    else if (code >= 0x600 && code <= 0x6f9) { return arabicTypes.charAt(code - 0x600) }
+    else if (code >= 0x6ee && code <= 0x8ac) { return "r" }
+    else if (code >= 0x2000 && code <= 0x200b) { return "w" }
     else if (code == 0x200c) { return "b" }
     else { return "L" }
   }
@@ -1093,7 +1093,7 @@ var bidiOrdering = (function() {
     }
 
     return direction == "rtl" ? order.reverse() : order
-  }
+  };
 })()
 
 // Get the bidi ordering for the given line (and cache it). Returns
@@ -1230,7 +1230,7 @@ var on = function(emitter, type, f) {
 }
 
 function getHandlers(emitter, type) {
-  return emitter._handlers && emitter._handlers[type] || noHandlers
+  return emitter._handlers?.[type] || noHandlers
 }
 
 function off(emitter, type, f) {
@@ -1239,7 +1239,7 @@ function off(emitter, type, f) {
   } else if (emitter.detachEvent) {
     emitter.detachEvent("on" + type, f)
   } else {
-    var map = emitter._handlers, arr = map && map[type]
+    var map = emitter._handlers, arr = map?.[type]
     if (arr) {
       var index = indexOf(arr, f)
       if (index > -1)
@@ -1266,7 +1266,7 @@ function signalDOMEvent(cm, e, override) {
 }
 
 function signalCursorActivity(cm) {
-  var arr = cm._handlers && cm._handlers.cursorActivity
+  var arr = cm._handlers?.cursorActivity
   if (!arr) { return }
   var set = cm.curOp.cursorActivityHandlers || (cm.curOp.cursorActivityHandlers = [])
   for (var i = 0; i < arr.length; ++i) { if (indexOf(set, arr[i]) == -1)
@@ -1412,9 +1412,9 @@ function defineMIME(mime, spec) {
 // Given a MIME type, a {name, ...options} config object, or a name
 // string, return a mode config object.
 function resolveMode(spec) {
-  if (typeof spec == "string" && mimeModes.hasOwnProperty(spec)) {
+  if (typeof spec == "string" && Object.prototype.hasOwnProperty.call(mimeModes, spec)) {
     spec = mimeModes[spec]
-  } else if (spec && typeof spec.name == "string" && mimeModes.hasOwnProperty(spec.name)) {
+  } else if (spec && typeof spec.name == "string" && Object.prototype.hasOwnProperty.call(mimeModes, spec.name)) {
     var found = mimeModes[spec.name]
     if (typeof found == "string") { found = {name: found} }
     spec = createObj(found, spec)
@@ -1435,11 +1435,11 @@ function getMode(options, spec) {
   var mfactory = modes[spec.name]
   if (!mfactory) { return getMode(options, "text/plain") }
   var modeObj = mfactory(options, spec)
-  if (modeExtensions.hasOwnProperty(spec.name)) {
+  if (Object.prototype.hasOwnProperty.call(modeExtensions, spec.name)) {
     var exts = modeExtensions[spec.name]
     for (var prop in exts) {
-      if (!exts.hasOwnProperty(prop)) { continue }
-      if (modeObj.hasOwnProperty(prop)) { modeObj["_" + prop] = modeObj[prop] }
+      if (!Object.prototype.hasOwnProperty.call(exts, prop)) { continue }
+      if (Object.prototype.hasOwnProperty.call(modeObj, prop)) { modeObj["_" + prop] = modeObj[prop] }
       modeObj[prop] = exts[prop]
     }
   }
@@ -1455,7 +1455,7 @@ function getMode(options, spec) {
 // outside the actual mode definition.
 var modeExtensions = {}
 function extendMode(mode, properties) {
-  var exts = modeExtensions.hasOwnProperty(mode) ? modeExtensions[mode] : (modeExtensions[mode] = {})
+  var exts = Object.prototype.hasOwnProperty.call(modeExtensions, mode) ? modeExtensions[mode] : (modeExtensions[mode] = {})
   copyObj(properties, exts)
 }
 
@@ -1807,7 +1807,7 @@ function interpretTokenStyle(style, options) {
   if (!style || /^\s*$/.test(style)) { return null }
   var cache = options.addModeClass ? styleToClassCacheWithMode : styleToClassCache
   return cache[style] ||
-    (cache[style] = style.replace(/\S+/g, "cm-$&"))
+    (cache[style] = style.replace(/\S+/g, "cm-$&"));
 }
 
 // Render the DOM representation of the text of a line. Also builds
@@ -2276,7 +2276,7 @@ function updateLineGutter(cm, lineView, lineN, dims) {
             "CodeMirror-linenumber CodeMirror-gutter-elt",
             ("left: " + (dims.gutterLeft["CodeMirror-linenumbers"]) + "px; width: " + (cm.display.lineNumInnerWidth) + "px"))) }
     if (markers) { for (var k = 0; k < cm.options.gutters.length; ++k) {
-      var id = cm.options.gutters[k], found = markers.hasOwnProperty(id) && markers[id]
+      var id = cm.options.gutters[k], found = Object.prototype.hasOwnProperty.call(markers, id) && markers[id]
       if (found)
         { gutterWrap.appendChild(elt("div", [found], "CodeMirror-gutter-elt",
                                    ("left: " + (dims.gutterLeft[id]) + "px; width: " + (dims.gutterWidth[id]) + "px"))) }
@@ -2468,7 +2468,7 @@ function prepareMeasureForLine(cm, line) {
   var view = findViewForLine(cm, lineN)
   if (view && !view.text) {
     view = null
-  } else if (view && view.changes) {
+  } else if (view?.changes) {
     updateLineForChanges(cm, view, lineN, getDimensions(cm))
     cm.curOp.forceUpdate = true
   }
@@ -2488,7 +2488,7 @@ function prepareMeasureForLine(cm, line) {
 function measureCharPrepared(cm, prepared, ch, bias, varHeight) {
   if (prepared.before) { ch = -1 }
   var key = ch + (bias || ""), found
-  if (prepared.cache.hasOwnProperty(key)) {
+  if (Object.prototype.hasOwnProperty.call(prepared.cache, key)) {
     found = prepared.cache[key]
   } else {
     if (!prepared.rect)
@@ -2785,7 +2785,7 @@ function coordsChar(cm, x, y) {
   for (;;) {
     var found = coordsCharInner(cm, lineObj, lineN, x, y)
     var merged = collapsedSpanAtEnd(lineObj)
-    var mergedPos = merged && merged.find(0, true)
+    var mergedPos = merged?.find(0, true)
     if (merged && (found.ch > mergedPos.from.ch || found.ch == mergedPos.from.ch && found.xRel > 0))
       { lineN = lineNo(lineObj = mergedPos.to.line) }
     else
@@ -3234,7 +3234,7 @@ function visibleLines(display, doc, viewport) {
   var from = lineAtHeight(doc, top), to = lineAtHeight(doc, bottom)
   // Ensure is a {from: {line, ch}, to: {line, ch}} object, and
   // forces those lines into the viewport (if possible).
-  if (viewport && viewport.ensure) {
+  if (viewport?.ensure) {
     var ensureFrom = viewport.ensure.from.line, ensureTo = viewport.ensure.to.line
     if (ensureFrom < from) {
       from = ensureFrom
@@ -4048,7 +4048,7 @@ function highlightWorker(cm) {
   var doc = cm.doc
   if (doc.frontier < doc.first) { doc.frontier = doc.first }
   if (doc.frontier >= cm.display.viewTo) { return }
-  var end = +new Date + cm.options.workTime
+  var end = Number(new Date) + cm.options.workTime
   var state = copyState(doc.mode, getStateBefore(cm, doc.frontier))
   var changedLines = []
 
@@ -4071,7 +4071,7 @@ function highlightWorker(cm) {
       line.stateAfter = doc.frontier % 5 == 0 ? copyState(doc.mode, state) : null
     }
     ++doc.frontier
-    if (+new Date > end) {
+    if (Number(new Date) > end) {
       startWorker(cm, cm.options.workDelay)
       return true
     }
@@ -4639,7 +4639,7 @@ function lastChangeEvent(hist, force) {
 function addChangeToHistory(doc, change, selAfter, opId) {
   var hist = doc.history
   hist.undone.length = 0
-  var time = +new Date, cur
+  var time = Number(new Date), cur
   var last
 
   if ((hist.lastOp == opId ||
@@ -4693,7 +4693,7 @@ function selectionEventCanBeMerged(doc, origin, prev, sel) {
 // selection into the 'done' array when it was significantly
 // different (in number of selected ranges, emptiness, or time).
 function addSelectionToHistory(doc, sel, opId, options) {
-  var hist = doc.history, origin = options && options.origin
+  var hist = doc.history, origin = options?.origin
 
   // A new event is started when the previous origin does not match
   // the current, or the origins don't allow matching. Origins
@@ -4707,7 +4707,7 @@ function addSelectionToHistory(doc, sel, opId, options) {
   else
     { pushSelectionToHistory(sel, hist.done) }
 
-  hist.lastSelTime = +new Date
+  hist.lastSelTime = Number(new Date)
   hist.lastSelOrigin = origin
   hist.lastSelOp = opId
   if (options && options.clearRedo !== false)
@@ -4716,7 +4716,7 @@ function addSelectionToHistory(doc, sel, opId, options) {
 
 function pushSelectionToHistory(sel, dest) {
   var top = lst(dest)
-  if (!(top && top.ranges && top.equals(sel)))
+  if (!(top?.ranges && top.equals(sel)))
     { dest.push(sel) }
 }
 
@@ -4813,7 +4813,7 @@ function copyHistoryArray(events, newGroup, instantiateSel) {
 // Otherwise, simply returns the range between the given positions.
 // Used for cursor motion and such.
 function extendRange(doc, range, head, other) {
-  if (doc.cm && doc.cm.display.shift || doc.extend) {
+  if (doc.cm?.display.shift || doc.extend) {
     var anchor = range.anchor
     if (other) {
       var posBefore = cmp(head, anchor) < 0
@@ -4870,7 +4870,7 @@ function filterSelectionChange(doc, sel, options) {
         { this$1.ranges[i] = new Range(clipPos(doc, ranges[i].anchor),
                                    clipPos(doc, ranges[i].head)) }
     },
-    origin: options && options.origin
+    origin: options?.origin
   }
   signal(doc, "beforeSelectionChange", doc, obj)
   if (doc.cm) { signal(doc.cm, "beforeSelectionChange", doc.cm, obj) }
@@ -4880,7 +4880,7 @@ function filterSelectionChange(doc, sel, options) {
 
 function setSelectionReplaceHistory(doc, sel, options) {
   var done = doc.history.done, last = lst(done)
-  if (last && last.ranges) {
+  if (last?.ranges) {
     done[done.length - 1] = sel
     setSelectionNoUndo(doc, sel, options)
   } else {
@@ -4898,7 +4898,7 @@ function setSelectionNoUndo(doc, sel, options) {
   if (hasHandler(doc, "beforeSelectionChange") || doc.cm && hasHandler(doc.cm, "beforeSelectionChange"))
     { sel = filterSelectionChange(doc, sel, options) }
 
-  var bias = options && options.bias ||
+  var bias = options?.bias ||
     (cmp(sel.primary().head, doc.sel.primary().head) < 0 ? -1 : 1)
   setSelectionInner(doc, skipAtomicInSelection(doc, sel, bias, true))
 
@@ -4931,8 +4931,8 @@ function skipAtomicInSelection(doc, sel, bias, mayClear) {
   for (var i = 0; i < sel.ranges.length; i++) {
     var range = sel.ranges[i]
     var old = sel.ranges.length == doc.sel.ranges.length && doc.sel.ranges[i]
-    var newAnchor = skipAtomic(doc, range.anchor, old && old.anchor, bias, mayClear)
-    var newHead = skipAtomic(doc, range.head, old && old.head, bias, mayClear)
+    var newAnchor = skipAtomic(doc, range.anchor, old?.anchor, bias, mayClear)
+    var newHead = skipAtomic(doc, range.head, old?.head, bias, mayClear)
     if (out || newAnchor != range.anchor || newHead != range.head) {
       if (!out) { out = sel.ranges.slice(0, i) }
       out[i] = new Range(newAnchor, newHead)
@@ -5071,7 +5071,7 @@ function makeChangeInner(doc, change) {
 
 // Revert a change stored in a document's history.
 function makeChangeFromHistory(doc, type, allowSelectionOnly) {
-  if (doc.cm && doc.cm.state.suppressEdits && !allowSelectionOnly) { return }
+  if (doc.cm?.state.suppressEdits && !allowSelectionOnly) { return }
 
   var hist = doc.history, event, selAfter = doc.sel
   var source = type == "undo" ? hist.done : hist.undone, dest = type == "undo" ? hist.undone : hist.done
@@ -5505,7 +5505,7 @@ BranchChunk.prototype.iterN = function (at, n, op) {
 var LineWidget = function(doc, node, options) {
   var this$1 = this;
 
-  if (options) { for (var opt in options) { if (options.hasOwnProperty(opt))
+  if (options) { for (var opt in options) { if (Object.prototype.hasOwnProperty.call(options, opt))
     { this$1[opt] = options[opt] } } }
   this.doc = doc
   this.node = node
@@ -5548,7 +5548,7 @@ LineWidget.prototype.changed = function () {
 eventMixin(LineWidget)
 
 function adjustScrollWhenAboveVisible(cm, line, diff) {
-  if (heightAtLine(line) < ((cm.curOp && cm.curOp.scrollTop) || cm.doc.scrollTop))
+  if (heightAtLine(line) < ((cm.curOp?.scrollTop) || cm.doc.scrollTop))
     { addToScrollPos(cm, null, diff) }
 }
 
@@ -5716,7 +5716,7 @@ function markText(doc, from, to, options, type) {
   // Shared markers (across linked documents) are handled separately
   // (markTextShared will call out to this again, once per
   // document).
-  if (options && options.shared) { return markTextShared(doc, from, to, options, type) }
+  if (options?.shared) { return markTextShared(doc, from, to, options, type) }
   // Ensure we are in an operation.
   if (doc.cm && !doc.cm.curOp) { return operation(doc.cm, markText)(doc, from, to, options, type) }
 
@@ -5927,7 +5927,7 @@ Doc.prototype = createObj(BranchChunk.prototype, {
     return lines.join(lineSep || this.lineSeparator())
   },
 
-  getLine: function(line) {var l = this.getLineHandle(line); return l && l.text},
+  getLine: function(line) {var l = this.getLineHandle(line); return l?.text},
 
   getLineHandle: function(line) {if (isLine(this, line)) { return getLine(this, line) }},
   getLineNumber: function(line) {return lineNo(line)},
@@ -6080,7 +6080,7 @@ Doc.prototype = createObj(BranchChunk.prototype, {
     var this$1 = this;
 
     this.iter(function (line) {
-      if (line.gutterMarkers && line.gutterMarkers[gutterID]) {
+      if (line.gutterMarkers?.[gutterID]) {
         changeLine(this$1, line, "gutter", function () {
           line.gutterMarkers[gutterID] = null
           if (isEmpty(line.gutterMarkers)) { line.gutterMarkers = null }
@@ -6141,13 +6141,13 @@ Doc.prototype = createObj(BranchChunk.prototype, {
   removeLineWidget: function(widget) { widget.clear() },
 
   markText: function(from, to, options) {
-    return markText(this, clipPos(this, from), clipPos(this, to), options, options && options.type || "range")
+    return markText(this, clipPos(this, from), clipPos(this, to), options, options?.type || "range")
   },
   setBookmark: function(pos, options) {
     var realOpts = {replacedWith: options && (options.nodeType == null ? options.widget : options),
-                    insertLeft: options && options.insertLeft,
-                    clearWhenEmpty: false, shared: options && options.shared,
-                    handleMouseEvents: options && options.handleMouseEvents}
+                    insertLeft: options?.insertLeft,
+                    clearWhenEmpty: false, shared: options?.shared,
+                    handleMouseEvents: options?.handleMouseEvents}
     pos = clipPos(this, pos)
     return markText(this, pos, pos, realOpts, "bookmark")
   },
@@ -6289,12 +6289,12 @@ function onDrop(e) {
   if (signalDOMEvent(cm, e) || eventInWidget(cm.display, e))
     { return }
   e_preventDefault(e)
-  if (ie) { lastDrop = +new Date }
+  if (ie) { lastDrop = Number(new Date) }
   var pos = posFromMouse(cm, e, true), files = e.dataTransfer.files
   if (!pos || cm.isReadOnly()) { return }
   // Might be a file drop, in which case we simply extract the text
   // and insert it.
-  if (files && files.length && window.FileReader && window.File) {
+  if (files?.length && window.FileReader && window.File) {
     var n = files.length, text = Array(n), read = 0
     var loadFile = function (file, i) {
       if (cm.options.allowDropFileTypes &&
@@ -6344,7 +6344,7 @@ function onDrop(e) {
 }
 
 function onDragStart(cm, e) {
-  if (ie && (!cm.state.draggingText || +new Date - lastDrop < 100)) { e_stop(e); return }
+  if (ie && (!cm.state.draggingText || Number(new Date) - lastDrop < 100)) { e_stop(e); return }
   if (signalDOMEvent(cm, e) || eventInWidget(cm.display, e)) { return }
 
   e.dataTransfer.setData("Text", cm.getSelection())
@@ -6516,7 +6516,7 @@ function normalizeKeyName(name) {
 // this.
 function normalizeKeyMap(keymap) {
   var copy = {}
-  for (var keyname in keymap) { if (keymap.hasOwnProperty(keyname)) {
+  for (var keyname in keymap) { if (Object.prototype.hasOwnProperty.call(keymap, keyname)) {
     var value = keymap[keyname]
     if (/^(name|fallthrough|(de|at)tach)$/.test(keyname)) { continue }
     if (value == "...") { delete keymap[keyname]; continue }
@@ -6832,7 +6832,7 @@ function dispatchKey(cm, name, e, handle) {
     e_preventDefault(e)
     return true
   }
-  return !!result
+  return Boolean(result)
 }
 
 // Handle a key from the keydown event.
@@ -6848,7 +6848,7 @@ function handleKeyBinding(cm, e) {
         || dispatchKey(cm, name, e, function (b) {
              if (typeof b == "string" ? /^go[A-Z]/.test(b) : b.motion)
                { return doHandleBinding(cm, b) }
-           })
+           });
   } else {
     return dispatchKey(cm, name, e, function (b) { return doHandleBinding(cm, b); })
   }
@@ -6949,7 +6949,7 @@ function onMouseDown(e) {
       { e_preventDefault(e) }
     break
   case 2:
-    if (webkit) { cm.state.lastMiddleDown = +new Date }
+    if (webkit) { cm.state.lastMiddleDown = Number(new Date) }
     if (start) { extendSelection(cm.doc, start) }
     setTimeout(function () { return display.input.focus(); }, 20)
     e_preventDefault(e)
@@ -6967,7 +6967,7 @@ function leftButtonDown(cm, e, start) {
   if (ie) { setTimeout(bind(ensureFocus, cm), 0) }
   else { cm.curOp.focus = activeElt() }
 
-  var now = +new Date, type
+  var now = Number(new Date), type
   if (lastDoubleClick && lastDoubleClick.time > now - 400 && cmp(lastDoubleClick.pos, start) == 0) {
     type = "triple"
   } else if (lastClick && lastClick.time > now - 400 && cmp(lastClick.pos, start) == 0) {
@@ -7299,7 +7299,7 @@ function defineOptions(CodeMirror) {
   option("keyMap", "default", function (cm, val, old) {
     var next = getKeyMap(val)
     var prev = old != Init && getKeyMap(old)
-    if (prev && prev.detach) { prev.detach(cm, next) }
+    if (prev?.detach) { prev.detach(cm, next) }
     if (next.attach) { next.attach(cm, prev || null) }
   })
   option("extraKeys", null)
@@ -7461,7 +7461,7 @@ function CodeMirror(place, options) {
   else
     { onBlur(this) }
 
-  for (var opt in optionHandlers) { if (optionHandlers.hasOwnProperty(opt))
+  for (var opt in optionHandlers) { if (Object.prototype.hasOwnProperty.call(optionHandlers, opt))
     { optionHandlers[opt](this$1, options[opt], Init) } }
   maybeUpdateLineNumberWidth(this)
   if (options.finishInit) { options.finishInit(this) }
@@ -7506,7 +7506,7 @@ function registerEventHandlers(cm) {
     if (d.activeTouch) {
       touchFinished = setTimeout(function () { return d.activeTouch = null; }, 1000)
       prevTouch = d.activeTouch
-      prevTouch.end = +new Date
+      prevTouch.end = Number(new Date)
     }
   }
   function isMouseLikeTouchEvent(e) {
@@ -7523,7 +7523,7 @@ function registerEventHandlers(cm) {
     if (!signalDOMEvent(cm, e) && !isMouseLikeTouchEvent(e)) {
       d.input.ensurePolled()
       clearTimeout(touchFinished)
-      var now = +new Date
+      var now = Number(new Date)
       d.activeTouch = {start: now, moved: false,
                        prev: now - prevTouch.end <= 300 ? prevTouch : null}
       if (e.touches.length == 1) {
@@ -7693,7 +7693,7 @@ function applyTextInput(cm, inserted, deleted, sel, origin) {
         { from = Pos(from.line, from.ch - deleted) }
       else if (cm.state.overwrite && !paste) // Handle overwrite
         { to = Pos(to.line, Math.min(getLine(doc, to.line).text.length, to.ch + lst(textLines).length)) }
-      else if (lastCopied && lastCopied.lineWise && lastCopied.text.join("\n") == inserted)
+      else if (lastCopied?.lineWise && lastCopied.text.join("\n") == inserted)
         { from = to = Pos(from.line, 0) }
     }
     updateInput = cm.curOp.updateInput
@@ -7712,7 +7712,7 @@ function applyTextInput(cm, inserted, deleted, sel, origin) {
 }
 
 function handlePaste(e, cm) {
-  var pasted = e.clipboardData && e.clipboardData.getData("Text")
+  var pasted = e.clipboardData?.getData("Text")
   if (pasted) {
     e.preventDefault()
     if (!cm.isReadOnly() && !cm.options.disableInput)
@@ -7759,7 +7759,7 @@ function copyableRanges(cm) {
 function disableBrowserMagic(field, spellcheck) {
   field.setAttribute("autocorrect", "off")
   field.setAttribute("autocapitalize", "off")
-  field.setAttribute("spellcheck", !!spellcheck)
+  field.setAttribute("spellcheck", Boolean(spellcheck))
 }
 
 function hiddenTextarea() {
@@ -7798,7 +7798,7 @@ function addEditorMethods(CodeMirror) {
       var options = this.options, old = options[option]
       if (options[option] == value && option != "mode") { return }
       options[option] = value
-      if (optionHandlers.hasOwnProperty(option))
+      if (Object.prototype.hasOwnProperty.call(optionHandlers, option))
         { operation(this, optionHandlers[option])(this, value, old) }
       signal(this, "optionChange", this, option)
     },
@@ -7822,8 +7822,8 @@ function addEditorMethods(CodeMirror) {
       var mode = spec.token ? spec : CodeMirror.getMode(this.options, spec)
       if (mode.startState) { throw new Error("Overlays may not be stateful.") }
       insertSorted(this.state.overlays,
-                   {mode: mode, modeSpec: spec, opaque: options && options.opaque,
-                    priority: (options && options.priority) || 0},
+                   {mode: mode, modeSpec: spec, opaque: options?.opaque,
+                    priority: (options?.priority) || 0},
                    function (overlay) { return overlay.priority; })
       this.state.modeGen++
       regChange(this)
@@ -7913,7 +7913,7 @@ function addEditorMethods(CodeMirror) {
       var this$1 = this;
 
       var found = []
-      if (!helpers.hasOwnProperty(type)) { return found }
+      if (!Object.prototype.hasOwnProperty.call(helpers, type)) { return found }
       var help = helpers[type], mode = this.getModeAt(pos)
       if (typeof mode[type] == "string") {
         if (help[mode[type]]) { found.push(help[mode[type]]) }
@@ -8021,7 +8021,7 @@ function addEditorMethods(CodeMirror) {
     triggerOnKeyUp: onKeyUp,
 
     execCommand: function(cmd) {
-      if (commands.hasOwnProperty(cmd))
+      if (Object.prototype.hasOwnProperty.call(commands, cmd))
         { return commands[cmd].call(null, this) }
     },
 
@@ -8126,7 +8126,7 @@ function addEditorMethods(CodeMirror) {
       signal(this, "overwriteToggle", this, this.state.overwrite)
     },
     hasFocus: function() { return this.display.input.getField() == activeElt() },
-    isReadOnly: function() { return !!(this.options.readOnly || this.doc.cantEdit) },
+    isReadOnly: function() { return Boolean(this.options.readOnly || this.doc.cantEdit) },
 
     scrollTo: methodOp(function(x, y) {
       if (x != null || y != null) { resolveScrollToPos(this) }
@@ -8218,7 +8218,7 @@ function addEditorMethods(CodeMirror) {
   eventMixin(CodeMirror)
 
   CodeMirror.registerHelper = function(type, name, value) {
-    if (!helpers.hasOwnProperty(type)) { helpers[type] = CodeMirror[type] = {_global: []} }
+    if (!Object.prototype.hasOwnProperty.call(helpers, type)) { helpers[type] = CodeMirror[type] = {_global: []} }
     helpers[type][name] = value
   }
   CodeMirror.registerGlobalHelper = function(type, name, predicate, value) {
@@ -8270,7 +8270,7 @@ function findPosH(doc, pos, dir, unit, visually) {
     moveOnce(true)
   } else if (unit == "word" || unit == "group") {
     var sawType = null, group = unit == "group"
-    var helper = doc.cm && doc.cm.getHelper(pos, "wordChars")
+    var helper = doc.cm?.getHelper(pos, "wordChars")
     for (var first = true;; first = false) {
       if (dir < 0 && !moveOnce(!first)) { break }
       var cur = lineObj.text.charAt(pos.ch) || "\n"
@@ -8727,7 +8727,7 @@ function domTextBetween(cm, from, to, fromLine, toLine) {
       }
       var markerID = node.getAttribute("cm-marker"), range
       if (markerID) {
-        var found = cm.findMarks(Pos(fromLine, 0), Pos(toLine + 1, 0), recognizeMarker(+markerID))
+        var found = cm.findMarks(Pos(fromLine, 0), Pos(toLine + 1, 0), recognizeMarker(Number(markerID)))
         if (found.length && (range = found[0].find()))
           { addText(getBetween(cm.doc, range.from, range.to).join(lineSep)) }
         return
@@ -9284,7 +9284,7 @@ addEditorMethods(CodeMirror)
 
 // Set up methods on CodeMirror's prototype to redirect to the editor's document.
 var dontDelegate = "iter insert remove copy getEditor constructor".split(" ")
-for (var prop in Doc.prototype) { if (Doc.prototype.hasOwnProperty(prop) && indexOf(dontDelegate, prop) < 0)
+for (var prop in Doc.prototype) { if (Object.prototype.hasOwnProperty.call(Doc.prototype, prop) && indexOf(dontDelegate, prop) < 0)
   { CodeMirror.prototype[prop] = (function(method) {
     return function() {return method.apply(this.doc, arguments)}
   })(Doc.prototype[prop]) } }

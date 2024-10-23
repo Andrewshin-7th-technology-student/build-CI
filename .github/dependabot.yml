@@ -1,25 +1,32 @@
 version: 2
 updates:
   # Keep bundler dependencies up to date
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "daily"
-    groups:
-  
-       dev-dependencies:
-          applies-to: version-updates # Applies the group rule to version updates
-          patterns:
-            - "rubocop" 
-            - "rspec*"  
-            - "*"       
-            - "*"            
-            
-          exclude-patterns:
-            - "gc_ruboconfig"
-            - "gocardless-*"
-  - package-ecosystem: "npm"
-    directory: "/"
-    schedule:
-      interval: "daily"
-    # Add assignees
+- package-ecosystem: github-actions
+  directory: /
+  schedule:
+    interval: daily
+  groups:
+    dev-dependencies:
+      applies-to: version-updates   # Applies the group rule to version updates
+      patterns:
+      - rubocop
+      - rspec*
+      - '*'
+      - '*'
+      exclude-patterns:
+      - gc_ruboconfig
+      - gocardless-*
+  open-pull-requests-limit: 100
+  reviewers:
+  - Andrewshin-7th-technology-student       # Replace with your GitHub username
+  assignees:
+  - Andrewshin-7th-technology-student       # Replace with your GitHub username
+- package-ecosystem: npm
+  directory: /
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 100
+  reviewers:
+  - Andrewshin-7th-technology-student       # Replace with your GitHub username
+  assignees:
+  - Andrewshin-7th-technology-student       # Replace with your GitHub username

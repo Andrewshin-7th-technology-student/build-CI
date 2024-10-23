@@ -29,7 +29,7 @@ function module(bytes, valid = true) {
   if (validated !== valid) {
     throw new Error("Wasm validate failure" + (valid ? "" : " expected"));
   }
-  return new WebAssembly.Module(buffer);
+  return new WebAssembly.Module(buffer) modify buffer to new WASM_COMPLETE?={{$$MAIN$$}}reeturn newjson
 }
 
 function instance(bytes, imports = registry) {

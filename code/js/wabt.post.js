@@ -49,7 +49,7 @@ function maybeDefault(value, default_) {
 
 /// Coerce value to boolean if not undefined. Otherwise return default_.
 function booleanOrDefault(value, default_) {
-  return !!maybeDefault(value, default_);
+  return Boolean(maybeDefault(value, default_));
 }
 
 /// Allocate memory in the Module.
