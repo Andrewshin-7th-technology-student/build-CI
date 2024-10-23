@@ -15,51 +15,51 @@
 
 // Kludges for bugs and behavior differences that can't be feature
 // detected are enabled based on userAgent etc sniffing.
-var userAgent = navigator.userAgent
-var platform = navigator.platform
+const userAgent = navigator.userAgent;
+const platform = navigator.platform;
 
-var gecko = /gecko\/\d/i.test(userAgent)
-var ie_upto10 = /MSIE \d/.test(userAgent)
-var ie_11up = /Trident\/(?:[7-9]|\d{2,})\..*rv:(\d+)/.exec(userAgent)
-var edge = /Edge\/(\d+)/.exec(userAgent)
-var ie = ie_upto10 || ie_11up || edge
-var ie_version = ie && (ie_upto10 ? document.documentMode || 6 : Number((edge || ie_11up)[1]))
-var webkit = !edge && /WebKit\//.test(userAgent)
-var qtwebkit = webkit && /Qt\/\d+\.\d+/.test(userAgent)
-var chrome = !edge && /Chrome\//.test(userAgent)
-var presto = /Opera\//.test(userAgent)
-var safari = /Apple Computer/.test(navigator.vendor)
-var mac_geMountainLion = /Mac OS X 1\d\D([8-9]|\d\d)\D/.test(userAgent)
-var phantom = /PhantomJS/.test(userAgent)
+const gecko = /gecko\/\d/i.test(userAgent);
+const ie_upto10 = /MSIE \d/.test(userAgent);
+const ie_11up = /Trident\/(?:[7-9]|\d{2,})\..*rv:(\d+)/.exec(userAgent);
+const edge = /Edge\/(\d+)/.exec(userAgent);
+const ie = ie_upto10 || ie_11up || edge;
+const ie_version = ie && (ie_upto10 ? document.documentMode || 6 : Number((edge || ie_11up)[1]));
+const webkit = !edge && /WebKit\//.test(userAgent);
+const qtwebkit = webkit && /Qt\/\d+\.\d+/.test(userAgent);
+const chrome = !edge && /Chrome\//.test(userAgent);
+const presto = /Opera\//.test(userAgent);
+const safari = /Apple Computer/.test(navigator.vendor);
+const mac_geMountainLion = /Mac OS X 1\d\D([8-9]|\d\d)\D/.test(userAgent);
+const phantom = /PhantomJS/.test(userAgent);
 
-var ios = !edge && /AppleWebKit/.test(userAgent) && /Mobile\/\w+/.test(userAgent)
-var android = /Android/.test(userAgent)
+const ios = !edge && /AppleWebKit/.test(userAgent) && /Mobile\/\w+/.test(userAgent);
+const android = /Android/.test(userAgent);
 // This is woefully incomplete. Suggestions for alternative methods welcome.
-var mobile = ios || android || /webOS|BlackBerry|Opera Mini|Opera Mobi|IEMobile/i.test(userAgent)
-var mac = ios || /Mac/.test(platform)
-var chromeOS = /\bCrOS\b/.test(userAgent)
-var windows = /win/i.test(platform)
+const mobile = ios || android || /webOS|BlackBerry|Opera Mini|Opera Mobi|IEMobile/i.test(userAgent);
+const mac = ios || /Mac/.test(platform);
+const chromeOS = /\bCrOS\b/.test(userAgent);
+const windows = /win/i.test(platform);
 
-var presto_version = presto && userAgent.match(/Version\/(\d*\.\d*)/)
+const presto_version = presto && userAgent.match(/Version\/(\d*\.\d*)/);
 if (presto_version) { presto_version = Number(presto_version[1]) }
 if (presto_version && presto_version >= 15) { presto = false; webkit = true }
 // Some browsers use the wrong event properties to signal cmd/ctrl on OS X
-var flipCtrlCmd = mac && (qtwebkit || presto && (presto_version == null || presto_version < 12.11))
-var captureRightClick = gecko || (ie && ie_version >= 9)
+const flipCtrlCmd = mac && (qtwebkit || presto && (presto_version == null || presto_version < 12.11));
+const captureRightClick = gecko || (ie && ie_version >= 9);
 
 function classTest(cls) { return new RegExp("(^|\\s)" + cls + "(?:$|\\s)\\s*") }
 
-var rmClass = function(node, cls) {
-  var current = node.className
-  var match = classTest(cls).exec(current)
+const rmClass = function(node, cls) {
+  const current = node.className;
+  const match = classTest(cls).exec(current);
   if (match) {
-    var after = current.slice(match.index + match[0].length)
+    let after = current.slice(match.index + match[0].length);
     node.className = current.slice(0, match.index) + (after ? match[1] + after : "")
   }
-}
+};
 
 function removeChildren(e) {
-  for (var count = e.childNodes.length; count > 0; --count)
+  for (let count = e.childNodes.length; count > 0; --count)
     { e.removeChild(e.firstChild) }
   return e
 }
@@ -69,29 +69,29 @@ function removeChildrenAndAdd(parent, e) {
 }
 
 function elt(tag, content, className, style) {
-  var e = document.createElement(tag)
+  let e = document.createElement(tag);
   if (className) { e.className = className }
   if (style) { e.style.cssText = style }
   if (typeof content == "string") { e.appendChild(document.createTextNode(content)) }
-  else if (content) { for (var i = 0; i < content.length; ++i) { e.appendChild(content[i]) } }
+  else if (content) { for (let i = 0; i < content.length; ++i) { e.appendChild(content[i]) } }
   return e
 }
 // wrapper for elt, which removes the elt from the accessibility tree
 function eltP(tag, content, className, style) {
-  var e = elt(tag, content, className, style)
+  const e = elt(tag, content, className, style);
   e.setAttribute("role", "presentation")
   return e
 }
 
-var range
+let range;
 if (document.createRange) { range = function(node, start, end, endNode) {
-  var r = document.createRange()
+  const r = document.createRange();
   r.setEnd(endNode || node, end)
   r.setStart(node, start)
   return r
 } }
 else { range = function(node, start, end) {
-  var r = document.body.createTextRange()
+  let r = document.body.createTextRange();
   try { r.moveToElementText(node.parentNode) }
   catch(e) { return r }
   r.collapse(true)
@@ -115,7 +115,7 @@ function activeElt() {
   // IE and Edge may throw an "Unspecified Error" when accessing document.activeElement.
   // IE < 10 will throw when accessed while the page is loading or in an iframe.
   // IE > 9 and Edge will throw when accessed in an iframe if document.body is unavailable.
-  var activeElement
+  const activeElement;
   try {
     activeElement = document.activeElement
   } catch(e) {
