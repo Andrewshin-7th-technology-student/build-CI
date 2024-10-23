@@ -1,12 +1,16 @@
 daysUntilStale: 1
-daysUntilClose: 2
+daysUntilClose: 5
+onlyLabels: []
 exemptLabels:
-  - duplicate
-  - invalid
-  - wontfix
-staleLabel: goneStale
+  - pinned
+  - security
+exemptProjects: false
+exemptMilestones: false
+exemptAssignees: true
 markComment: >
-  This issue has been automatically marked as stale because it has not had
-  recent activity. It will be closed if no further activity occurs. Thank you
-  for your contributions.
-closeComment: false
+  This issue has been automatically marked as stale because it has not had recent activity. It will be closed if no further activity occurs. Thank you for your contributions.
+unmarkComment: >
+  Your comment here.
+closeComment: >
+  This issue has been automatically closed due to inactivity. If you think this issue is still relevant, please add a comment to keep it open.
+
