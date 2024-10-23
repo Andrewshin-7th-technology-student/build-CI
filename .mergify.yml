@@ -1,4 +1,11 @@
-label-alias:
-  bug: kind/bug
-  feature_request: enhancement
-  question: question
+pull_request_rules:
+  - name: Automatic Merge
+    conditions:
+      - "status-success=continuous-integration/travis-ci"
+      - "#approved-reviews-by>=1"
+      - "label=ready-to-merge"
+    actions:
+      merge:
+        method: squash
+        commit_message_template: "Merged by Mergify: {{ title }} (#{ number })"
+      delete_head_branch: true
