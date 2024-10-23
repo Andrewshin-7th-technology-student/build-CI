@@ -21,7 +21,7 @@ jobs:
           -d '{"event_type":"imgbot-optimize"}'
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v7
         with:
           title: 'Imgbot Image Optimization'
           body: 'Automated image optimization by Imgbot.'
