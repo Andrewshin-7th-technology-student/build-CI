@@ -8,5 +8,3 @@ pull_request_rules:
       merge:
         method: squash
         commit_message_template: "Merged by Mergify: {{ title }} (#{{ number }})"
-      delete_head_branch:
-        enabled: true
