@@ -145,7 +145,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
       stream.eatWhile(wordRE);
       var word = stream.current()
       if (state.lastType != ".") {
-        if (keywords.propertyIsEnumerable(word)) {
+        if (Object.propertyIsEnumerable.call(keywords, word)) {
           var kw = keywords[word]
           return ret(kw.type, kw.style, word)
         }
@@ -263,7 +263,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
     // (Less wasteful than consing up a hundred closures on every call.)
     cx.state = state; cx.stream = stream; cx.marked = null, cx.cc = cc; cx.style = style;
 
-    if (!state.lexical.hasOwnProperty("align"))
+    if (!Object.prototype.hasOwnProperty.call(state.lexical, 'align'))
       state.lexical.align = true;
 
     while(true) {
@@ -285,7 +285,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
     for (var i = arguments.length - 1; i >= 0; i--) cx.cc.push(arguments[i]);
   }
   function cont() {
-    pass.apply(null, arguments);
+    pass(...arguments);
     return true;
   }
   function register(varname) {
@@ -403,7 +403,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
     }
 
     var maybeop = noComma ? maybeoperatorNoComma : maybeoperatorComma;
-    if (atomicTypes.hasOwnProperty(type)) return cont(maybeop);
+    if (Object.prototype.hasOwnProperty.call(atomicTypes, type)) return cont(maybeop);
     if (type == "function") return cont(functiondef, maybeop);
     if (type == "class") return cont(pushlex("form"), classExpression, poplex);
     if (type == "keyword c" || type == "async") return cont(noComma ? maybeexpressionNoComma : maybeexpression);
@@ -746,7 +746,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
   function expressionAllowed(stream, state, backUp) {
     return state.tokenize == tokenBase &&
       /^(?:operator|sof|keyword [bc]|case|new|export|default|spread|[\[{}\(,;:]|=>)$/.test(state.lastType) ||
-      (state.lastType == "quasi" && /\{\s*$/.test(stream.string.slice(0, stream.pos - (backUp || 0))))
+      (state.lastType == "quasi" && /\{\s*$/.test(stream.string.slice(0, stream.pos - (backUp || 0))));
   }
 
   // Interface
@@ -769,7 +769,7 @@ CodeMirror.defineMode("javascript", function(config, parserConfig) {
 
     token: function(stream, state) {
       if (stream.sol()) {
-        if (!state.lexical.hasOwnProperty("align"))
+        if (!Object.prototype.hasOwnProperty.call(state.lexical, 'align'))
           state.lexical.align = false;
         state.indented = stream.indentation();
         findFatArrow(stream, state);

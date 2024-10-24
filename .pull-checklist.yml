@@ -1,0 +1,15 @@
+pull-checklist:
+  checklists:
+    - name: "Code Review Checklist"
+      items:
+        - "Code is well-commented"
+        - "Tests are added/updated"
+        - "Code adheres to style guidelines"
+        - "All tests pass"
+        - "Documentation is updated"
+    - name: "Merge Checklist"
+      items:
+        - "All checklists are completed"
+        - "Code review approved"
+        - "No conflicts with main branch"
+        - "All tests pass"
