@@ -1,33 +1,28 @@
 version = 1
 
-[[analyzers]]
-name = "python"
+exclude_patterns = [
+    "bin/**",
+    "**/node_modules/**",
+    "js/**/*.min.js"
+]
 
-[analyzers.meta]
-runtime_version = "3.x.x"
+test_patterns = [
+    "tests/**",
+    "test_*.py"
+]
 
-[[analyzers]]
-name = "java"
+analyzers = [
+    [analyzers]
+    name = "python"
+    enabled = true
+    dependency_file_paths = [
+        "requirements.txt",
+        "Pipfile"
+    ]
+]
 
-[analyzers.meta]
-runtime_version = "11"
-
-[[analyzers]]
-name = "csharp"
-
-[[analyzers]]
-name = "javascript"
-
-[[analyzers]]
-name = "shell"
-
-[[analyzers]]
-name = "kotlin"
-
-[analyzers.meta]
-language_version = "1.7"
-
-[[analyzers]]
-name = "test-coverage"
-enabled = true
-runtime_version = "1.8"
+transformers = [
+    [transformers]
+    name = "black"
+    enabled = true
+]
