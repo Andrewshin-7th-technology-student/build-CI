@@ -26,4 +26,8 @@ name = "kotlin"
 
 [analyzers.meta]
 language_version = "1.7"
+
+[[analyzers]]
+name = "test-coverage"
+enabled = true
 runtime_version = "1.8"
