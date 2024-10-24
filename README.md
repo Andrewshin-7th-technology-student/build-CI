@@ -1,7 +1,7 @@
 [![Production](https://github.com/Andrewshin-7th-technology-student/build-CI/actions/workflows/production.yml/badge.svg)](https://github.com/Andrewshin-7th-technology-student/build-CI/actions/workflows/production.yml)  [![Deployment](https://github.com/Andrewshin-7th-technology-student/build-CI/actions/workflows/Deployment.yml/badge.svg)](https://github.com/Andrewshin-7th-technology-student/build-CI/actions/workflows/Deployment.yml) [![Linux server deployment](https://github.com/Andrewshin-7th-technology-student/build-CI/actions/workflows/Development%20.yml/badge.svg?branch=main)](https://github.com/Andrewshin-7th-technology-student/build-CI/actions/workflows/Development%20.yml)  [![Package create](https://github.com/Andrewshin-7th-technology-student/build-CI/actions/workflows/Package_create.yml/badge.svg)](https://github.com/Andrewshin-7th-technology-student/build-CI/actions/workflows/Package_create.yml)
 ## NOTES
 
-Please regard that the repo  will clone another repo, then clone this repo, due to an unsuppported github coding language.
+Please note in mind that this repository is licensed under the GNU AFFERO GENERAL PUBLIC LICENSE. (AGPL-3.0 license)
 
 ## 🔥🔥🔥 The files in this repo are not meant for public exporting. this is only beta Linux testing for the CI-vite config build ( This repo is for Proxy site builds, to configure your own website to a proxy and create a git repo for you.🔥🔥🔥
 
