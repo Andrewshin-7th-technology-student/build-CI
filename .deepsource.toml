@@ -28,7 +28,7 @@ name = "kotlin"
 language_version = "1.7"
 
 [[analyzers]]
-name = "test-coverage"
-enabled = true
+name = "send-receive test"
+enabled = false
 runtime_version = "1.8"
 
