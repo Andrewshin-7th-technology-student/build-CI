@@ -1,11 +1,2 @@
-pull_request_rules:
-  - name: Assign t-shirt size to PR
-    description: Assign a t-shirt size label to a pull request based on the number
-      of lines changed.
-    conditions:
-      - "#modified-lines >= 100"
-      - "#modified-lines < 500"
-    actions:
-      label:
-        toggle:
-          - size/L
+
+>>main branch_config_file: main
