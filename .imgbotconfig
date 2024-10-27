@@ -1,10 +1,21 @@
 {
-    "createPullRequest": "true",
-    "pullRequestTemplate": "template.md",
-    "prTitle": "Image optimized",
-    "schedule": "daily",
-    "ignoredFiles": [],
-    "aggressiveCompression": "false",
-    "minKBReduced": 0,
-    "compressWiki": "true"
+schedule:
+  cron: '0 0 * * *'
+
+maxPullRequests: 5
+
+fileTypes:
+  - '.png'
+  - '.jpg'
+  - '.jpeg'
+  - '.gif'
+  - '.svg'
+
+prComment: >
+  This pull request includes optimized images to improve performance.
+  Thank you for your contributions!
+
+labels:
+  - 'imgbot'
+  - 'enhancement'
 }
