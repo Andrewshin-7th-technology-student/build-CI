@@ -1,11 +1,3 @@
 {
-    "schedule": "daily",
-    "ignoredFiles": [
-        "*.webp",
-        "drawing_6.jpg",              
-        "public/special_images/*", 
-    ],
-    "compressWiki": "true",
-    "prTitle" : "Imgbot",        
-    "prBody" : "This pull request includes optimized images to improve performance.",
+    "schedule": "daily"
 }
