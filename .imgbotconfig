@@ -6,8 +6,6 @@
         "public/special_images/*", 
     ],
     "compressWiki": "true",
-    "prTitle" : "Your own pr title",        
-    "prBody" : " This pull request includes optimized images to improve performance.
-  Thank you for your contributions!
-                 Text before optimization details {optimization_details} Text after optimization details",
+    "prTitle" : "Imgbot",        
+    "prBody" : "This pull request includes optimized images to improve performance.",
 }
