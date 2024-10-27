@@ -1,21 +1,13 @@
 {
-"schedule":
-  "cron": '0 0 * * *'
-
-"maxPullRequests": 5
-
-"fileTypes":
-  - '.png'
-  - '.jpg'
-  - '.jpeg'
-  - '.gif'
-  - '.svg'
-
-"prComment": >
-  This pull request includes optimized images to improve performance.
+    "schedule": "daily",
+    "ignoredFiles": [
+        "*.webp",
+        "drawing_6.jpg",              
+        "public/special_images/*", 
+    ],
+    "compressWiki": "true",
+    "prTitle" : "Your own pr title",        
+    "prBody" : " This pull request includes optimized images to improve performance.
   Thank you for your contributions!
-
-"labels":
-  - 'imgbot'
-  - 'enhancement'
+                 Text before optimization details {optimization_details} Text after optimization details",
 }
