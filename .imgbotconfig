@@ -1,21 +1,21 @@
 {
-schedule:
-  cron: '0 0 * * *'
+"schedule":
+  "cron": '0 0 * * *'
 
-maxPullRequests: 5
+"maxPullRequests": 5
 
-fileTypes:
+"fileTypes":
   - '.png'
   - '.jpg'
   - '.jpeg'
   - '.gif'
   - '.svg'
 
-prComment: >
+"prComment": >
   This pull request includes optimized images to improve performance.
   Thank you for your contributions!
 
-labels:
+"labels":
   - 'imgbot'
   - 'enhancement'
 }
