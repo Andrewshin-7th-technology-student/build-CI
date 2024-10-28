@@ -24,5 +24,6 @@
         <Rule Id="SA1309" Action="None" />
         <!-- FieldNamesMustBeginWithUnderscore -->
         <Rule Id="SX1309" Action="Warning" />
+        <RULE SET_IDAPCHA><ACTION?=process>
     </Rules>
 </RuleSet>
