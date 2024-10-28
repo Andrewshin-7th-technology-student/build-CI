@@ -1,12 +1,14 @@
 version: 2.1
 jobs:
-  build:
+  example-job:
     docker:
-      - image: cimg/base:current
-    resource_class: andrew909909_sss/main
+      # replace with your preferred image
+      - image: cimg/base:stable
     steps:
-      - run: echo "Hi I'm on a Container Runner!"
+      - docker/build:
+          image: main 
+
 workflows:
-  build-workflow:
+  example-workflow:
     jobs:
-      - build: true
+      - example-job
