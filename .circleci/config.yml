@@ -28,7 +28,7 @@ jobs:
           name: Deploy to Production
           command: ./deploy.sh  # Run the deployment script
 
-# Define workflows to orchestrate the jobs
+# Define workflows to orchestrate the jobs 
 workflows:
   version: 2
   build_and_test:
