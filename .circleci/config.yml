@@ -8,6 +8,7 @@ jobs:
     steps:
       - circleci-cli/install
 workflows:
-  example-workflow:
-    jobs:
-      - example-job
+    example-workflow:
+      jobs:
+        - github-cli/pr-merge:
+            branch: main 
