@@ -5,9 +5,7 @@ jobs:
       # replace with your preferred image
       - image: cimg/base:stable
     steps:
-      - docker/build:
-          image: main 
-
+      - browser-tools/install-chromedriver
 workflows:
   example-workflow:
     jobs:
