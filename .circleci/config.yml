@@ -33,7 +33,7 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - build  # Run the build job first
+      - build  # Run the build job first.
       - test:  # Run the test job after the build
           requires:
             - build  # Ensure the build job completes successfully before testing
