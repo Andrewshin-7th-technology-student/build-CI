@@ -1,12 +1,16 @@
 version: 2.1
+
 jobs:
-  example-job:
+  install-node-example:
     docker:
-      # replace with your preferred image
       - image: cimg/base:stable
     steps:
-      - browser-tools/install-chromedriver
+      - checkout
+      - node/install:
+          install-yarn: true
+          node-version: '16.13'
+      - run: node --version
 workflows:
-  example-workflow:
+  test_my_app:
     jobs:
-      - example-job
+      - install-node-example
