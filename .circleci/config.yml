@@ -20,6 +20,10 @@ jobs:
     docker:
       - image: cimg/node:current  # Use the same Node.js image for consistency
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "b7:35:a6:4e:9b:0d:6d:d4:78:1e:9a:97:2a:66:6b:be"
+            - "SHA256:NPj4IcXxqQEKGXOghi/QbG2sohoNfvZ30JwCcdSSNM0"
       - checkout  # Check out the code again
       - run:
           name: Run Tests
