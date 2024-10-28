@@ -17,9 +17,3 @@ jobs:
       uses: jitterbit/get-changed-files@v1
     - name: Get optimization package
       run: wget https://eversql.com/install/eversql_github_sql_file_optimizer.py
-    - name: Optimize SQL queries
-      run: |
-        for changed_file in ${{ steps.files.outputs.all }}; do
-          echo "#####  Optimizing file: ${changed_file}  #####:"
-          python eversql_github_sql_file_optimizer.py ${changed_file} API_KEY https://www.eversql.com/api/optimize
-        done
