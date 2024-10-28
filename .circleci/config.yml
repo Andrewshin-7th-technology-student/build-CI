@@ -1,14 +1,47 @@
 version: 2.1
 
+orbs:
+  node: circleci/node@3.0.0  
+
 jobs:
-  example-job:
+  build:
     docker:
-      # replace with your preferred image
-      - image: cimg/base:stable
+      - image: cimg/node:current  # Use the latest Node.js image
     steps:
-      - circleci-cli/install
+      - checkout  # Check out the code from the repository
+      - node/install-npm  # Install npm
+      - node/install-packages:  # Install project dependencies
+          app-dir: ~/my-app  # Specify the application directory
+          cache-path: node_modules  # Cache node_modules for faster builds
+          override-ci-command: npm install  # Override the default command
+
+  test:
+    docker:
+      - image: cimg/node:current  # Use the same Node.js image for consistency
+    steps:
+      - checkout  # Check out the code again
+      - run:
+          name: Run Tests
+          command: npm test  # Run the tests defined in package.json
+
+  deploy:
+    docker:
+      - image: cimg/node:current  # Use the same Node.js image for deployment
+    steps:
+      - checkout  # Check out the code
+      - run:
+          name: Deploy to Production
+          command: ./deploy.sh  # Run the deployment script
+
+# Define workflows to orchestrate the jobs
 workflows:
-    example-workflow:
-      jobs:
-        - github-cli/pr-merge:
-            branch: main 
+  version: 2
+  build_and_test:
+    jobs:
+      - build  # Run the build job first
+      - test:  # Run the test job after the build
+          requires:
+            - build  # Ensure the build job completes successfully before testing
+      - deploy:  # Run the deploy job after tests
+          requires:
+            - test  # Ensure tests pass before deploying
