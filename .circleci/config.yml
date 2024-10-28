@@ -13,7 +13,6 @@ jobs:
       - node/install-packages:  # Install project dependencies
           app-dir: ~/my-app  # Specify the application directory
           cache-path: node_modules  # Cache node_modules for faster builds
-          override-ci-command: npm install  # Override the default command
 
   test:
     docker:
