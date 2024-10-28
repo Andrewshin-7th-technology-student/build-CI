@@ -4,6 +4,12 @@ orbs:
   node: circleci/node@3.0.0  
 
 jobs:
+  runner-test:
+    machine: true
+    resource_class: andrew909909_sss/main
+    steps:
+      - run: echo "Hi I'm on Runners!"
+      
   build:
     docker:
       - image: cimg/node:current  # Use the latest Node.js image
