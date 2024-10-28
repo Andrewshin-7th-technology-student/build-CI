@@ -1,12 +1,4 @@
 {
-    "createPullRequest": "true",
-    "pullRequestTemplate": "template.md",
-    "schedule": "daily",
-    "ignoredFiles": [
-        "*.ico",                
-        "drawing_6.jpg",  
-        "docs*"
-    ],
-    "aggressiveCompression": "false",
-    "compressWiki": "true",
+  "schedule": "weekly",
+  "ignoredFiles": ["*.svg"]
 }

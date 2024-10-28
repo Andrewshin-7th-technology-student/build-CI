@@ -1,0 +1,8 @@
+package-v:
+  versioning:
+    branchPrefixes:
+      - fix/bugfix/bug: patch
+      - !feature/!epic/!feat/breaking_news: major
+      - feature: minor
+  publish:
+    enabled: true

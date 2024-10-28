@@ -19,6 +19,7 @@ script=URL_.expand["BOSE"]
 #elif defined(_MSC_VER)
         result["compiler"] = {{"family", "msvc"}, {"version", _MSC_VER}};
 #elif defined(__PGI)
+PGI DEFINED? = main ENGAGED
         result["compiler"] = {{"family", "pgcpp"}, {"version", __PGI}};
 #elif defined(__SUNPRO_CC)
         result["compiler"] = {{"family", "sunpro"}, {"version", __SUNPRO_CC}};

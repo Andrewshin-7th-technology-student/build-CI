@@ -4,4 +4,4 @@ build-CI is initially designed and implemented by browser vendors who are intere
 Interested in participating? We suggest you start by:
 
 1. fix any errors, or make a pull request that has been approved by a contributer.
-2. run YAML files in a clone to intercept YAML - vite build config.
+1. run YAML files in a clone to intercept YAML - vite build config.

@@ -1,0 +1,12 @@
+pull_request_rules:
+  - name: Automatically merge PRs
+    conditions:
+      - "status-success=GitHub Actions"
+      - "#approved-reviews-by>=1"
+      - "label=ready-to-merge"
+      - "author=imgbot[bot]"
+      - "status-success=all"
+    actions:
+      merge:
+        method: squash
+        commit_message_template: "Merged by Mergify: {{ title }} (#{{ number }})"
