@@ -1,16 +1,13 @@
 version: 2.1
 
 jobs:
-  install-node-example:
+  example-job:
     docker:
+      # replace with your preferred image
       - image: cimg/base:stable
     steps:
-      - checkout
-      - node/install:
-          install-yarn: true
-          node-version: '16.13'
-      - run: node --version
+      - circleci-cli/install
 workflows:
-  test_my_app:
+  example-workflow:
     jobs:
-      - install-node-example
+      - example-job
