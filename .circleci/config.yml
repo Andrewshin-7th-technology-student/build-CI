@@ -17,7 +17,7 @@ jobs:
       - checkout  # Check out the code again
       - run:
           name: Run Tests
-          command: deploy.sh  # Run the tests defined in package.json
+          command: npm run  # Run the tests defined in package.json
 
   deploy:
     docker:
