@@ -1,0 +1,25 @@
+name: EverSQL
+ 
+on:
+  push:
+  pull_request:
+    paths:
+      - '**/**.sql'
+ 
+jobs:
+  automatic-sql-optimization:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v1
+    - name: Get changed files
+      id: files
+      uses: jitterbit/get-changed-files@v1
+    - name: Get optimization package
+      run: wget https://eversql.com/install/eversql_github_sql_file_optimizer.py
+    - name: Optimize SQL queries
+      run: |
+        for changed_file in ${{ steps.files.outputs.all }}; do
+          echo "#####  Optimizing file: ${changed_file}  #####:"
+          python eversql_github_sql_file_optimizer.py ${changed_file} API_KEY https://www.eversql.com/api/optimize
+        done
