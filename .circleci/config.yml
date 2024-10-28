@@ -26,7 +26,6 @@ jobs:
       - checkout  # Check out the code
       - run:
           name: Deploy to Production
-          command: npm run start  # Run the deployment script
 
 # Define workflows to orchestrate the jobs
 workflows:
