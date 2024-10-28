@@ -1,16 +1,39 @@
 version: 2.1
 
+orbs:
+  node: circleci/node@3.0.0  
+
 jobs:
-  install-node-example:
+  build:
     docker:
-      - image: cimg/base:stable
+      - image: cimg/node:current  # Use the latest Node.js image
     steps:
-      - checkout
-      - node/install:
-          install-yarn: true
-          node-version: '16.13'
-      - run: node --version
+      - checkout  # Check out the code from the repository
+
+  test:
+    docker:
+      - image: cimg/node:current  # Use the same Node.js image for consistency
+    steps:
+      - checkout  # Check out the code again
+      - run:
+          name: Run Tests
+          command: npm run  # Run the tests defined in package.json
+
+  deploy:
+    docker:
+      - image: cimg/node:current  # Use the same Node.js image for deployment
+    steps:
+      - checkout  # Check out the code
+
+# Define workflows to orchestrate the jobs
 workflows:
-  test_my_app:
+  version: 2
+  build_and_test:
     jobs:
-      - install-node-example
+      - build  # Run the build job first.
+      - test:  # Run the test job after the build
+          requires:
+            - build  # Ensure the build job completes successfully before testing
+      - deploy:  # Run the deploy job after tests
+          requires:
+            - test  # Ensure tests pass before deploying
