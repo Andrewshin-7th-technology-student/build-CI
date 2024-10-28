@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Exit immediately if a command exits with a non-zero status
-set -e
-
 # Define variables
 APP_DIR=~/my-app  # Change this to your application's directory
 DEPLOY_DIR=/var/www/my-app  # Change this to your deployment directory
