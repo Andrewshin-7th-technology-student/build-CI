@@ -33,4 +33,4 @@ jobs:
           --app actions
           --repo $GITHUB_REPOSITORY
         env:
-          GH_TOKEN: ${{ steps.access-token.outputs.token }}
+          GH_TOKEN: ${{ github.token }}
