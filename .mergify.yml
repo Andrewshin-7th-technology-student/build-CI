@@ -4,7 +4,7 @@ pull_request_rules:
       - status-success=GitHub Actions
       - "#approved-reviews-by>=1"
       - label=ready-to-merge
-      - author=imgbot[bot]
+      - author=mergify[bot]
       - status-success=all
     actions:
       merge:
