@@ -21,7 +21,7 @@ jobs:
           CONTRIB_OUTPUT_FILE: 'CONTRIBUTORS.md'
 
       - name: Commit changes
-        uses: EndBug/add-and-commit@v7
+        uses: EndBug/add-and-commit@v9
         with:
           author_name: 'GitHub Actions'
           author_email: 'actions@github.com'
