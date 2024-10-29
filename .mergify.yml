@@ -6,6 +6,12 @@ pull_request_rules:
       - label=ready-to-merge
       - author=mergify[bot]
       - status-success=all
+      - check-success = changelog_sync
+      - check-success = actionlint
+      - check-success = docker-onpremise
+      - check-success = docker-saas
+      - check-success = docker-label
+      - check-success = add-linear-author-as-reviewer
     actions:
       merge:
         method: squash
