@@ -1,0 +1,55 @@
+name: Action > Build
+
+on:
+  push:
+    branches:
+      - '**'  # This allows it to run on any branch
+    paths:
+      - action/**  # This ensures it only runs if files in the action directory are modified
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: action
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: action
+          sparse-checkout-cone-mode: false
+
+      # Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          cache-dependency-path: action/package-lock.json
+          node-version: '20'
+          cache: 'npm'
+
+      # Install dependencies
+      - name: Install Dependencies
+        run: npm ci
+
+      # Run tests
+      - name: Run Tests
+        run: npm run test
+
+      # Build the action
+      - name: Build Action
+        run: npm run build
+
+      # Verify that the dist/ is up-to-date
+      - name: Verify Action Release
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git_diff="$(git diff --ignore-cr-at-eol dist/)"
+          if [ -n "$git_diff" ]; then
+            echo "::error::Drift detected in dist/ directory"
+            echo "$git_diff"
+            exit 1
+          fi
