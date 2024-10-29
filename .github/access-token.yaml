@@ -33,21 +33,21 @@ statements:
       # codespaces-metadata: write # read or write
       # codespaces-secrets: write # write
       contents: write # read or write
-      # custom-properties: write # read or write
-      # dependabot-secrets: write # read or write
-      # deployments: write # read or write
-      # discussions: write # read or write
-      # environments: write # read or write
+      custom-properties: write # read or write
+      dependabot-secrets: write
+      deployments: write # read or write
+      discussions: write # read or write
+      environments: write # read or write
       issues: write # read or write
-      # merge-queues: write # read or write
-      # packages: write # read or write
-      # pages: write # read or write
-      # projects: write # read or write or admin
-      # pull-requests: write # read or write
-      # repository-advisories: write # read or write
-      # repository-hooks: write # read or write
-      # repository-projects: write # read or write or admin
-      # secret-scanning-alerts: write # read or write
+      merge-queues: write # read or write
+      packages: write # read or write
+      pages: write # read or write
+      projects: write # read or write or admin
+      pull-requests: write # read or write
+      repository-advisories: write # read or write
+      repository-hooks: write # read or write
+      repository-projects: write # read or write or admin
+      secret-scanning-alerts: write # read or write
       secrets: write # read or write
       # security-events: write # read or write
       # statuses: write # read or write
