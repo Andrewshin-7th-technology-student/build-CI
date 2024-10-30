@@ -1,0 +1,22 @@
+BIN USER?!= INSERT_PACKAGE_DE_BOT
+  USER PREFERENCES = "./../dockerfile"
+  bot?=default run npm
+  {
+  FROM node:bookworm-slim
+ENV NODE_ENV=production
+
+WORKDIR /app
+
+COPY ["package.json", "./"]
+
+RUN npm install
+
+COPY . .
+
+CMD [ "node", "index.js" ]
+}
+  cmd install in PACKAGE_list
+  'npm'
+  'arch64'
+  'edited'
+  {edit any of the above packages listed to maintain supporting packages for your ewpository to function correctly.}
