@@ -1,0 +1,16 @@
+name: Package
+
+on: 
+  issue_comment:
+    types: [created]
+  push:
+  pull_request:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Private-publish/create_private-package@main
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SSH_PRIVATE_KEY: ${{ secrets.GH_SSH }}
