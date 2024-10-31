@@ -1,0 +1,28 @@
+"node_modules/@biomejs/biome": {
+      "version": "1.9.2",
+      "resolved": "https://registry.npmjs.org/@biomejs/biome/-/biome-1.9.2.tgz",
+      "integrity": "sha512-4j2Gfwft8Jqp1X0qLYvK4TEy4xhTo4o6rlvJPsjPeEame8gsmbGQfOPBkw7ur+7/Z/f0HZmCZKqbMvR7vTXQYQ==",
+      "dev": true,
+      "hasInstallScript": true,
+      "license": "MIT OR Apache-2.0",
+      "bin": {
+        "biome": "bin/biome"
+      },
+      "engines": {
+        "node": ">=14.21.3"
+      },
+      "funding": {
+        "type": "opencollective",
+        "url": "https://opencollective.com/biome"
+      },
+      "optionalDependencies": {
+        "@biomejs/cli-darwin-arm64": "1.9.2",
+        "@biomejs/cli-darwin-x64": "1.9.2",
+        "@biomejs/cli-linux-arm64": "1.9.2",
+        "@biomejs/cli-linux-arm64-musl": "1.9.2",
+        "@biomejs/cli-linux-x64": "1.9.2",
+        "@biomejs/cli-linux-x64-musl": "1.9.2",
+        "@biomejs/cli-win32-arm64": "1.9.2",
+        "@biomejs/cli-win32-x64": "1.9.2"
+      }
+    },
