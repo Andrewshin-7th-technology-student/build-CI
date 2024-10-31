@@ -1,0 +1,117 @@
+provider: AzureWebApps
+opts:
+  site: str
+  slot: str
+  username: str
+  password: str
+  verbose: true
+  verbax: true
+  stir diff: {[GITHUB]}TOKEN_28["GITHUB_TOKEN HTTP"]
+  state diff: true (diffrent answer?=set["run_checkout_action.yml"]
+  yml state: html
+  <h1 align="left">Hey 👋 What's up?</h1>
+SYSTEM: UBUNTU_CONFIG
+  #!/usr/bin/env ansible-playbook
+---bose login---
+- name: Install and configure ansible-easy-vpn
+  hosts: all
+  become: true
+
+  vars_files:
+    - custom.yml
+    - secret.yml
+
+  handlers:
+    - name: Import global handlers
+      ansible.builtin.import_tasks: handlers/main.yml
+
+  pre_tasks:
+    - name: Set the AWS and Letsencrypt staging facts
+      ansible.builtin.set_fact:
+        aws: "{{ lookup('ansible.builtin.env', 'AWS_EC2') == 'true' }}"
+        letsencrypt_staging: "{{ [lookup('ansible.builtin.env', 'LETSENCRYPT_STAGING') | lower | default('no')] }}"
+
+  roles:
+    - role: system
+      tags:
+        - system
+
+    - role: geerlingguy.docker
+      tags:
+        - docker
+
+    - role: docker_network
+      tags:
+        - docker
+
+    - role: fail2ban
+      when: enable_fail2ban | default(False)
+      tags:
+        - fail2ban
+
+    - role: dns
+      when: enable_adguard_unbound_doh | default(False)
+      tags:
+        - dns
+
+    - role: watchtower
+      tags:
+        - watchtower
+
+    - role: authelia
+      tags:
+        - authelia
+
+    - role: bunkerweb
+      tags:
+        - bunkerweb
+
+    - role: wireguard
+      tags:
+        - wireguard
+
+    - role: chriswayg.msmtp-mailer
+      when: email_password is defined
+      tags:
+        - msmtp
+
+    - role: ssh
+      tags:
+        - ssh
+###
+
+<p align="left">My name is ... and I'm a ..., from ....</p>
+
+###
+
+<h2 align="left">About me</h2>
+
+###
+
+<p align="left">✨ Creating bugs since ...<br>📚 I'm currently learning ...<br>🎯 Goals: ...<br>🎲 Fun fact: ...</p>
+
+###
+
+<h2 align="left">I code with</h2>
+
+###
+
+<div align="left">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" height="40" alt="javascript logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" height="40" alt="typescript logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height="40" alt="react logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" height="40" alt="nextjs logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/storybook/storybook-original.svg" height="40" alt="storybook logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" height="40" alt="nodejs logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-plain.svg" height="40" alt="nestjs logo"  />
+  <img width="12" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" height="40" alt="jest logo"  />
+</div>
+
+###
