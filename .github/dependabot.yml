@@ -29,32 +29,16 @@ updates:
   - Andrewshin-7th-technology-student       # Replace with your GitHub username
   assignees:
   - Andrewshin-7th-technology-student
-- package-ecosystem: "pip"
-    directory: "/python/helpers"
+
+  - package-ecosystem: gradle
+    directory: "/"
     schedule:
-      interval: "daily"
-      day: "monday"
-      time: "8:00"
-    groups:
-      common:
-        patterns:
-          - pip
-          - cython
-          - flake8
-      poetry:
-        patterns:
-          - poetry
-          - hashin
-      pip-tools:
-        patterns:
-          - pip-tools
-      pipenv:
-        patterns:
-          - pipfile
-          - pipenv
-  - package-ecosystem: "pub"
-    directory: "/pub/helpers"
+      interval: daily
+    labels:
+      - "dependencies"
+  - package-ecosystem: "github-actions"
+    directory: "/"
     schedule:
-      interval: "daily"
-      day: "monday"
-      time: "16:00"
+      interval: daily
+    labels:
+      - "dependencies"
