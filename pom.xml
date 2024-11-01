@@ -10,3 +10,9 @@
         </snapshots>
     </repository>
 </repositories>
+<dependency>
+  <groupId>de.tramotech</groupId>
+  <artifactId>tramotool</artifactId>
+  <version>0.0.1</version>
+</dependency>
+
