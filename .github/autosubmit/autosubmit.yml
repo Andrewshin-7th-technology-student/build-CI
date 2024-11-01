@@ -1,0 +1,12 @@
+allow_config_override: true
+auto_approval_accounts:
+  - dependabot[bot]
+  - dependabot
+  - imgbotapp [bot]
+  - imgbotapp
+approving_reviews: 1
+run_ci: true
+
+support_no_review_revert: true
+required_checkruns_on_revert:
+  - cla/google
