@@ -15,4 +15,6 @@
   <artifactId>tramotool</artifactId>
   <version>0.0.1</version>
 </dependency>
-
+<repository>
+    <group.login>. GITHUB.REPOSITORY.register $$bash$$ </group.login>
+        <Bash> Github.ccl.SECURITy </Bash>
