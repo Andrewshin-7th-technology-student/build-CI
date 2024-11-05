@@ -1,2 +1,61 @@
+extends: organization/shared-config
 
->>main branch_config_file: main
+# Default settings for actions and queue rules
+defaults:
+  actions:
+    comment:
+      bot_account: Autobot
+  queue_rules:
+    batch_size: 10
+
+# Pull Request Rules
+pull_request_rules:
+  - name: Automatically merge PRs
+    conditions:
+      - status-success=GitHub Actions
+      - "#approved-reviews-by>=1"
+      - label=ready-to-merge
+      - author=mergify[bot]
+      - status-success=all
+    actions:
+      merge:
+        method: squash
+        commit_message_template: "Merged by Mergify: {{ title }} (#{{ number }})"
+
+  - name: Assign to user for YAML files
+    conditions:
+      - files~=\.yml
+      - -closed
+    actions:
+      assign:
+        add_users:
+          - n3wt0n
+      label:
+        add:
+          - enhancement
+
+# Queue Rules
+queue_rules:
+  - name: Default Queue
+    conditions:
+      - check-success=My CI Job
+    actions:
+      queue:
+        name: Default Queue
+
+# Priority Rules
+priority_rules:
+  - name: High Priority for Main Branch
+    priority: high
+    conditions:
+      - base = main
+    allow_checks_interruption: true
+
+# Merge Protections
+merge_protections:
+  - name: Require CI Success
+    conditions:
+      - status-success=GitHub Actions
+    actions:
+      merge:
+        method: merge

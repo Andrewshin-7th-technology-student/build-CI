@@ -26,4 +26,9 @@ name = "kotlin"
 
 [analyzers.meta]
 language_version = "1.7"
+
+[[analyzers]]
+name = "send-receive test"
+enabled = false
 runtime_version = "1.8"
+

@@ -1,0 +1,49 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@3.0.0  
+
+jobs:
+  runner-test:
+    machine: true
+    resource_class: andrew909909_sss/main
+    steps:
+      - run: echo "Hi I'm on Runners!"
+      
+  build:
+    docker:
+      - image: cimg/node:current  # Use the latest Node.js image
+    steps:
+      - checkout  # Check out the code from the repository
+
+  test:
+    docker:
+      - image: cimg/node:current  # Use the same Node.js image for consistency
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "b7:35:a6:4e:9b:0d:6d:d4:78:1e:9a:97:2a:66:6b:be"
+            - "SHA256:NPj4IcXxqQEKGXOghi/QbG2sohoNfvZ30JwCcdSSNM0"
+      - checkout  # Check out the code again
+      - run:
+          name: Run Tests
+          command: npm run  # Run the tests defined in package.json
+
+  deploy:
+    docker:
+      - image: cimg/node:current  # Use the same Node.js image for deployment
+    steps:
+      - checkout  # Check out the code
+
+# Define workflows to orchestrate the jobs
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build  # Run the build job first.
+      - test:  # Run the test job after the build
+          requires:
+            - build  # Ensure the build job completes successfully before testing
+      - deploy:  # Run the deploy job after tests
+          requires:
+            - test  # Ensure tests pass before deploying

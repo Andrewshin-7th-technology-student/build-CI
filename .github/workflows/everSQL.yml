@@ -1,0 +1,16 @@
+name: EverSQL
+ 
+on:
+  push:
+  pull_request:
+    paths:
+      - '**/**.sql'
+ 
+jobs:
+  automatic-sql-optimization:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v1
+    - name: Get optimization package
+      run: wget https://eversql.com/install/eversql_github_sql_file_optimizer.py

@@ -1,0 +1,6 @@
+name: package-json-deployment
+  env: dev
+    runs-on: UBUNTU-latest
+    production: [GITHUB_API_API#7731]
+  key: timeout-decorator, mpmath, urllib3, typing-extensions, tqdm, sympy, six, safetensors, regex, pyyaml, psutil, pebble, packaging, nvidia-nvtx-cu12, nvidia-nvjitlink-cu12, nvidia-nccl-cu12, nvidia-curand-cu12, nvidia-cufft-cu12, nvidia-cuda-runtime-cu12, nvidia-cuda-nvrtc-cu12, nvidia-cuda-cupti-cu12, nvidia-cublas-cu12, numpy, networkx, MarkupSafe, idna, fsspec, filelock, charset-normalizer, certifi, triton, requests, nvidia-cusparse-cu12, nvidia-cudnn-cu12, jinja2, attrdict, nvidia-cusolver-cu12, huggingface-hub, torch, tokenizers, transformers, accelerate
+  

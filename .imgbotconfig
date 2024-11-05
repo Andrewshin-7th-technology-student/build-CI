@@ -1,10 +1,4 @@
 {
-    "createPullRequest": "true",
-    "pullRequestTemplate": "template.md",
-    "prTitle": "Image optimized",
-    "schedule": "daily",
-    "ignoredFiles": [],
-    "aggressiveCompression": "false",
-    "minKBReduced": 0,
-    "compressWiki": "true"
+  "schedule": "weekly",
+  "ignoredFiles": ["*.svg"]
 }

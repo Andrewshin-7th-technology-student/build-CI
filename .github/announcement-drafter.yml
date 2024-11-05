@@ -1,4 +1,2 @@
 watch_folders:
   - docs/discussions/
-ignore_folders:
-  - docs/discussions/ignore/

@@ -1,0 +1,15 @@
+name: Update Contributors File
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 0 1 * *"  # Runs on the first day of every month
+
+jobs:
+  update_contributors:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2

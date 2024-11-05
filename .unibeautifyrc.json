@@ -1,0 +1,25 @@
+{
+  "beautifiers": {
+    "Prettier": true,
+    "ESLint": true,
+    "JS-Beautify": true
+  },
+  "JavaScript": {
+    "beautifiers": ["Prettier", "ESLint"],
+    "end_with_newline": true,
+    "indent_size": 2,
+    "quotes": "double",
+    "semi": true
+  },
+  "CSS": {
+    "beautifiers": ["Prettier", "JS-Beautify"],
+    "indent_size": 2,
+    "end_with_newline": true
+  },
+  "HTML": {
+    "beautifiers": ["Prettier", "JS-Beautify"],
+    "indent_size": 2,
+    "end_with_newline": true,
+    "indent_inner_html": true
+  }
+}
