@@ -1,0 +1,22 @@
+{
+    "name": "DEV",
+    "image": "mcr.microsoft.com/devcontainers/python:3.9",
+    "features": {
+        "ghcr.io/devcontainers/features/github-cli:1": {
+            "version": "latest"
+        },
+        "ghcr.io/devcontainers/features/python:3": {
+            "version": "3.9"
+        }
+    },
+    "settings": {
+        "python.pythonPath": "/usr/local/bin/python" 
+    },
+    "extensions": [
+        "ms-python.python",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint"
+    ],
+    "postCreateCommand": "pip install -r requirements.txt",
+    "remoteUser ": "vscode"
+}
