@@ -1,1 +1,30 @@
 version = 1
+
+[automerge]
+enabled = true
+
+labels = ["automerge"]
+
+[branch_protection]
+enabled = false
+branches = ["main", "stale"]
+required_status_checks = ["ci/circleci: build"]
+
+[update]
+enabled = true
+interval = "1h"
+
+[notifications]
+enabled = true
+channels = ["email"]
+
+
+[rules]
+[[rules.merge]]
+conditions = ["label:automerge", "status:success"]
+
+[[rules.update]]
+conditions = ["base:main", "head:feature/*"]
+[logging]
+enabled = true
+level = "info"
