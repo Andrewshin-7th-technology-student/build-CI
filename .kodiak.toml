@@ -17,7 +17,6 @@ interval = "1h"
 enabled = true
 channels = ["email"]
 
-
 [rules]
 [[rules.merge]]
 conditions = ["label:automerge", "status:success"]
