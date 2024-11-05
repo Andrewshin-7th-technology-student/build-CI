@@ -8,7 +8,6 @@ labels = ["automerge"]
 [branch_protection]
 enabled = false
 branches = ["main", "stale"]
-required_status_checks = ["ci/circleci: build"]
 
 [update]
 enabled = true
