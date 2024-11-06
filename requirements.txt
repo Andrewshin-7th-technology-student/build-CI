@@ -2,7 +2,7 @@ torch>=2.0
 tokenizers>=0.14.0
 transformers==4.38.0
 accelerate
-sympy==1.12
+sympy==1.13.3
 pebble 
 timeout-decorator 
 attrdict
