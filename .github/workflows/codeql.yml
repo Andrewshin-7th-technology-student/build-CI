@@ -15,15 +15,9 @@ jobs:
     permissions:
       # required for all workflows
       security-events: write
-
-      # required to fetch internal or private CodeQL packs
       packages: write
-
-      # only required for workflows in private repositories
       actions: write
       contents: write
-
-    strategy:
 
     strategy:
       fail-fast: false
