@@ -14,11 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: Deployment
     steps:
-    
-    - name: runner-pr create
-    - uses: fastify/github-action-merge-dependabot@v3
-      with:
-        pr-number: ${{ github.event.inputs.pr-number }}
         
     - name: 'Checkout GitHub Action'
       uses: actions/checkout@v4
