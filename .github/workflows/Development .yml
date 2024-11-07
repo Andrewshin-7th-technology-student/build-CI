@@ -1,4 +1,4 @@
-name: Linux server deployment
+name: Linux Server Deployment
 
 on:
   create:
@@ -8,158 +8,133 @@ on:
       - main
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   lint:
-    name: connect to linux server
+    name: Connect to Linux Server
     runs-on: ubuntu-latest
     environment: 'Development'
     steps:
-    - uses: actions/checkout@v3
-      with:
-        submodules: recursive
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v4
-      with:
-        python-version: "3.11"
-    - name: Use Node.js ${{ matrix.node }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node }}
-        architecture: ${{ matrix.arch }} 
-    - uses: actions/setup-python@v5
-      with:
-        python-version: '3.x'
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          architecture: ${{ matrix.arch }} 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - uses: actions/checkout@v4
+
   build:
-    name: build
+    name: Build
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, macos-12, macos-14]
     steps:
-    - uses: actions/setup-python@v5
-      with:
-        python-version: '3.x'
-    - uses: actions/checkout@v4
-      with:
-        submodules: true
-    - name: mkdir
-      run: mkdir -p out
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Create Output Directory
+        run: mkdir -p out
+
   emscripten:
-    name: emscripten
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-      with:
-        submodules: true
-  wasi:
-    name: wasi
+    name: Emscripten
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           submodules: true
+
+  wasi:
+    name: WASI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
   sanitize:
-    name: sanitize
+    name: Sanitize 1
     runs-on: ubuntu-24.04
     env:
       USE_NINJA: "1"
       CC: "clang"
-      WASM2C_CFLAGS: "-march=x86-64-v2" # currently required for SIMDe to pass some tests on x86-64
+      WASM2C_CFLAGS: "-march=x86-64-v2"
     strategy:
       matrix:
         sanitizer: [asan, ubsan, fuzz]
         type: [debug, release]
     steps:
-    - uses: actions/setup-python@v5
-      with:
-        python-version: '3.x'
-    - uses: actions/checkout@v4
-      with:
-        submodules: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
   build-wasm2c-memchecked:
-    name: wasm2c-memchecked
+    name: Sanitize 1/2 (merge)
     runs-on: ubuntu-latest
     env:
       USE_NINJA: "1"
-      CC: "clang" # used by the wasm2c tests
+      CC: "clang"
       WASM2C_CFLAGS: "-march=x86-64-v2 -fsanitize=address -DWASM_RT_USE_MMAP=0"
     steps:
-    - uses: actions/setup-python@v5
-      with:
-        python-version: '3.x'
-    - uses: actions/checkout@v4
-      with:
-        submodules: true
-    - run: sudo apt-get install ninja-build
-    - name: workaround for ASLR+ASAN compatibility # See https://github.com/actions/runner/issues/3207
-      run: sudo sysctl -w vm.mmap_rnd_bits=28
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - run: sudo apt-get install ninja-build
+      - name: Workaround for ASLR+ASAN Compatibility
+        run: sudo sysctl -w vm.mmap_rnd_bits=28
 
-  build-min-cmake:
-    name: min-cmake
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-      with:
-        submodules: true
-    - uses: actions/setup-python@v5
-      with:
-        python-version: '3.x'
-    - name: Install Ninja
-      run: sudo apt-get install ninja-build
-    - name: Detect minimum CMake version
-      run: >
-        awk 'match($0, /cmake_minimum_required\(VERSION *([0-9]+\.[0-9]+)\)/, a)
-        { print "WABT_CMAKE_VER=" a[1]; exit; }' CMakeLists.txt | tee $GITHUB_ENV
-  build-rlbox:
-    name: rlbox
-    runs-on: ubuntu-latest
-    env:
-      USE_NINJA: "1"
-      WASM2C_CC: "clang"
-      WASM2C_CFLAGS: "-DWASM_RT_USE_MMAP=1 -DWASM_RT_SKIP_SIGNAL_RECOVERY=1 -DWASM_RT_NONCONFORMING_UNCHECKED_STACK_EXHAUSTION=1 -DWASM2C_TEST_EMBEDDER_SIGNAL_HANDLING -DWASM_RT_ALLOW_SEGUE=1 -DWASM_RT_SEGUE_FREE_SEGMENT=1 -mfsgsbase -DWASM_RT_SANITY_CHECKS=1 -Wno-pass-failed"
-    steps:
-    - uses: actions/setup-python@v5
-      with:
-        python-version: '3.x'
-    - uses: actions/checkout@v4
-      with:
-        submodules: true
-    - run: sudo apt-get install ninja-build
-  build-cross:
-    name: Disconnect from linux server and deploy
-    runs-on: ubuntu-latest
+  ci:
+    name: Sanitize 2
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        arch: [s390x]
-    services: # still faster on debian...
-      distcc:
-        image: debian:latest
-        options: --health-cmd distccmon-text --health-interval 5s --health-start-period 5m debian:latest bash -c "apt-get update && apt-get install -y g++-s390x-linux-gnu distcc && distccd --daemon --no-detach"
-        ports:
-          - 3632:3632
-    env:
-      QEMU_LD_PREFIX: /usr/${{matrix.arch}}-linux-gnu/
+        node: [20, 18, 16]
+        os: [windows-2019, ubuntu-22.04]
+        arch: [x64]
+        include:
+          - os: windows-2019
+            arch: x64
+            node: 20
+          - os: windows-2019
+            arch: x86
+            node: "18.18.2"
+          - os: windows-2019
+            arch: x86
+            node: 16
+    timeout-minutes: 10
     steps:
-    - uses: actions/setup-python@v5
-      with:
-        python-version: '3.x'
-    - uses: actions/checkout@v4
-      with:
-        submodules: true
-    - name: Set up QEMU
-      uses: docker/setup-qemu-action@v3
-      with:
-        platforms: ${{matrix.arch}}
-        image: "tonistiigi/binfmt:master"
-    - name: install ninja
-      run: sudo apt-get install ninja-build
-    - name: install the toolchain
-      run: sudo apt-get install g++-${{matrix.arch}}-linux-gnu
-    - name: install distcc
-      run: sudo apt-get install distcc
-    - name: installing linux debugger
-      run: sudo mkdir -p /opt/bin/distcc_symlinks
-    - name: read files - checking if production succeeded 
-      run: sudo ln -s /usr/bin/distcc /opt/bin/distcc_symlinks/${{matrix.arch}}-linux-gnu-gcc # only CC is needed
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+          architecture: ${{ matrix.arch }}
+          npm_config_arch: ${{ matrix.arch }}
+          TARGET_ARCH: ${{ matrix.arch }}
