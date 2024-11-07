@@ -1,5 +1,12 @@
 version: 2
 updates:
+
+  - package-ecosystem: gomod
+    directory: "/"
+    schedule:
+      interval: daily
+      time: "11:00"
+    open-pull-requests-limit: 10
   - package-ecosystem: "bundler"
     directories:
       - "/"
@@ -12,9 +19,6 @@ updates:
       sorbet:
         patterns:
           - "*"
-          - "*"
-          - ""
-          - ""
       aws-sdk:
         patterns:
           - "*"
@@ -28,90 +32,10 @@ updates:
         update-types:
           - "minor"
           - "patch"
-  - package-ecosystem: "devcontainers"
-    directory: "/"
-    schedule:
-      interval: "daily"
-      day: "sunday"
-      time: "10:00"
   - package-ecosystem: "docker"
     directories:
       - "/"
     schedule:
       interval: "daily"
       day: "friday"
-      time: "16:00"
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "daily"
-      day: "thursday"
-      time: "16:00"
-    groups:
-      all-actions:
-        patterns: [ "*" ]
-  - package-ecosystem: "gomod"
-    directory: "/"
-    schedule:
-      interval: "daily"
-      day: "wednesday"
-      time: "16:00"
-  - package-ecosystem: "mix"
-    directory: "/"
-    schedule:
-      interval: "daily"
-      day: "tuesday"
-      time: "16:00"
-  - package-ecosystem: "npm"
-    directory: "/"
-    schedule:
-      interval: "daily"
-      day: "monday"
-      time: "16:00"
-    groups:
-      npm-dependencies:
-        patterns:
-          - "/"
-      yarn-dependencies:
-        patterns:
-          - "/"
-      pnpm-dependencies:
-        patterns:
-          - "/"
-      dev-dependencies:
-        dependency-type: "development"
-        update-types:
-          - "minor"
-          - "patch"
-    ignore:
-      - dependency-name: "npm"
-        update-types: [ "version-update:semver-major" ]
-  - package-ecosystem: "pip"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-      day: "sunday"
-      time: "16:00"
-    groups:
-      common:
-        patterns:
-          - pip
-          - cython
-          - flake8
-      poetry:
-        patterns:
-          - poetry
-          - hashin
-      pip-tools:
-        patterns:
-          - pip-tools
-      pipenv:
-        patterns:
-          - pipfile
-          - pipenv
-  - package-ecosystem: "pub"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-      day: "sunday"
       time: "16:00"
