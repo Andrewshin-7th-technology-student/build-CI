@@ -41,6 +41,6 @@ updates:
     interval: daily
   open-pull-requests-limit: 1000
 - package-ecosystem: gomod
-    directory: "/"
-    schedule:
-      interval: daily
+  directory: "/"
+  schedule:
+    interval: daily
