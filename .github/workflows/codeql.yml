@@ -25,12 +25,6 @@ jobs:
         include:
         - language: csharp
           build-mode: manual
-        - language: javascript-typescript
-          build-mode: manual
-        - language: python
-          build-mode: manual
-        - language: ruby
-          build-mode: manual
   
     steps:
     - name: Scan dependabot packages [bin root]
