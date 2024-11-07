@@ -36,14 +36,7 @@ jobs:
     - name: Scan dependabot packages [bin root]
       uses: actions/checkout@v4
 
-    # Initializes the CodeQL tools for scanning.
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v3
-      with:
-        languages: ${{ matrix.language }}
-        build-mode: ${{ matrix.build-mode }}
-        
-    - if: matrix.build-mode == 'manual'
+    - if: matrix.build-mode == 'autobuild'
       shell: bash
       run: |
         echo 'send error details to cloudflare'
