@@ -35,13 +35,13 @@ updates:
   schedule:
     interval: daily
   open-pull-requests-limit: 1000
+- package-ecosystem: "yarn"
+    # Look for `package.json` and `lock` files in the `root` directory
+    directory: "/"
+    schedule:
+      interval: "daily"
 - package-ecosystem: "npm"
   directory: "/"
   schedule:
     interval: daily
   open-pull-requests-limit: 1000
-  groups:
-    patch-updates:
-          applies-to: version-updates
-          update-types:
-          - "patch"
