@@ -1,0 +1,1111 @@
+Get apcha chace database paint format for debain
+  Log input.array expected? = pass["COUNTINUE_ON"]=UBUNTU(still)
+#5 1.842 Get:37 http://deb.debian.org/debian bullseye/main amd64 libgomp1 amd64 10.2.1-6 [99.9 kB]
+#5 1.843 Get:38 http://deb.debian.org/debian bullseye/main amd64 libitm1 amd64 10.2.1-6 [25.8 kB]
+#5 1.844 Get:39 http://deb.debian.org/debian bullseye/main amd64 libatomic1 amd64 10.2.1-6 [9008 B]
+#5 1.844 Get:40 http://deb.debian.org/debian bullseye/main amd64 libasan6 amd64 10.2.1-6 [2065 kB]
+#5 1.856 Get:41 http://deb.debian.org/debian bullseye/main amd64 liblsan0 amd64 10.2.1-6 [828 kB]
+#5 1.861 Get:42 http://deb.debian.org/debian bullseye/main amd64 libtsan0 amd64 10.2.1-6 [2000 kB]
+#5 1.873 Get:43 http://deb.debian.org/debian bullseye/main amd64 libubsan1 amd64 10.2.1-6 [777 kB]
+#5 1.877 Get:44 http://deb.debian.org/debian bullseye/main amd64 libquadmath0 amd64 10.2.1-6 [145 kB]
+#5 1.878 Get:45 http://deb.debian.org/debian bullseye/main amd64 libgcc-10-dev amd64 10.2.1-6 [2328 kB]
+#5 1.892 Get:46 http://deb.debian.org/debian bullseye/main amd64 gcc-10 amd64 10.2.1-6 [17.0 MB]
+#5 1.989 Get:47 http://deb.debian.org/debian bullseye/main amd64 gcc amd64 4:10.2.1-1 [5192 B]
+#5 1.989 Get:48 http://deb.debian.org/debian bullseye/main amd64 libdpkg-perl all 1.20.13 [1552 kB]
+#5 1.999 Get:49 http://deb.debian.org/debian bullseye/main amd64 libglib2.0-0 amd64 2.66.8-1+deb11u4 [1377 kB]
+#5 2.006 Get:50 http://deb.debian.org/debian bullseye/main amd64 libtool all 2.4.6-15 [513 kB]
+#5 2.009 Get:51 http://deb.debian.org/debian bullseye/main amd64 make amd64 4.3-4.1 [396 kB]
+#5 2.011 Get:52 http://deb.debian.org/debian bullseye/main amd64 nasm amd64 2.15.05-1 [421 kB]
+#5 2.014 Get:53 http://deb.debian.org/debian bullseye/main amd64 pkg-config amd64 0.29.2-1 [65.1 kB]
+#5 2.107 debconf: delaying package configuration, since apt-utils is not installed
+#5 2.129 Fetched 59.0 MB in 0s (140 MB/s)
+#5 2.144 (Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 11658 files and directories currently installed.)
+#5 2.151 Preparing to unpack .../perl-base_5.32.1-4+deb11u4_amd64.deb ...
+#5 2.163 Unpacking perl-base (5.32.1-4+deb11u4) over (5.32.1-4+deb11u3) ...
+#5 2.919 Setting up perl-base (5.32.1-4+deb11u4) ...
+#5 2.943 Selecting previously unselected package perl-modules-5.32.
+#5 2.943 (Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 11658 files and directories currently installed.)
+#5 2.951 Preparing to unpack .../00-perl-modules-5.32_5.32.1-4+deb11u4_all.deb ...
+#5 2.952 Unpacking perl-modules-5.32 (5.32.1-4+deb11u4) ...
+#5 3.306 Selecting previously unselected package libgdbm6:amd64.
+#5 3.308 Preparing to unpack .../01-libgdbm6_1.19-2_amd64.deb ...
+#5 3.310 Unpacking libgdbm6:amd64 (1.19-2) ...
+#5 3.330 Selecting previously unselected package libgdbm-compat4:amd64.
+#5 3.332 Preparing to unpack .../02-libgdbm-compat4_1.19-2_amd64.deb ...
+#5 3.333 Unpacking libgdbm-compat4:amd64 (1.19-2) ...
+#5 3.353 Selecting previously unselected package libperl5.32:amd64.
+#5 3.354 Preparing to unpack .../03-libperl5.32_5.32.1-4+deb11u4_amd64.deb ...
+#5 3.356 Unpacking libperl5.32:amd64 (5.32.1-4+deb11u4) ...
+#5 3.712 Selecting previously unselected package perl.
+#5 3.714 Preparing to unpack .../04-perl_5.32.1-4+deb11u4_amd64.deb ...
+#5 3.720 Unpacking perl (5.32.1-4+deb11u4) ...
+#5 3.756 Selecting previously unselected package libmagic-mgc.
+#5 3.757 Preparing to unpack .../05-libmagic-mgc_1%3a5.39-3+deb11u1_amd64.deb ...
+#5 3.758 Unpacking libmagic-mgc (1:5.39-3+deb11u1) ...
+#5 3.820 Selecting previously unselected package libmagic1:amd64.
+#5 3.822 Preparing to unpack .../06-libmagic1_1%3a5.39-3+deb11u1_amd64.deb ...
+#5 3.823 Unpacking libmagic1:amd64 (1:5.39-3+deb11u1) ...
+#5 3.847 Selecting previously unselected package file.
+#5 3.848 Preparing to unpack .../07-file_1%3a5.39-3+deb11u1_amd64.deb ...
+#5 3.850 Unpacking file (1:5.39-3+deb11u1) ...
+#5 3.870 Selecting previously unselected package libpsl5:amd64.
+#5 3.872 Preparing to unpack .../08-libpsl5_0.21.0-1.2_amd64.deb ...
+#5 3.873 Unpacking libpsl5:amd64 (0.21.0-1.2) ...
+#5 3.893 Selecting previously unselected package wget.
+#5 3.894 Preparing to unpack .../09-wget_1.21-1+deb11u1_amd64.deb ...
+#5 3.895 Unpacking wget (1.21-1+deb11u1) ...
+#5 3.961 Selecting previously unselected package libsigsegv2:amd64.
+#5 3.963 Preparing to unpack .../10-libsigsegv2_2.13-1_amd64.deb ...
+#5 3.964 Unpacking libsigsegv2:amd64 (2.13-1) ...
+#5 3.980 Selecting previously unselected package m4.
+#5 3.981 Preparing to unpack .../11-m4_1.4.18-5_amd64.deb ...
+#5 3.982 Unpacking m4 (1.4.18-5) ...
+#5 4.006 Selecting previously unselected package autoconf.
+#5 4.008 Preparing to unpack .../12-autoconf_2.69-14_all.deb ...
+#5 4.009 Unpacking autoconf (2.69-14) ...
+#5 4.043 Selecting previously unselected package autotools-dev.
+#5 4.044 Preparing to unpack .../13-autotools-dev_20180224.1+nmu1_all.deb ...
+#5 4.046 Unpacking autotools-dev (20180224.1+nmu1) ...
+#5 4.066 Selecting previously unselected package automake.
+#5 4.068 Preparing to unpack .../14-automake_1%3a1.16.3-2_all.deb ...
+#5 4.070 Unpacking automake (1:1.16.3-2) ...
+#5 4.127 Selecting previously unselected package binutils-common:amd64.
+#5 4.129 Preparing to unpack .../15-binutils-common_2.35.2-2_amd64.deb ...
+#5 4.130 Unpacking binutils-common:amd64 (2.35.2-2) ...
+#5 4.309 Selecting previously unselected package libbinutils:amd64.
+#5 4.311 Preparing to unpack .../16-libbinutils_2.35.2-2_amd64.deb ...
+#5 4.312 Unpacking libbinutils:amd64 (2.35.2-2) ...
+#5 4.365 Selecting previously unselected package libctf-nobfd0:amd64.
+#5 4.366 Preparing to unpack .../17-libctf-nobfd0_2.35.2-2_amd64.deb ...
+#5 4.368 Unpacking libctf-nobfd0:amd64 (2.35.2-2) ...
+#5 4.391 Selecting previously unselected package libctf0:amd64.
+#5 4.393 Preparing to unpack .../18-libctf0_2.35.2-2_amd64.deb ...
+#5 4.394 Unpacking libctf0:amd64 (2.35.2-2) ...
+#5 4.412 Selecting previously unselected package binutils-x86-64-linux-gnu.
+#5 4.414 Preparing to unpack .../19-binutils-x86-64-linux-gnu_2.35.2-2_amd64.deb ...
+#5 4.418 Unpacking binutils-x86-64-linux-gnu (2.35.2-2) ...
+#5 4.579 Selecting previously unselected package binutils.
+#5 4.580 Preparing to unpack .../20-binutils_2.35.2-2_amd64.deb ...
+#5 4.581 Unpacking binutils (2.35.2-2) ...
+#5 4.606 Selecting previously unselected package libisl23:amd64.
+#5 4.608 Preparing to unpack .../21-libisl23_0.23-1_amd64.deb ...
+#5 4.609 Unpacking libisl23:amd64 (0.23-1) ...
+#5 4.671 Selecting previously unselected package libmpfr6:amd64.
+#5 4.673 Preparing to unpack .../22-libmpfr6_4.1.0-3_amd64.deb ...
+#5 4.674 Unpacking libmpfr6:amd64 (4.1.0-3) ...
+#5 4.759 Selecting previously unselected package libmpc3:amd64.
+#5 4.760 Preparing to unpack .../23-libmpc3_1.2.0-1_amd64.deb ...
+#5 4.762 Unpacking libmpc3:amd64 (1.2.0-1) ...
+#5 4.779 Selecting previously unselected package cpp-10.
+#5 4.780 Preparing to unpack .../24-cpp-10_10.2.1-6_amd64.deb ...
+#5 4.781 Unpacking cpp-10 (10.2.1-6) ...
+#5 5.331 Selecting previously unselected package cpp.
+#5 5.333 Preparing to unpack .../25-cpp_4%3a10.2.1-1_amd64.deb ...
+#5 5.334 Unpacking cpp (4:10.2.1-1) ...
+#5 5.349 Selecting previously unselected package libsasl2-modules-db:amd64.
+#5 5.351 Preparing to unpack .../26-libsasl2-modules-db_2.1.27+dfsg-2.1+deb11u1_amd64.deb ...
+#5 5.352 Unpacking libsasl2-modules-db:amd64 (2.1.27+dfsg-2.1+deb11u1) ...
+#5 5.373 Selecting previously unselected package libsasl2-2:amd64.
+#5 5.375 Preparing to unpack .../27-libsasl2-2_2.1.27+dfsg-2.1+deb11u1_amd64.deb ...
+#5 5.376 Unpacking libsasl2-2:amd64 (2.1.27+dfsg-2.1+deb11u1) ...
+#5 5.402 Selecting previously unselected package libldap-2.4-2:amd64.
+#5 5.404 Preparing to unpack .../28-libldap-2.4-2_2.4.57+dfsg-3+deb11u1_amd64.deb ...
+#5 5.405 Unpacking libldap-2.4-2:amd64 (2.4.57+dfsg-3+deb11u1) ...
+#5 5.442 Selecting previously unselected package libnghttp2-14:amd64.
+#5 5.444 Preparing to unpack .../29-libnghttp2-14_1.43.0-1+deb11u2_amd64.deb ...
+#5 5.446 Unpacking libnghttp2-14:amd64 (1.43.0-1+deb11u2) ...
+#5 5.469 Selecting previously unselected package librtmp1:amd64.
+#5 5.471 Preparing to unpack .../30-librtmp1_2.4+20151223.gitfa8646d.1-2+b2_amd64.deb ...
+#5 5.472 Unpacking librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2+b2) ...
+#5 5.493 Selecting previously unselected package libssh2-1:amd64.
+#5 5.495 Preparing to unpack .../31-libssh2-1_1.9.0-2+deb11u1_amd64.deb ...
+#5 5.496 Unpacking libssh2-1:amd64 (1.9.0-2+deb11u1) ...
+#5 5.522 Selecting previously unselected package libcurl4:amd64.
+#5 5.524 Preparing to unpack .../32-libcurl4_7.74.0-1.3+deb11u13_amd64.deb ...
+#5 5.525 Unpacking libcurl4:amd64 (7.74.0-1.3+deb11u13) ...
+#5 5.557 Selecting previously unselected package curl.
+#5 5.559 Preparing to unpack .../33-curl_7.74.0-1.3+deb11u13_amd64.deb ...
+#5 5.560 Unpacking curl (7.74.0-1.3+deb11u13) ...
+#5 5.589 Selecting previously unselected package libcc1-0:amd64.
+#5 5.591 Preparing to unpack .../34-libcc1-0_10.2.1-6_amd64.deb ...
+#5 5.592 Unpacking libcc1-0:amd64 (10.2.1-6) ...
+#5 5.612 Selecting previously unselected package libgomp1:amd64.
+#5 5.613 Preparing to unpack .../35-libgomp1_10.2.1-6_amd64.deb ...
+#5 5.615 Unpacking libgomp1:amd64 (10.2.1-6) ...
+#5 5.639 Selecting previously unselected package libitm1:amd64.
+#5 5.640 Preparing to unpack .../36-libitm1_10.2.1-6_amd64.deb ...
+#5 5.642 Unpacking libitm1:amd64 (10.2.1-6) ...
+#5 5.664 Selecting previously unselected package libatomic1:amd64.
+#5 5.666 Preparing to unpack .../37-libatomic1_10.2.1-6_amd64.deb ...
+#5 5.667 Unpacking libatomic1:amd64 (10.2.1-6) ...
+#5 5.686 Selecting previously unselected package libasan6:amd64.
+#5 5.687 Preparing to unpack .../38-libasan6_10.2.1-6_amd64.deb ...
+#5 5.688 Unpacking libasan6:amd64 (10.2.1-6) ...
+#5 5.866 Selecting previously unselected package liblsan0:amd64.
+#5 5.867 Preparing to unpack .../39-liblsan0_10.2.1-6_amd64.deb ...
+#5 5.868 Unpacking liblsan0:amd64 (10.2.1-6) ...
+#5 5.941 Selecting previously unselected package libtsan0:amd64.
+#5 5.943 Preparing to unpack .../40-libtsan0_10.2.1-6_amd64.deb ...
+#5 5.944 Unpacking libtsan0:amd64 (10.2.1-6) ...
+#5 6.117 Selecting previously unselected package libubsan1:amd64.
+#5 6.119 Preparing to unpack .../41-libubsan1_10.2.1-6_amd64.deb ...
+#5 6.120 Unpacking libubsan1:amd64 (10.2.1-6) ...
+#5 6.192 Selecting previously unselected package libquadmath0:amd64.
+#5 6.194 Preparing to unpack .../42-libquadmath0_10.2.1-6_amd64.deb ...
+#5 6.196 Unpacking libquadmath0:amd64 (10.2.1-6) ...
+#5 6.223 Selecting previously unselected package libgcc-10-dev:amd64.
+#5 6.225 Preparing to unpack .../43-libgcc-10-dev_10.2.1-6_amd64.deb ...
+#5 6.227 Unpacking libgcc-10-dev:amd64 (10.2.1-6) ...
+#5 6.401 Selecting previously unselected package gcc-10.
+#5 6.403 Preparing to unpack .../44-gcc-10_10.2.1-6_amd64.deb ...
+#5 6.404 Unpacking gcc-10 (10.2.1-6) ...
+#5 7.532 Selecting previously unselected package gcc.
+#5 7.534 Preparing to unpack .../45-gcc_4%3a10.2.1-1_amd64.deb ...
+#5 7.535 Unpacking gcc (4:10.2.1-1) ...
+#5 7.552 Selecting previously unselected package libdpkg-perl.
+#5 7.553 Preparing to unpack .../46-libdpkg-perl_1.20.13_all.deb ...
+#5 7.555 Unpacking libdpkg-perl (1.20.13) ...
+#5 7.607 Selecting previously unselected package libglib2.0-0:amd64.
+#5 7.609 Preparing to unpack .../47-libglib2.0-0_2.66.8-1+deb11u4_amd64.deb ...
+#5 7.610 Unpacking libglib2.0-0:amd64 (2.66.8-1+deb11u4) ...
+#5 7.707 Selecting previously unselected package libtool.
+#5 7.709 Preparing to unpack .../48-libtool_2.4.6-15_all.deb ...
+#5 7.711 Unpacking libtool (2.4.6-15) ...
+#5 7.739 Selecting previously unselected package make.
+#5 7.740 Preparing to unpack .../49-make_4.3-4.1_amd64.deb ...
+#5 7.741 Unpacking make (4.3-4.1) ...
+#5 7.781 Selecting previously unselected package nasm.
+#5 7.783 Preparing to unpack .../50-nasm_2.15.05-1_amd64.deb ...
+#5 7.790 Unpacking nasm (2.15.05-1) ...
+#5 7.845 Selecting previously unselected package pkg-config.
+#5 7.847 Preparing to unpack .../51-pkg-config_0.29.2-1_amd64.deb ...
+#5 7.848 Unpacking pkg-config (0.29.2-1) ...
+#5 7.875 Setting up libpsl5:amd64 (0.21.0-1.2) ...
+#5 7.879 Setting up wget (1.21-1+deb11u1) ...
+#5 7.882 Setting up libmagic-mgc (1:5.39-3+deb11u1) ...
+#5 7.885 Setting up libglib2.0-0:amd64 (2.66.8-1+deb11u4) ...
+#5 7.903 No schema files found: doing nothing.
+#5 7.907 Setting up perl-modules-5.32 (5.32.1-4+deb11u4) ...
+#5 7.911 Setting up binutils-common:amd64 (2.35.2-2) ...
+#5 7.914 Setting up libnghttp2-14:amd64 (1.43.0-1+deb11u2) ...
+#5 7.917 Setting up libmagic1:amd64 (1:5.39-3+deb11u1) ...
+#5 7.923 Setting up libctf-nobfd0:amd64 (2.35.2-2) ...
+#5 7.926 Setting up file (1:5.39-3+deb11u1) ...
+#5 7.929 Setting up libgomp1:amd64 (10.2.1-6) ...
+#5 7.933 Setting up libasan6:amd64 (10.2.1-6) ...
+#5 7.936 Setting up libsasl2-modules-db:amd64 (2.1.27+dfsg-2.1+deb11u1) ...
+#5 7.939 Setting up autotools-dev (20180224.1+nmu1) ...
+#5 7.943 Setting up make (4.3-4.1) ...
+#5 7.946 Setting up libmpfr6:amd64 (4.1.0-3) ...
+#5 7.951 Setting up librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2+b2) ...
+#5 7.954 Setting up libsigsegv2:amd64 (2.13-1) ...
+#5 7.957 Setting up libquadmath0:amd64 (10.2.1-6) ...
+#5 7.960 Setting up libmpc3:amd64 (1.2.0-1) ...
+#5 7.964 Setting up libatomic1:amd64 (10.2.1-6) ...
+#5 7.967 Setting up nasm (2.15.05-1) ...
+#5 7.971 Setting up libsasl2-2:amd64 (2.1.27+dfsg-2.1+deb11u1) ...
+#5 7.975 Setting up libubsan1:amd64 (10.2.1-6) ...
+#5 7.978 Setting up libssh2-1:amd64 (1.9.0-2+deb11u1) ...
+#5 7.982 Setting up libbinutils:amd64 (2.35.2-2) ...
+#5 7.985 Setting up libisl23:amd64 (0.23-1) ...
+#5 7.989 Setting up libcc1-0:amd64 (10.2.1-6) ...
+#5 7.992 Setting up liblsan0:amd64 (10.2.1-6) ...
+#5 7.995 Setting up cpp-10 (10.2.1-6) ...
+#5 7.998 Setting up libitm1:amd64 (10.2.1-6) ...
+#5 8.001 Setting up libgdbm6:amd64 (1.19-2) ...
+#5 8.005 Setting up libtsan0:amd64 (10.2.1-6) ...
+#5 8.013 Setting up libctf0:amd64 (2.35.2-2) ...
+#5 8.017 Setting up libgcc-10-dev:amd64 (10.2.1-6) ...
+#5 8.020 Setting up libldap-2.4-2:amd64 (2.4.57+dfsg-3+deb11u1) ...
+#5 8.024 Setting up m4 (1.4.18-5) ...
+#5 8.027 Setting up libgdbm-compat4:amd64 (1.19-2) ...
+#5 8.030 Setting up libperl5.32:amd64 (5.32.1-4+deb11u4) ...
+#5 8.034 Setting up cpp (4:10.2.1-1) ...
+#5 8.041 Setting up libcurl4:amd64 (7.74.0-1.3+deb11u13) ...
+#5 8.044 Setting up curl (7.74.0-1.3+deb11u13) ...
+#5 8.048 Setting up binutils-x86-64-linux-gnu (2.35.2-2) ...
+#5 8.051 Setting up binutils (2.35.2-2) ...
+#5 8.055 Setting up perl (5.32.1-4+deb11u4) ...
+#5 8.065 Setting up gcc-10 (10.2.1-6) ...
+#5 8.068 Setting up libdpkg-perl (1.20.13) ...
+#5 8.071 Setting up autoconf (2.69-14) ...
+#5 8.076 Setting up automake (1:1.16.3-2) ...
+#5 8.079 update-alternatives: using /usr/bin/automake-1.16 to provide /usr/bin/automake (automake) in auto mode
+#5 8.080 update-alternatives: warning: skip creation of /usr/share/man/man1/automake.1.gz because associated file /usr/share/man/man1/automake-1.16.1.gz (of link group automake) doesn't exist
+#5 8.080 update-alternatives: warning: skip creation of /usr/share/man/man1/aclocal.1.gz because associated file /usr/share/man/man1/aclocal-1.16.1.gz (of link group automake) doesn't exist
+#5 8.082 Setting up libtool (2.4.6-15) ...
+#5 8.085 Setting up gcc (4:10.2.1-1) ...
+#5 8.096 Setting up pkg-config (0.29.2-1) ...
+#5 8.117 Processing triggers for libc-bin (2.31-13+deb11u11) ...
+#5 DONE 8.4s
+#6 [stage-1  3/12] RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash -
+#6 0.335 2024-11-07 23:26:42 - Installing pre-requisites
+#6 0.390 Hit:1 http://deb.debian.org/debian bullseye InRelease
+#6 0.390 Hit:2 http://deb.debian.org/debian-security bullseye-security InRelease
+#6 0.397 Hit:3 http://deb.debian.org/debian bullseye-updates InRelease
+#6 0.671 Reading package lists...
+#6 1.054 Reading package lists...
+#6 1.417 Building dependency tree...
+#6 1.507 Reading state information...
+#6 1.589 ca-certificates is already the newest version (20210119).
+#6 1.589 curl is already the newest version (7.74.0-1.3+deb11u13).
+#6 1.589 The following additional packages will be installed:
+#6 1.589   dirmngr gnupg-l10n gnupg-utils gpg gpg-agent gpg-wks-client gpg-wks-server
+#6 1.589   gpgconf gpgsm libassuan0 libgpm2 libksba8 libncursesw6 libnpth0 libreadline8
+#6 1.589   libsqlite3-0 pinentry-curses readline-common
+#6 1.590 Suggested packages:
+#6 1.590   dbus-user-session libpam-systemd pinentry-gnome3 tor parcimonie xloadimage
+#6 1.590   scdaemon gpm pinentry-doc readline-doc
+#6 1.667 The following NEW packages will be installed:
+#6 1.668   apt-transport-https dirmngr gnupg gnupg-l10n gnupg-utils gpg gpg-agent
+#6 1.668   gpg-wks-client gpg-wks-server gpgconf gpgsm libassuan0 libgpm2 libksba8
+#6 1.668   libncursesw6 libnpth0 libreadline8 libsqlite3-0 pinentry-curses
+#6 1.668   readline-common
+#6 1.783 0 upgraded, 20 newly installed, 0 to remove and 3 not upgraded.
+#6 1.783 Need to get 9032 kB of archives.
+#6 1.783 After this operation, 18.5 MB of additional disk space will be used.
+#6 1.783 Get:1 http://deb.debian.org/debian bullseye/main amd64 readline-common all 8.1-1 [73.7 kB]
+#6 1.802 Get:2 http://deb.debian.org/debian bullseye/main amd64 libreadline8 amd64 8.1-1 [169 kB]
+#6 1.811 Get:3 http://deb.debian.org/debian bullseye/main amd64 apt-transport-https all 2.2.4 [160 kB]
+#6 1.814 Get:4 http://deb.debian.org/debian bullseye/main amd64 libassuan0 amd64 2.5.3-7.1 [50.5 kB]
+#6 1.819 Get:5 http://deb.debian.org/debian bullseye/main amd64 gpgconf amd64 2.2.27-2+deb11u2 [548 kB]
+#6 1.829 Get:6 http://deb.debian.org/debian bullseye/main amd64 libksba8 amd64 1.5.0-3+deb11u2 [123 kB]
+#6 1.830 Get:7 http://deb.debian.org/debian bullseye/main amd64 libnpth0 amd64 1.6-3 [19.0 kB]
+#6 1.831 Get:8 http://deb.debian.org/debian bullseye/main amd64 dirmngr amd64 2.2.27-2+deb11u2 [763 kB]
+#6 1.839 Get:9 http://deb.debian.org/debian bullseye/main amd64 gnupg-l10n all 2.2.27-2+deb11u2 [1086 kB]
+#6 1.847 Get:10 http://deb.debian.org/debian bullseye/main amd64 gnupg-utils amd64 2.2.27-2+deb11u2 [905 kB]
+#6 1.854 Get:11 http://deb.debian.org/debian-security bullseye-security/main amd64 libsqlite3-0 amd64 3.34.1-3+deb11u1 [797 kB]
+#6 1.859 Get:12 http://deb.debian.org/debian bullseye/main amd64 gpg amd64 2.2.27-2+deb11u2 [928 kB]
+#6 1.866 Get:13 http://deb.debian.org/debian bullseye/main amd64 libncursesw6 amd64 6.2+20201114-2+deb11u2 [132 kB]
+#6 1.867 Get:14 http://deb.debian.org/debian bullseye/main amd64 pinentry-curses amd64 1.1.0-4 [64.9 kB]
+#6 1.868 Get:15 http://deb.debian.org/debian bullseye/main amd64 gpg-agent amd64 2.2.27-2+deb11u2 [669 kB]
+#6 1.872 Get:16 http://deb.debian.org/debian bullseye/main amd64 gpg-wks-client amd64 2.2.27-2+deb11u2 [524 kB]
+#6 1.875 Get:17 http://deb.debian.org/debian bullseye/main amd64 gpg-wks-server amd64 2.2.27-2+deb11u2 [516 kB]
+#6 1.878 Get:18 http://deb.debian.org/debian bullseye/main amd64 gpgsm amd64 2.2.27-2+deb11u2 [645 kB]
+#6 1.882 Get:19 http://deb.debian.org/debian bullseye/main amd64 gnupg all 2.2.27-2+deb11u2 [825 kB]
+#6 1.887 Get:20 http://deb.debian.org/debian bullseye/main amd64 libgpm2 amd64 1.20.7-8 [35.6 kB]
+#6 1.975 debconf: delaying package configuration, since apt-utils is not installed
+#6 2.001 Fetched 9032 kB in 0s (42.1 MB/s)
+#6 2.016 Selecting previously unselected package readline-common.
+#6 2.016 (Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 15117 files and directories currently installed.)
+#6 2.026 Preparing to unpack .../00-readline-common_8.1-1_all.deb ...
+#6 2.027 Unpacking readline-common (8.1-1) ...
+#6 2.048 Selecting previously unselected package libreadline8:amd64.
+#6 2.050 Preparing to unpack .../01-libreadline8_8.1-1_amd64.deb ...
+#6 2.055 Unpacking libreadline8:amd64 (8.1-1) ...
+#6 2.080 Selecting previously unselected package apt-transport-https.
+#6 2.082 Preparing to unpack .../02-apt-transport-https_2.2.4_all.deb ...
+#6 2.083 Unpacking apt-transport-https (2.2.4) ...
+#6 2.106 Selecting previously unselected package libassuan0:amd64.
+#6 2.107 Preparing to unpack .../03-libassuan0_2.5.3-7.1_amd64.deb ...
+#6 2.109 Unpacking libassuan0:amd64 (2.5.3-7.1) ...
+#6 2.128 Selecting previously unselected package gpgconf.
+#6 2.130 Preparing to unpack .../04-gpgconf_2.2.27-2+deb11u2_amd64.deb ...
+#6 2.132 Unpacking gpgconf (2.2.27-2+deb11u2) ...
+#6 2.168 Selecting previously unselected package libksba8:amd64.
+#6 2.170 Preparing to unpack .../05-libksba8_1.5.0-3+deb11u2_amd64.deb ...
+#6 2.171 Unpacking libksba8:amd64 (1.5.0-3+deb11u2) ...
+#6 2.196 Selecting previously unselected package libnpth0:amd64.
+#6 2.198 Preparing to unpack .../06-libnpth0_1.6-3_amd64.deb ...
+#6 2.199 Unpacking libnpth0:amd64 (1.6-3) ...
+#6 2.217 Selecting previously unselected package dirmngr.
+#6 2.218 Preparing to unpack .../07-dirmngr_2.2.27-2+deb11u2_amd64.deb ...
+#6 2.230 Unpacking dirmngr (2.2.27-2+deb11u2) ...
+#6 2.270 Selecting previously unselected package gnupg-l10n.
+#6 2.272 Preparing to unpack .../08-gnupg-l10n_2.2.27-2+deb11u2_all.deb ...
+#6 2.273 Unpacking gnupg-l10n (2.2.27-2+deb11u2) ...
+#6 2.340 Selecting previously unselected package gnupg-utils.
+#6 2.342 Preparing to unpack .../09-gnupg-utils_2.2.27-2+deb11u2_amd64.deb ...
+#6 2.343 Unpacking gnupg-utils (2.2.27-2+deb11u2) ...
+#6 2.402 Selecting previously unselected package libsqlite3-0:amd64.
+#6 2.404 Preparing to unpack .../10-libsqlite3-0_3.34.1-3+deb11u1_amd64.deb ...
+#6 2.405 Unpacking libsqlite3-0:amd64 (3.34.1-3+deb11u1) ...
+#6 2.462 Selecting previously unselected package gpg.
+#6 2.464 Preparing to unpack .../11-gpg_2.2.27-2+deb11u2_amd64.deb ...
+#6 2.465 Unpacking gpg (2.2.27-2+deb11u2) ...
+#6 2.523 Selecting previously unselected package libncursesw6:amd64.
+#6 2.524 Preparing to unpack .../12-libncursesw6_6.2+20201114-2+deb11u2_amd64.deb ...
+#6 2.526 Unpacking libncursesw6:amd64 (6.2+20201114-2+deb11u2) ...
+#6 2.550 Selecting previously unselected package pinentry-curses.
+#6 2.552 Preparing to unpack .../13-pinentry-curses_1.1.0-4_amd64.deb ...
+#6 2.553 Unpacking pinentry-curses (1.1.0-4) ...
+#6 2.572 Selecting previously unselected package gpg-agent.
+#6 2.574 Preparing to unpack .../14-gpg-agent_2.2.27-2+deb11u2_amd64.deb ...
+#6 2.575 Unpacking gpg-agent (2.2.27-2+deb11u2) ...
+#6 2.616 Selecting previously unselected package gpg-wks-client.
+#6 2.618 Preparing to unpack .../15-gpg-wks-client_2.2.27-2+deb11u2_amd64.deb ...
+#6 2.619 Unpacking gpg-wks-client (2.2.27-2+deb11u2) ...
+#6 2.645 Selecting previously unselected package gpg-wks-server.
+#6 2.646 Preparing to unpack .../16-gpg-wks-server_2.2.27-2+deb11u2_amd64.deb ...
+#6 2.648 Unpacking gpg-wks-server (2.2.27-2+deb11u2) ...
+#6 2.674 Selecting previously unselected package gpgsm.
+#6 2.676 Preparing to unpack .../17-gpgsm_2.2.27-2+deb11u2_amd64.deb ...
+#6 2.677 Unpacking gpgsm (2.2.27-2+deb11u2) ...
+#6 2.713 Selecting previously unselected package gnupg.
+#6 2.714 Preparing to unpack .../18-gnupg_2.2.27-2+deb11u2_all.deb ...
+#6 2.716 Unpacking gnupg (2.2.27-2+deb11u2) ...
+#6 2.755 Selecting previously unselected package libgpm2:amd64.
+#6 2.757 Preparing to unpack .../19-libgpm2_1.20.7-8_amd64.deb ...
+#6 2.758 Unpacking libgpm2:amd64 (1.20.7-8) ...
+#6 2.781 Setting up libksba8:amd64 (1.5.0-3+deb11u2) ...
+#6 2.784 Setting up libgpm2:amd64 (1.20.7-8) ...
+#6 2.787 Setting up apt-transport-https (2.2.4) ...
+#6 2.790 Setting up libsqlite3-0:amd64 (3.34.1-3+deb11u1) ...
+#6 2.794 Setting up libnpth0:amd64 (1.6-3) ...
+#6 2.797 Setting up libassuan0:amd64 (2.5.3-7.1) ...
+#6 2.800 Setting up gnupg-l10n (2.2.27-2+deb11u2) ...
+#6 2.803 Setting up libncursesw6:amd64 (6.2+20201114-2+deb11u2) ...
+#6 2.806 Setting up readline-common (8.1-1) ...
+#6 2.812 Setting up pinentry-curses (1.1.0-4) ...
+#6 2.819 Setting up libreadline8:amd64 (8.1-1) ...
+#6 2.829 Setting up gpgconf (2.2.27-2+deb11u2) ...
+#6 2.832 Setting up gpg (2.2.27-2+deb11u2) ...
+#6 2.836 Setting up gnupg-utils (2.2.27-2+deb11u2) ...
+#6 2.839 Setting up gpg-agent (2.2.27-2+deb11u2) ...
+#6 3.237 Setting up gpgsm (2.2.27-2+deb11u2) ...
+#6 3.240 Setting up dirmngr (2.2.27-2+deb11u2) ...
+#6 3.367 Setting up gpg-wks-server (2.2.27-2+deb11u2) ...
+#6 3.371 Setting up gpg-wks-client (2.2.27-2+deb11u2) ...
+#6 3.374 Setting up gnupg (2.2.27-2+deb11u2) ...
+#6 3.377 Processing triggers for libc-bin (2.31-13+deb11u11) ...
+#6 3.627 Hit:1 http://deb.debian.org/debian bullseye InRelease
+#6 3.629 Hit:2 http://deb.debian.org/debian-security bullseye-security InRelease
+#6 3.638 Hit:3 http://deb.debian.org/debian bullseye-updates InRelease
+#6 3.674 Get:4 https://deb.nodesource.com/node_22.x nodistro InRelease [12.1 kB]
+#6 3.984 Get:5 https://deb.nodesource.com/node_22.x nodistro/main amd64 Packages [4105 B]
+#6 3.998 Fetched 16.2 kB in 0s (35.7 kB/s)
+#6 3.998 Reading package lists...
+#6 4.364 2024-11-07 23:26:46 - Repository configured successfully.
+#6 4.365 2024-11-07 23:26:46 - To install Node.js, run: apt-get install nodejs -y
+#6 4.366 2024-11-07 23:26:46 - You can use N|solid Runtime as a node.js alternative
+#6 4.367 2024-11-07 23:26:46 - To install N|solid Runtime, run: apt-get install nsolid -y 
+#6 4.367 
+#6 DONE 4.4s
+#7 [stage-1  4/12] RUN apt-get install -y nodejs
+#7 0.183 Reading package lists...
+#7 0.540 Building dependency tree...
+#7 0.638 Reading state information...
+#7 0.726 The following additional packages will be installed:
+#7 0.726   libmpdec3 libpython3-stdlib libpython3.9-minimal libpython3.9-stdlib
+#7 0.726   media-types python3 python3-minimal python3.9 python3.9-minimal
+#7 0.727 Suggested packages:
+#7 0.727   python3-doc python3-tk python3-venv python3.9-venv python3.9-doc
+#7 0.727   binfmt-support
+#7 0.797 The following NEW packages will be installed:
+#7 0.798   libmpdec3 libpython3-stdlib libpython3.9-minimal libpython3.9-stdlib
+#7 0.799   media-types nodejs python3 python3-minimal python3.9 python3.9-minimal
+#7 0.835 0 upgraded, 10 newly installed, 0 to remove and 3 not upgraded.
+#7 0.835 Need to get 40.8 MB of archives.
+#7 0.835 After this operation, 239 MB of additional disk space will be used.
+#7 0.835 Get:1 http://deb.debian.org/debian bullseye/main amd64 libpython3.9-minimal amd64 3.9.2-1 [801 kB]
+#7 0.880 Get:2 http://deb.debian.org/debian bullseye/main amd64 python3.9-minimal amd64 3.9.2-1 [1955 kB]
+#7 0.895 Get:3 http://deb.debian.org/debian bullseye/main amd64 python3-minimal amd64 3.9.2-3 [38.2 kB]
+#7 0.896 Get:4 http://deb.debian.org/debian bullseye/main amd64 media-types all 4.0.0 [30.3 kB]
+#7 0.896 Get:5 http://deb.debian.org/debian bullseye/main amd64 libmpdec3 amd64 2.5.1-1 [87.7 kB]
+#7 0.897 Get:6 http://deb.debian.org/debian bullseye/main amd64 libpython3.9-stdlib amd64 3.9.2-1 [1684 kB]
+#7 0.907 Get:7 http://deb.debian.org/debian bullseye/main amd64 python3.9 amd64 3.9.2-1 [466 kB]
+#7 0.910 Get:8 http://deb.debian.org/debian bullseye/main amd64 libpython3-stdlib amd64 3.9.2-3 [21.4 kB]
+#7 0.910 Get:9 http://deb.debian.org/debian bullseye/main amd64 python3 amd64 3.9.2-3 [37.9 kB]
+#7 0.918 Get:10 https://deb.nodesource.com/node_22.x nodistro/main amd64 nodejs amd64 22.11.0-1nodesource1 [35.7 MB]
+#7 1.345 debconf: delaying package configuration, since apt-utils is not installed
+#7 1.369 Fetched 40.8 MB in 0s (90.5 MB/s)
+#7 1.384 Selecting previously unselected package libpython3.9-minimal:amd64.
+#7 1.384 (Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 15424 files and directories currently installed.)
+#7 1.395 Preparing to unpack .../libpython3.9-minimal_3.9.2-1_amd64.deb ...
+#7 1.396 Unpacking libpython3.9-minimal:amd64 (3.9.2-1) ...
+#7 1.500 Selecting previously unselected package python3.9-minimal.
+#7 1.502 Preparing to unpack .../python3.9-minimal_3.9.2-1_amd64.deb ...
+#7 1.506 Unpacking python3.9-minimal (3.9.2-1) ...
+#7 1.655 Setting up libpython3.9-minimal:amd64 (3.9.2-1) ...
+#7 1.661 Setting up python3.9-minimal (3.9.2-1) ...
+#7 2.147 Selecting previously unselected package python3-minimal.
+#7 2.147 (Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 15709 files and directories currently installed.)
+#7 2.156 Preparing to unpack .../0-python3-minimal_3.9.2-3_amd64.deb ...
+#7 2.157 Unpacking python3-minimal (3.9.2-3) ...
+#7 2.175 Selecting previously unselected package media-types.
+#7 2.177 Preparing to unpack .../1-media-types_4.0.0_all.deb ...
+#7 2.178 Unpacking media-types (4.0.0) ...
+#7 2.196 Selecting previously unselected package libmpdec3:amd64.
+#7 2.198 Preparing to unpack .../2-libmpdec3_2.5.1-1_amd64.deb ...
+#7 2.200 Unpacking libmpdec3:amd64 (2.5.1-1) ...
+#7 2.222 Selecting previously unselected package libpython3.9-stdlib:amd64.
+#7 2.224 Preparing to unpack .../3-libpython3.9-stdlib_3.9.2-1_amd64.deb ...
+#7 2.225 Unpacking libpython3.9-stdlib:amd64 (3.9.2-1) ...
+#7 2.374 Selecting previously unselected package python3.9.
+#7 2.376 Preparing to unpack .../4-python3.9_3.9.2-1_amd64.deb ...
+#7 2.378 Unpacking python3.9 (3.9.2-1) ...
+#7 2.404 Selecting previously unselected package libpython3-stdlib:amd64.
+#7 2.406 Preparing to unpack .../5-libpython3-stdlib_3.9.2-3_amd64.deb ...
+#7 2.407 Unpacking libpython3-stdlib:amd64 (3.9.2-3) ...
+#7 2.426 Setting up python3-minimal (3.9.2-3) ...
+#7 2.557 Selecting previously unselected package python3.
+#7 2.557 (Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 16106 files and directories currently installed.)
+#7 2.566 Preparing to unpack .../python3_3.9.2-3_amd64.deb ...
+#7 2.570 Unpacking python3 (3.9.2-3) ...
+#7 2.597 Selecting previously unselected package nodejs.
+#7 2.599 Preparing to unpack .../nodejs_22.11.0-1nodesource1_amd64.deb ...
+#7 2.601 Unpacking nodejs (22.11.0-1nodesource1) ...
+#7 5.714 Setting up media-types (4.0.0) ...
+#7 5.719 Setting up libmpdec3:amd64 (2.5.1-1) ...
+#7 5.723 Setting up libpython3.9-stdlib:amd64 (3.9.2-1) ...
+#7 5.727 Setting up libpython3-stdlib:amd64 (3.9.2-3) ...
+#7 5.730 Setting up python3.9 (3.9.2-1) ...
+#7 6.219 Setting up python3 (3.9.2-3) ...
+#7 6.225 running python rtupdate hooks for python3.9...
+#7 6.225 running python post-rtupdate hooks for python3.9...
+#7 6.292 Setting up nodejs (22.11.0-1nodesource1) ...
+#7 6.300 Processing triggers for libc-bin (2.31-13+deb11u11) ...
+#7 DONE 6.7s
+#8 [stage-1  5/12] RUN npm install -g svgo@^1.3.2
+#8 9.925 npm warn deprecated stable@0.1.8: Modern JS already guarantees Array#sort() is a stable sort, so this library is deprecated. See the compatibility table on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#browser_compatibility
+#8 9.969 npm warn deprecated q@1.5.1: You or someone you depend on is using Q, the JavaScript Promise library that gave JavaScript developers strong feelings about promises. They can almost certainly migrate to the native JavaScript promise now. Thank you literally everyone for joining me in this bet against the odds. Be excellent to each other.
+#8 9.969 npm warn deprecated
+#8 9.969 npm warn deprecated (For a CapTP with native promises, see @endo/eventual-send and @endo/captp)
+#8 10.05 npm warn deprecated svgo@1.3.2: This SVGO version is no longer supported. Upgrade to v2.x.x.
+#8 10.43 
+#8 10.43 added 106 packages in 10s
+#8 10.43 
+#8 10.43 60 packages are looking for funding
+#8 10.43   run `npm fund` for details
+#8 DONE 10.6s
+#9 [stage-1  6/12] RUN cd /tmp && wget https://github.com/mozilla/mozjpeg/archive/v3.3.1.tar.gz
+#9 0.184 --2024-11-07 23:27:03--  https://github.com/mozilla/mozjpeg/archive/v3.3.1.tar.gz
+#9 0.191 Resolving github.com (github.com)... 140.82.112.4
+#9 0.194 Connecting to github.com (github.com)|140.82.112.4|:443... connected.
+#9 0.373 HTTP request sent, awaiting response... 302 Found
+#9 0.531 Location: https://codeload.github.com/mozilla/mozjpeg/tar.gz/refs/tags/v3.3.1 [following]
+#9 0.531 --2024-11-07 23:27:03--  https://codeload.github.com/mozilla/mozjpeg/tar.gz/refs/tags/v3.3.1
+#9 0.531 Resolving codeload.github.com (codeload.github.com)... 140.82.113.10
+#9 0.533 Connecting to codeload.github.com (codeload.github.com)|140.82.113.10|:443... connected.
+#9 0.704 HTTP request sent, awaiting response... 200 OK
+#9 0.862 Length: unspecified [application/x-gzip]
+#9 0.863 Saving to: 'v3.3.1.tar.gz'
+#9 0.863 
+#9 0.863      0K .......... .......... .......... .......... ..........  468K
+#9 0.970     50K .......... .......... .......... .......... ..........  928K
+#9 1.024    100K .......... .......... .......... .......... .......... 55.2M
+#9 1.025    150K .......... .......... .......... .......... ..........  948K
+#9 1.077    200K .......... .......... .......... .......... .......... 51.1M
+#9 1.078    250K .......... .......... .......... .......... .......... 64.8M
+#9 1.079    300K .......... .......... .......... .......... .......... 64.1M
+#9 1.080    350K .......... .......... .......... .......... ..........  978K
+#9 1.131    400K .......... .......... .......... .......... .......... 53.1M
+#9 1.132    450K .......... .......... .......... .......... .......... 66.2M
+#9 1.132    500K .......... .......... .......... .......... .......... 80.9M
+#9 1.133    550K .......... .......... .......... .......... ..........  167M
+#9 1.133    600K .......... .......... .......... .......... ..........  140M
+#9 1.134    650K .......... .......... .......... .......... ..........  157M
+#9 1.134    700K .......... .......... .......... .......... ..........  143M
+#9 1.134    750K .......... .......... .......... .......... .......... 1002K
+#9 1.184    800K .......... .......... .......... .......... ..........  143M
+#9 1.185    850K .......... .......... .......... .......... ..........  168M
+#9 1.185    900K .......... .......... .......... .......... ..........  134M
+#9 1.186    950K .......... .......... .......... .......... ..........  161M
+#9 1.186   1000K .......... .......... .......... .......... ..........  166M
+#9 1.186   1050K .......... .......... .......... .......... ..........  182M
+#9 1.186   1100K .......... .......... .......... .......... ..........  178M
+#9 1.186   1150K .......... .......... .......... .......... ..........  163M
+#9 1.187   1200K .......... .......... .                                 229M=0.3s
+#9 1.187 
+#9 1.187 2024-11-07 23:27:04 (3.68 MB/s) - 'v3.3.1.tar.gz' saved [1250929]
+#9 1.187 
+#9 DONE 1.2s
+#10 [stage-1  7/12] RUN cd /tmp && tar -xzf v3.3.1.tar.gz
+#10 DONE 0.3s
+#11 [stage-1  8/12] RUN cd /tmp/mozjpeg-3.3.1 && autoreconf -fiv
+#11 0.371 autoreconf: Entering directory `.'
+#11 0.371 autoreconf: configure.ac: not using Gettext
+#11 1.372 autoreconf: running: aclocal --force 
+#11 1.796 autoreconf: configure.ac: tracing
+#11 2.102 autoreconf: running: libtoolize --copy --force
+#11 2.238 libtoolize: putting auxiliary files in '.'.
+#11 2.238 libtoolize: copying file './ltmain.sh'
+#11 2.374 libtoolize: Consider adding 'AC_CONFIG_MACRO_DIRS([m4])' to configure.ac,
+#11 2.374 libtoolize: and rerunning libtoolize and aclocal.
+#11 2.374 libtoolize: Consider adding '-I m4' to ACLOCAL_AMFLAGS in Makefile.am.
+#11 2.619 autoreconf: running: /usr/bin/autoconf --force
+#11 2.984 autoreconf: running: /usr/bin/autoheader --force
+#11 3.293 autoreconf: running: automake --add-missing --copy --force-missing
+#11 3.736 configure.ac:18: installing './ar-lib'
+#11 3.738 configure.ac:16: installing './compile'
+#11 3.740 configure.ac:23: installing './config.guess'
+#11 3.742 configure.ac:23: installing './config.sub'
+#11 3.745 configure.ac:8: installing './install-sh'
+#11 3.747 configure.ac:8: installing './missing'
+#11 3.789 Makefile.am: installing './depcomp'
+#11 3.991 autoreconf: Leaving directory `.'
+#11 DONE 4.0s
+#12 [stage-1  9/12] RUN mkdir /tmp/mozjpeg-3.3.1/build
+#12 DONE 0.2s
+#13 [stage-1 10/12] RUN cd /tmp/mozjpeg-3.3.1/build && sh ../configure && make install
+#13 0.286 checking for a BSD-compatible install... /usr/bin/install -c
+#13 0.295 checking whether build environment is sane... yes
+#13 0.304 checking for a thread-safe mkdir -p... /bin/mkdir -p
+#13 0.307 checking for gawk... no
+#13 0.307 checking for mawk... mawk
+#13 0.307 checking whether make sets $(MAKE)... yes
+#13 0.317 checking whether make supports nested variables... yes
+#13 0.326 checking whether make supports nested variables... (cached) yes
+#13 0.326 checking whether make supports the include directive... yes (GNU style)
+#13 0.335 checking for gcc... gcc
+#13 0.356 checking whether the C compiler works... yes
+#13 0.389 checking for C compiler default output file name... a.out
+#13 0.390 checking for suffix of executables... 
+#13 0.423 checking whether we are cross compiling... no
+#13 0.458 checking for suffix of object files... o
+#13 0.476 checking whether we are using the GNU C compiler... yes
+#13 0.494 checking whether gcc accepts -g... yes
+#13 0.511 checking for gcc option to accept ISO C89... none needed
+#13 0.539 checking whether gcc understands -c and -o together... yes
+#13 0.569 checking dependency style of gcc... gcc3
+#13 0.600 checking how to run the C preprocessor... gcc -E
+#13 0.647 checking for gcc... (cached) gcc
+#13 0.669 checking whether we are using the GNU C compiler... (cached) yes
+#13 0.669 checking whether gcc accepts -g... (cached) yes
+#13 0.669 checking for gcc option to accept ISO C89... (cached) none needed
+#13 0.669 checking whether gcc understands -c and -o together... (cached) yes
+#13 0.669 checking dependency style of gcc... (cached) gcc3
+#13 0.670 checking for ar... ar
+#13 0.670 checking the archiver (ar) interface... ar
+#13 0.690 checking dependency style of gcc... gcc3
+#13 0.725 checking the archiver (ar) interface... (cached) ar
+#13 0.735 checking build system type... x86_64-pc-linux-gnu
+#13 0.783 checking host system type... x86_64-pc-linux-gnu
+#13 0.783 checking how to print strings... printf
+#13 0.785 checking for a sed that does not truncate output... /bin/sed
+#13 0.791 checking for grep that handles long lines and -e... /bin/grep
+#13 0.793 checking for egrep... /bin/grep -E
+#13 0.794 checking for fgrep... /bin/grep -F
+#13 0.796 checking for ld used by gcc... /usr/bin/ld
+#13 0.801 checking if the linker (/usr/bin/ld) is GNU ld... yes
+#13 0.803 checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+#13 0.805 checking the name lister (/usr/bin/nm -B) interface... BSD nm
+#13 0.825 checking whether ln -s works... yes
+#13 0.826 checking the maximum length of command line arguments... 3145728
+#13 0.833 checking how to convert x86_64-pc-linux-gnu file names to x86_64-pc-linux-gnu format... func_convert_file_noop
+#13 0.833 checking how to convert x86_64-pc-linux-gnu file names to toolchain format... func_convert_file_noop
+#13 0.833 checking for /usr/bin/ld option to reload object files... -r
+#13 0.833 checking for objdump... objdump
+#13 0.834 checking how to recognize dependent libraries... pass_all
+#13 0.834 checking for dlltool... no
+#13 0.835 checking how to associate runtime and link libraries... printf %s\n
+#13 0.835 checking for archiver @FILE support... @
+#13 0.861 checking for strip... strip
+#13 0.861 checking for ranlib... ranlib
+#13 0.862 checking command to parse /usr/bin/nm -B output from gcc object... ok
+#13 0.926 checking for sysroot... no
+#13 0.926 checking for a working dd... /bin/dd
+#13 0.930 checking how to truncate binary pipes... /bin/dd bs=4096 count=1
+#13 0.949 checking for mt... no
+#13 0.950 checking if : is a manifest tool... no
+#13 0.954 checking for ANSI C header files... yes
+#13 1.054 checking for sys/types.h... yes
+#13 1.083 checking for sys/stat.h... yes
+#13 1.113 checking for stdlib.h... yes
+#13 1.143 checking for string.h... yes
+#13 1.174 checking for memory.h... yes
+#13 1.204 checking for strings.h... yes
+#13 1.235 checking for inttypes.h... yes
+#13 1.266 checking for stdint.h... yes
+#13 1.297 checking for unistd.h... yes
+#13 1.327 checking for dlfcn.h... yes
+#13 1.355 checking for objdir... .libs
+#13 1.411 checking if gcc supports -fno-rtti -fno-exceptions... no
+#13 1.431 checking for gcc option to produce PIC... -fPIC -DPIC
+#13 1.432 checking if gcc PIC flag -fPIC -DPIC works... yes
+#13 1.451 checking if gcc static flag -static works... yes
+#13 1.523 checking if gcc supports -c -o file.o... yes
+#13 1.550 checking if gcc supports -c -o file.o... (cached) yes
+#13 1.550 checking whether the gcc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+#13 1.559 checking whether -lc should be explicitly linked in... no
+#13 1.585 checking dynamic linker characteristics... GNU/Linux ld.so
+#13 1.634 checking how to hardcode library paths into programs... immediate
+#13 1.634 checking whether stripping libraries is possible... yes
+#13 1.636 checking if libtool supports shared libraries... yes
+#13 1.636 checking whether to build shared libraries... yes
+#13 1.636 checking whether to build static libraries... yes
+#13 1.637 checking whether ln -s works... yes
+#13 1.639 checking for pkg-config... /usr/bin/pkg-config
+#13 1.639 checking pkg-config is at least version 0.9.0... yes
+#13 1.644 checking size of size_t... 8
+#13 1.698 checking whether compiler supports pointers to undefined structures... yes
+#13 1.722 checking whether __SUNPRO_C is declared... no
+#13 1.750 checking for pow in -lm... yes
+#13 1.794 checking for libpng... no
+#13 1.801 checking for libpng12... no
+#13 1.807 checking for ANSI C header files... (cached) yes
+#13 1.810 checking stddef.h usability... yes
+#13 1.837 checking stddef.h presence... yes
+#13 1.846 checking for stddef.h... yes
+#13 1.853 checking for stdlib.h... (cached) yes
+#13 1.859 checking locale.h usability... yes
+#13 1.886 checking locale.h presence... yes
+#13 1.896 checking for locale.h... yes
+#13 1.903 checking for string.h... (cached) yes
+#13 1.907 checking for sys/types.h... (cached) yes
+#13 1.908 checking for an ANSI C-conforming const... yes
+#13 1.927 checking whether char is unsigned... no
+#13 1.957 checking for inline... inline
+#13 1.972 checking for size_t... yes
+#13 2.029 checking for unsigned char... yes
+#13 2.087 checking for unsigned short... yes
+#13 2.145 checking if right shift is signed... yes
+#13 2.192 checking for memset... yes
+#13 2.240 checking for memcpy... yes
+#13 2.285 checking libjpeg API version... 6.2
+#13 2.288 checking whether to include in-memory source/destination managers... yes
+#13 2.289 checking libjpeg shared library version... 62.2.0
+#13 2.293 checking whether the linker supports version scripts... yes (GNU style)
+#13 2.330 checking whether to use version script when building mozjpeg... yes
+#13 2.330 checking for inline... inline __attribute__((always_inline))
+#13 2.350 checking whether to include arithmetic encoding support... yes
+#13 2.351 checking whether to include arithmetic decoding support... yes
+#13 2.351 checking whether to use 12-bit samples... no
+#13 2.351 checking whether to build TurboJPEG C wrapper... yes
+#13 2.351 checking whether to build TurboJPEG Java wrapper... no
+#13 2.352 checking if we have SIMD optimisations for cpu type... yes (x86_64)
+#13 2.353 checking for nasm... nasm
+#13 2.353 checking for object file format of host system... ELF64
+#13 2.353 checking for object file format specifier (NAFLAGS) ... -felf64 -DELF -D__x86_64__
+#13 2.353 checking whether the assembler (nasm -felf64 -DELF -D__x86_64__) works... yes
+#13 2.357 checking whether the linker accepts assembler output... yes
+#13 2.397 checking that generated files are newer than configure... done
+#13 2.398 configure: creating ./config.status
+#13 2.855 config.status: creating pkgscripts/mozjpeg.spec.tmpl
+#13 2.872 config.status: creating pkgscripts/makecygwinpkg.tmpl
+#13 2.888 config.status: creating pkgscripts/makedpkg.tmpl
+#13 2.904 config.status: creating pkgscripts/makemacpkg.tmpl
+#13 2.921 config.status: creating pkgscripts/uninstall.tmpl
+#13 2.937 config.status: creating pkgscripts/libjpeg.pc
+#13 2.953 config.status: creating pkgscripts/libturbojpeg.pc
+#13 2.969 config.status: creating tjbenchtest
+#13 2.982 config.status: creating libjpeg.map
+#13 2.994 config.status: creating Makefile
+#13 3.008 config.status: creating simd/Makefile
+#13 3.025 config.status: creating java/Makefile
+#13 3.042 config.status: creating md5/Makefile
+#13 3.059 config.status: creating config.h
+#13 3.068 config.status: creating jconfig.h
+#13 3.078 config.status: creating jconfigint.h
+#13 3.089 config.status: executing depfiles commands
+#13 3.805 config.status: executing libtool commands
+#13 3.859 Making install in java
+#13 3.861 make[1]: Entering directory '/tmp/mozjpeg-3.3.1/build/java'
+#13 3.863 echo timestamp > classnoinst.stamp
+#13 3.867 make[2]: Entering directory '/tmp/mozjpeg-3.3.1/build/java'
+#13 3.867 make[2]: Nothing to be done for 'install-exec-am'.
+#13 3.867 make[2]: Nothing to be done for 'install-data-am'.
+#13 3.867 make[2]: Leaving directory '/tmp/mozjpeg-3.3.1/build/java'
+#13 3.867 make[1]: Leaving directory '/tmp/mozjpeg-3.3.1/build/java'
+#13 3.868 Making install in simd
+#13 3.871 make[1]: Entering directory '/tmp/mozjpeg-3.3.1/build/simd'
+#13 3.872   GEN      jsimdcfg.inc
+#13 3.881 make  install-am
+#13 3.884 make[2]: Entering directory '/tmp/mozjpeg-3.3.1/build/simd'
+#13 3.886   CC       jsimd_x86_64.lo
+#13 4.213   GEN      jfdctflt-sse-64.lo
+#13 4.228 libtool:   error: ignoring unknown tag NASM
+#13 4.264   GEN      jccolor-sse2-64.lo
+#13 4.279 libtool:   error: ignoring unknown tag NASM
+#13 4.342   GEN      jcgray-sse2-64.lo
+#13 4.357 libtool:   error: ignoring unknown tag NASM
+#13 4.411   GEN      jchuff-sse2-64.lo
+#13 4.426 libtool:   error: ignoring unknown tag NASM
+#13 4.660   GEN      jcsample-sse2-64.lo
+#13 4.675 libtool:   error: ignoring unknown tag NASM
+#13 4.709   GEN      jdcolor-sse2-64.lo
+#13 4.724 libtool:   error: ignoring unknown tag NASM
+#13 4.783   GEN      jdmerge-sse2-64.lo
+#13 4.798 libtool:   error: ignoring unknown tag NASM
+#13 4.865   GEN      jdsample-sse2-64.lo
+#13 4.881 libtool:   error: ignoring unknown tag NASM
+#13 4.919   GEN      jfdctfst-sse2-64.lo
+#13 4.934 libtool:   error: ignoring unknown tag NASM
+#13 4.969   GEN      jfdctint-sse2-64.lo
+#13 4.984 libtool:   error: ignoring unknown tag NASM
+#13 5.021   GEN      jidctflt-sse2-64.lo
+#13 5.036 libtool:   error: ignoring unknown tag NASM
+#13 5.074   GEN      jidctfst-sse2-64.lo
+#13 5.090 libtool:   error: ignoring unknown tag NASM
+#13 5.126   GEN      jidctint-sse2-64.lo
+#13 5.141 libtool:   error: ignoring unknown tag NASM
+#13 5.181   GEN      jidctred-sse2-64.lo
+#13 5.196 libtool:   error: ignoring unknown tag NASM
+#13 5.234   GEN      jquantf-sse2-64.lo
+#13 5.249 libtool:   error: ignoring unknown tag NASM
+#13 5.282   GEN      jquanti-sse2-64.lo
+#13 5.297 libtool:   error: ignoring unknown tag NASM
+#13 5.330   CCLD     libsimd.la
+#13 5.403 make[3]: Entering directory '/tmp/mozjpeg-3.3.1/build/simd'
+#13 5.403 make[3]: Nothing to be done for 'install-exec-am'.
+#13 5.403 make[3]: Nothing to be done for 'install-data-am'.
+#13 5.403 make[3]: Leaving directory '/tmp/mozjpeg-3.3.1/build/simd'
+#13 5.403 make[2]: Leaving directory '/tmp/mozjpeg-3.3.1/build/simd'
+#13 5.404 make[1]: Leaving directory '/tmp/mozjpeg-3.3.1/build/simd'
+#13 5.404 Making install in md5
+#13 5.407 make[1]: Entering directory '/tmp/mozjpeg-3.3.1/build/md5'
+#13 5.408   CC       md5cmp-md5cmp.o
+#13 5.438   CC       md5cmp-md5.o
+#13 5.515   CC       md5cmp-md5hl.o
+#13 5.608   CCLD     md5cmp
+#13 5.672 make[2]: Entering directory '/tmp/mozjpeg-3.3.1/build/md5'
+#13 5.672 make[2]: Nothing to be done for 'install-exec-am'.
+#13 5.672 make[2]: Nothing to be done for 'install-data-am'.
+#13 5.672 make[2]: Leaving directory '/tmp/mozjpeg-3.3.1/build/md5'
+#13 5.672 make[1]: Leaving directory '/tmp/mozjpeg-3.3.1/build/md5'
+#13 5.678 make[1]: Entering directory '/tmp/mozjpeg-3.3.1/build'
+#13 5.680   CC       cjpeg-cdjpeg.o
+#13 5.717   CC       cjpeg-cjpeg.o
+#13 5.845   CC       cjpeg-rdgif.o
+#13 5.876   CC       cjpeg-rdppm.o
+#13 5.963   CC       cjpeg-rdswitch.o
+#13 6.054   CC       cjpeg-rdjpeg.o
+#13 6.092   CC       cjpeg-rdbmp.o
+#13 6.191   CC       cjpeg-rdtarga.o
+#13 6.278   CC       jcapimin.lo
+#13 6.419   CC       jcapistd.lo
+#13 6.524   CC       jccoefct.lo
+#13 6.808   CC       jccolor.lo
+#13 7.428   CC       jcdctmgr.lo
+#13 8.585   CC       jcext.lo
+#13 8.703   CC       jchuff.lo
+#13 12.60   CC       jcinit.lo
+#13 12.69   CC       jcmainct.lo
+#13 12.79   CC       jcmarker.lo
+#13 13.35   CC       jcmaster.lo
+#13 13.78   CC       jcomapi.lo
+#13 13.87   CC       jcparam.lo
+#13 14.42   CC       jcphuff.lo
+#13 14.77   CC       jcprepct.lo
+#13 14.95   CC       jcsample.lo
+#13 15.23   CC       jctrans.lo
+#13 15.42   CC       jdapimin.lo
+#13 15.56   CC       jdapistd.lo
+#13 15.81   CC       jdatadst.lo
+#13 15.93   CC       jdatasrc.lo
+#13 16.05   CC       jdcoefct.lo
+#13 16.36   CC       jdcolor.lo
+#13 17.41   CC       jddctmgr.lo
+#13 17.61   CC       jdhuff.lo
+#13 18.12   CC       jdinput.lo
+#13 18.28   CC       jdmainct.lo
+#13 18.48   CC       jdmarker.lo
+#13 18.97   CC       jdmaster.lo
+#13 19.18   CC       jdmerge.lo
+#13 19.76   CC       jdphuff.lo
+#13 20.04   CC       jdpostct.lo
+#13 20.16   CC       jdsample.lo
+#13 20.46   CC       jdtrans.lo
+#13 20.55   CC       jerror.lo
+#13 20.66   CC       jfdctflt.lo
+#13 20.77   CC       jfdctfst.lo
+#13 20.90   CC       jfdctint.lo
+#13 21.08   CC       jidctflt.lo
+#13 21.20   CC       jidctfst.lo
+#13 21.33   CC       jidctint.lo
+#13 22.19   CC       jidctred.lo
+#13 22.35   CC       jquant1.lo
+#13 22.68   CC       jquant2.lo
+#13 23.17   CC       jutils.lo
+#13 23.27   CC       jmemmgr.lo
+#13 23.56   CC       jmemnobs.lo
+#13 23.65   CC       jaricom.lo
+#13 23.72   CC       jcarith.lo
+#13 24.26   CC       jdarith.lo
+#13 24.56   CCLD     libjpeg.la
+#13 24.75   CCLD     cjpeg
+#13 24.83   CC       djpeg-cdjpeg.o
+#13 24.87   CC       djpeg-djpeg.o
+#13 24.98   CC       djpeg-rdcolmap.o
+#13 25.04   CC       djpeg-rdswitch.o
+#13 25.13   CC       djpeg-wrgif.o
+#13 25.21   CC       djpeg-wrppm.o
+#13 25.26   CC       djpeg-wrbmp.o
+#13 25.35   CC       djpeg-wrtarga.o
+#13 25.42   CCLD     djpeg
+#13 25.50   CC       jpegtran.o
+#13 25.59   CC       rdswitch.o
+#13 25.68   CC       cdjpeg.o
+#13 25.72   CC       transupp.o
+#13 26.79   CCLD     jpegtran
+#13 26.86   CC       rdjpgcom.o
+#13 26.94   CCLD     rdjpgcom
+#13 27.02   CC       wrjpgcom.o
+#13 27.10   CCLD     wrjpgcom
+#13 27.17   CC       tjbench-tjbench.o
+#13 27.26 ../tjbench.c: In function 'decomp':
+#13 27.26 ../tjbench.c:121:27: warning: '%d' directive output may be truncated writing between 1 and 10 bytes into a region of size 4 [-Wformat-truncation=]
+#13 27.26   121 |   snprintf(qualstr, 6, "_Q%d", jpegqual);
+#13 27.26       |                           ^~
+#13 27.26 ../tjbench.c:121:24: note: directive argument in the range [1, 2147483647]
+#13 27.26   121 |   snprintf(qualstr, 6, "_Q%d", jpegqual);
+#13 27.26       |                        ^~~~~~
+#13 27.26 ../tjbench.c:121:3: note: 'snprintf' output between 4 and 13 bytes into a destination of size 6
+#13 27.26   121 |   snprintf(qualstr, 6, "_Q%d", jpegqual);
+#13 27.26       |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#13 27.54   CC       tjbench-bmp.o
+#13 27.66   CC       tjbench-tjutil.o
+#13 27.69   CC       tjbench-rdbmp.o
+#13 27.79   CC       tjbench-rdppm.o
+#13 27.87   CC       tjbench-wrbmp.o
+#13 27.97   CC       tjbench-wrppm.o
+#13 28.03   CC       libturbojpeg_la-jcapimin.lo
+#13 28.17   CC       libturbojpeg_la-jcapistd.lo
+#13 28.27   CC       libturbojpeg_la-jccoefct.lo
+#13 28.56   CC       libturbojpeg_la-jccolor.lo
+#13 29.18   CC       libturbojpeg_la-jcdctmgr.lo
+#13 30.33   CC       libturbojpeg_la-jcext.lo
+#13 30.44   CC       libturbojpeg_la-jchuff.lo
+#13 34.33   CC       libturbojpeg_la-jcinit.lo
+#13 34.41   CC       libturbojpeg_la-jcmainct.lo
+#13 34.52   CC       libturbojpeg_la-jcmarker.lo
+#13 35.07   CC       libturbojpeg_la-jcmaster.lo
+#13 35.50   CC       libturbojpeg_la-jcomapi.lo
+#13 35.59   CC       libturbojpeg_la-jcparam.lo
+#13 36.14   CC       libturbojpeg_la-jcphuff.lo
+#13 36.50   CC       libturbojpeg_la-jcprepct.lo
+#13 36.68   CC       libturbojpeg_la-jcsample.lo
+#13 36.95   CC       libturbojpeg_la-jctrans.lo
+#13 37.14   CC       libturbojpeg_la-jdapimin.lo
+#13 37.29   CC       libturbojpeg_la-jdapistd.lo
+#13 37.53   CC       libturbojpeg_la-jdatadst.lo
+#13 37.65   CC       libturbojpeg_la-jdatasrc.lo
+#13 37.76   CC       libturbojpeg_la-jdcoefct.lo
+#13 38.08   CC       libturbojpeg_la-jdcolor.lo
+#13 39.12   CC       libturbojpeg_la-jddctmgr.lo
+#13 39.32   CC       libturbojpeg_la-jdhuff.lo
+#13 39.83   CC       libturbojpeg_la-jdinput.lo
+#13 40.00   CC       libturbojpeg_la-jdmainct.lo
+#13 40.20   CC       libturbojpeg_la-jdmarker.lo
+#13 40.69   CC       libturbojpeg_la-jdmaster.lo
+#13 40.91   CC       libturbojpeg_la-jdmerge.lo
+#13 41.48   CC       libturbojpeg_la-jdphuff.lo
+#13 41.77   CC       libturbojpeg_la-jdpostct.lo
+#13 41.89   CC       libturbojpeg_la-jdsample.lo
+#13 42.19   CC       libturbojpeg_la-jdtrans.lo
+#13 42.29   CC       libturbojpeg_la-jerror.lo
+#13 42.39   CC       libturbojpeg_la-jfdctflt.lo
+#13 42.51   CC       libturbojpeg_la-jfdctfst.lo
+#13 42.64   CC       libturbojpeg_la-jfdctint.lo
+#13 42.82   CC       libturbojpeg_la-jidctflt.lo
+#13 42.94   CC       libturbojpeg_la-jidctfst.lo
+#13 43.08   CC       libturbojpeg_la-jidctint.lo
+#13 43.94   CC       libturbojpeg_la-jidctred.lo
+#13 44.10   CC       libturbojpeg_la-jquant1.lo
+#13 44.44   CC       libturbojpeg_la-jquant2.lo
+#13 44.94   CC       libturbojpeg_la-jutils.lo
+#13 45.03   CC       libturbojpeg_la-jmemmgr.lo
+#13 45.32   CC       libturbojpeg_la-jmemnobs.lo
+#13 45.41   CC       libturbojpeg_la-jaricom.lo
+#13 45.48   CC       libturbojpeg_la-jcarith.lo
+#13 46.03   CC       libturbojpeg_la-jdarith.lo
+#13 46.33   CC       libturbojpeg_la-turbojpeg.lo
+#13 47.56   CC       libturbojpeg_la-transupp.lo
+#13 49.73   CC       libturbojpeg_la-jdatadst-tj.lo
+#13 49.84   CC       libturbojpeg_la-jdatasrc-tj.lo
+#13 49.94   CCLD     libturbojpeg.la
+#13 50.14   CCLD     tjbench
+#13 50.23   CC       jcstest.o
+#13 50.26   CCLD     jcstest
+#13 50.34   CC       jpegyuv.o
+#13 50.42   CCLD     jpegyuv
+#13 50.50   CC       yuvjpeg.o
+#13 50.61   CCLD     yuvjpeg
+#13 50.69   CC       tjunittest.o
+#13 51.03   CC       tjutil.o
+#13 51.06   CCLD     tjunittest
+#13 51.17 make[2]: Entering directory '/tmp/mozjpeg-3.3.1/build'
+#13 51.18  /bin/mkdir -p '/opt/mozjpeg/lib64'
+#13 51.18  /bin/bash ./libtool   --mode=install /usr/bin/install -c   libjpeg.la libturbojpeg.la '/opt/mozjpeg/lib64'
+#13 51.20 libtool: install: /usr/bin/install -c .libs/libjpeg.so.62.2.0 /opt/mozjpeg/lib64/libjpeg.so.62.2.0
+#13 51.20 libtool: install: (cd /opt/mozjpeg/lib64 && { ln -s -f libjpeg.so.62.2.0 libjpeg.so.62 || { rm -f libjpeg.so.62 && ln -s libjpeg.so.62.2.0 libjpeg.so.62; }; })
+#13 51.20 libtool: install: (cd /opt/mozjpeg/lib64 && { ln -s -f libjpeg.so.62.2.0 libjpeg.so || { rm -f libjpeg.so && ln -s libjpeg.so.62.2.0 libjpeg.so; }; })
+#13 51.21 libtool: install: /usr/bin/install -c .libs/libjpeg.lai /opt/mozjpeg/lib64/libjpeg.la
+#13 51.21 libtool: install: /usr/bin/install -c .libs/libturbojpeg.so.0.1.0 /opt/mozjpeg/lib64/libturbojpeg.so.0.1.0
+#13 51.21 libtool: install: (cd /opt/mozjpeg/lib64 && { ln -s -f libturbojpeg.so.0.1.0 libturbojpeg.so.0 || { rm -f libturbojpeg.so.0 && ln -s libturbojpeg.so.0.1.0 libturbojpeg.so.0; }; })
+#13 51.21 libtool: install: (cd /opt/mozjpeg/lib64 && { ln -s -f libturbojpeg.so.0.1.0 libturbojpeg.so || { rm -f libturbojpeg.so && ln -s libturbojpeg.so.0.1.0 libturbojpeg.so; }; })
+#13 51.21 libtool: install: /usr/bin/install -c .libs/libturbojpeg.lai /opt/mozjpeg/lib64/libturbojpeg.la
+#13 51.22 libtool: install: /usr/bin/install -c .libs/libjpeg.a /opt/mozjpeg/lib64/libjpeg.a
+#13 51.22 libtool: install: chmod 644 /opt/mozjpeg/lib64/libjpeg.a
+#13 51.22 libtool: install: ranlib /opt/mozjpeg/lib64/libjpeg.a
+#13 51.23 libtool: install: /usr/bin/install -c .libs/libturbojpeg.a /opt/mozjpeg/lib64/libturbojpeg.a
+#13 51.24 libtool: install: chmod 644 /opt/mozjpeg/lib64/libturbojpeg.a
+#13 51.24 libtool: install: ranlib /opt/mozjpeg/lib64/libturbojpeg.a
+#13 51.27 libtool: finish: PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/sbin" ldconfig -n /opt/mozjpeg/lib64
+#13 51.27 ----------------------------------------------------------------------
+#13 51.27 Libraries have been installed in:
+#13 51.27    /opt/mozjpeg/lib64
+#13 51.27 
+#13 51.27 If you ever happen to want to link against installed libraries
+#13 51.28 in a given directory, LIBDIR, you must either use libtool, and
+#13 51.28 specify the full pathname of the library, or use the '-LLIBDIR'
+#13 51.28 flag during linking and do at least one of the following:
+#13 51.28    - add LIBDIR to the 'LD_LIBRARY_PATH' environment variable
+#13 51.28      during execution
+#13 51.28    - add LIBDIR to the 'LD_RUN_PATH' environment variable
+#13 51.28      during linking
+#13 51.28    - use the '-Wl,-rpath -Wl,LIBDIR' linker flag
+#13 51.28    - have your system administrator add LIBDIR to '/etc/ld.so.conf'
+#13 51.28 
+#13 51.28 See any operating system documentation about shared libraries for
+#13 51.28 more information, such as the ld(1) and ld.so(8) manual pages.
+#13 51.28 ----------------------------------------------------------------------
+#13 51.28  /bin/mkdir -p '/opt/mozjpeg/bin'
+#13 51.28   /bin/bash ./libtool   --mode=install /usr/bin/install -c cjpeg djpeg jpegtran rdjpgcom wrjpgcom tjbench '/opt/mozjpeg/bin'
+#13 51.31 libtool: install: /usr/bin/install -c .libs/cjpeg /opt/mozjpeg/bin/cjpeg
+#13 51.32 libtool: install: /usr/bin/install -c .libs/djpeg /opt/mozjpeg/bin/djpeg
+#13 51.33 libtool: install: /usr/bin/install -c .libs/jpegtran /opt/mozjpeg/bin/jpegtran
+#13 51.34 libtool: install: /usr/bin/install -c .libs/rdjpgcom /opt/mozjpeg/bin/rdjpgcom
+#13 51.35 libtool: install: /usr/bin/install -c .libs/wrjpgcom /opt/mozjpeg/bin/wrjpgcom
+#13 51.37 libtool: install: /usr/bin/install -c .libs/tjbench /opt/mozjpeg/bin/tjbench
+#13 51.37  /bin/mkdir -p '/opt/mozjpeg/share/doc/mozjpeg'
+#13 51.37  /usr/bin/install -c -m 644 ../README.ijg ../README.md ../libjpeg.txt ../structure.txt ../usage.txt ../wizard.txt ../LICENSE.md '/opt/mozjpeg/share/doc/mozjpeg'
+#13 51.38  /bin/mkdir -p '/opt/mozjpeg/share/doc/mozjpeg'
+#13 51.38  /usr/bin/install -c -m 644 ../example.c '/opt/mozjpeg/share/doc/mozjpeg'
+#13 51.38  /bin/mkdir -p '/opt/mozjpeg/include'
+#13 51.39  /usr/bin/install -c -m 644 ../jerror.h ../jmorecfg.h ../jpeglib.h ../turbojpeg.h '/opt/mozjpeg/include'
+#13 51.39  /bin/mkdir -p '/opt/mozjpeg/share/man/man1'
+#13 51.40  /usr/bin/install -c -m 644 ../cjpeg.1 ../djpeg.1 ../jpegtran.1 ../rdjpgcom.1 ../wrjpgcom.1 '/opt/mozjpeg/share/man/man1'
+#13 51.40  /bin/mkdir -p '/opt/mozjpeg/include'
+#13 51.40  /usr/bin/install -c -m 644 jconfig.h '/opt/mozjpeg/include'
+#13 51.41  /bin/mkdir -p '/opt/mozjpeg/lib64/pkgconfig'
+#13 51.41  /usr/bin/install -c -m 644 pkgscripts/libjpeg.pc pkgscripts/libturbojpeg.pc '/opt/mozjpeg/lib64/pkgconfig'
+#13 51.41 make[2]: Leaving directory '/tmp/mozjpeg-3.3.1/build'
+#13 51.41 make[1]: Leaving directory '/tmp/mozjpeg-3.3.1/build'
+#13 DONE 51.4s
+#14 [stage-1 11/12] RUN ln -s /opt/mozjpeg/bin/jpegtran /usr/local/bin/mozjpegtran
+#14 DONE 0.3s
+#15 [stage-1 12/12] RUN ln -s /opt/mozjpeg/bin/cjpeg /usr/local/bin/mozcjpeg
+#15 DONE 0.2s
+#16 exporting to image
+#16 exporting layers
+#16 exporting layers 3.9s done
+#16 writing image sha256:075fe1a04a58121077b15c3941ebfb29a3d96ec56a19fce5ad70da3fb214ed92 done
+#16 naming to docker.io/library/imgbot done
+#16 DONE 3.9s
