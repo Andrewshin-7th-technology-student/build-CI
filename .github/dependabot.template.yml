@@ -1,37 +1,6 @@
 version: 2
 updates:
 
-  - package-ecosystem: gomod
-    directory: "/"
-    schedule:
-      interval: daily
-      time: "11:00"
-    open-pull-requests-limit: 10
-  - package-ecosystem: "bundler"
-    directories:
-      - "/"
-      - "/"
-    schedule:
-      interval: "daily"
-      day: "monday"
-      time: "10:00"
-    groups:
-      sorbet:
-        patterns:
-          - "*"
-      aws-sdk:
-        patterns:
-          - "*"
-      prod-dependencies:
-        dependency-type: "production"
-        update-types:
-          - "minor"
-          - "patch"
-      dev-dependencies:
-        dependency-type: "development"
-        update-types:
-          - "minor"
-          - "patch"
   - package-ecosystem: "docker"
     directories:
       - "/"
