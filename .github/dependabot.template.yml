@@ -1,56 +1,41 @@
 version: 2
-
 updates:
 
-- package-ecosystem: nuget
-  directory: "/"
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 1000
-  groups:
-    AWSSDK:
-      patterns:
-        - "AWSSDK.*"
-    NServiceBusCore:
-      patterns:
-        - "NServiceBus"
-        - "NServiceBus.AcceptanceTesting"
-        - "NServiceBus.AcceptanceTests.Sources"
-        - "NServiceBus.PersistenceTests.Sources"
-        - "NServiceBus.TransportTests.Sources"
-  ignore:
-    # Particular.Analyzers updates are distributed via RepoStandards
-    - dependency-name: "Particular.Analyzers"
-    # Changing these 3 dependencies affects the .NET SDK and Visual Studio versions we support  
-    # These types of updates should be more intentional than an automated update
-    - dependency-name: "Microsoft.Build.Utilities.Core"
-    - dependency-name: "Microsoft.CodeAnalysis.CSharp"
-    - dependency-name: "Microsoft.CodeAnalysis.CSharp.Workspaces"
-- package-ecosystem: "github-actions"
-  directory: "/"
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 1000
-- package-ecosystem: "docker"
-  directory: "/"
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 1000
-- package-ecosystem: "npm"
-  directory: "/"
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 1000
-- package-ecosystem: gomod
-  directory: "/"
-  schedule:
-    interval: daily
-- package-ecosystem: 'terraform'
-  # Searches the entire tree, but only matches files with the given name
-  # This actually outputs without a leading slash, but dependabot doesn't seem to care
-  # Note the . is escaped, node-glob doesn't search hidden files by default
-  directory: '\.terraform.lock.hcl'
-  commit-message:
-    prefix: 'terraform'
-  schedule:
-    interval: 'weekly'
+  - package-ecosystem: gomod
+    directory: "/"
+    schedule:
+      interval: daily
+      time: "11:00"
+    open-pull-requests-limit: 10
+  - package-ecosystem: "bundler"
+    directories:
+      - "/"
+      - "/"
+    schedule:
+      interval: "daily"
+      day: "monday"
+      time: "10:00"
+    groups:
+      sorbet:
+        patterns:
+          - "*"
+      aws-sdk:
+        patterns:
+          - "*"
+      prod-dependencies:
+        dependency-type: "production"
+        update-types:
+          - "minor"
+          - "patch"
+      dev-dependencies:
+        dependency-type: "development"
+        update-types:
+          - "minor"
+          - "patch"
+  - package-ecosystem: "docker"
+    directories:
+      - "/"
+    schedule:
+      interval: "daily"
+      day: "friday"
+      time: "16:00"
