@@ -20,7 +20,7 @@ updates:
   ignore:
     # Particular.Analyzers updates are distributed via RepoStandards
     - dependency-name: "Particular.Analyzers"
-    # Changing these 3 dependencies affects the .NET SDK and Visual Studio versions we support 
+    # Changing these 3 dependencies affects the .NET SDK and Visual Studio versions we support  
     # These types of updates should be more intentional than an automated update
     - dependency-name: "Microsoft.Build.Utilities.Core"
     - dependency-name: "Microsoft.CodeAnalysis.CSharp"
