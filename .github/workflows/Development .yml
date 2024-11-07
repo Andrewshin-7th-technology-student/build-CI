@@ -25,11 +25,7 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node }}
-        architecture: ${{ matrix.arch }}
-    - name: Install
-      run: npm install
-      env:
-        npm_config_arch: ${{ matrix.arch }}    
+        architecture: ${{ matrix.arch }} 
     - uses: actions/setup-python@v5
       with:
         python-version: '3.x'
