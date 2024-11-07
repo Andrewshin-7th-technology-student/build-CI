@@ -24,13 +24,13 @@ jobs:
       matrix:
         include:
         - language: csharp
-          build-mode: autobuild
+          build-mode: manual
         - language: javascript-typescript
-          build-mode: autobuild
+          build-mode: manual
         - language: python
-          build-mode: autobuild
+          build-mode: manual
         - language: ruby
-          build-mode: autobuild
+          build-mode: manual
   
     steps:
     - name: Scan dependabot packages [bin root]
