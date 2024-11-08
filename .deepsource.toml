@@ -3,14 +3,14 @@ version = 1
 [[analyzers]]
 name = "python"
 
-[analyzers.meta]
-runtime_version = "3.x.x"
+  [analyzers.meta]
+  runtime_version = "3.x.x"
 
 [[analyzers]]
 name = "java"
 
-[analyzers.meta]
-runtime_version = "11"
+  [analyzers.meta]
+  runtime_version = "21"
 
 [[analyzers]]
 name = "csharp"
@@ -18,17 +18,43 @@ name = "csharp"
 [[analyzers]]
 name = "javascript"
 
+  [analyzers.meta]
+  plugins = [
+    "react",
+    "angularjs",
+    "meteor"
+  ]
+  environment = [
+    "cypress",
+    "mongo",
+    "browser"
+  ]
+
 [[analyzers]]
 name = "shell"
 
 [[analyzers]]
 name = "kotlin"
 
-[analyzers.meta]
-language_version = "1.7"
+  [analyzers.meta]
+  runtime_version = "13"
+  language_version = "1.7"
 
 [[analyzers]]
 name = "send-receive test"
 enabled = false
-runtime_version = "1.8"
 
+[[transformers]]
+name = "google-java-format"
+
+[[transformers]]
+name = "dotnet-format"
+
+[[transformers]]
+name = "prettier"
+
+[[transformers]]
+name = "standardjs"
+
+[[transformers]]
+name = "ktlint"
