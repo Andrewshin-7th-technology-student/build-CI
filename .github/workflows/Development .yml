@@ -1,4 +1,4 @@
-name: Linux & Windows build - Development
+name: ARCH/ARM Linux & Windows build - Development
 
 on:
   create:
