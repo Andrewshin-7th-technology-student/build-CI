@@ -1,4 +1,4 @@
-name: Microsoft Windows ARCH/ARM Linux & Windows build - Development
+name: Action Microsoft Windows ARCH/ARM Linux & Windows build - Development
 
 on:
   create:
