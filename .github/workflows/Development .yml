@@ -1,4 +1,4 @@
-name: ARCH/ARM Linux & Windows build - Development
+name: Microsoft Windows ARCH/ARM Linux & Windows build - Development
 
 on:
   create:
@@ -192,7 +192,7 @@ jobs:
         run: sudo sysctl -w vm.mmap_rnd_bits=28
 
   windows-build:
-    name: win build
+    name: windows build
     needs: ci-config
     if: needs.ci-config.outputs.enabled == 'yes'
     runs-on: windows-latest
@@ -208,7 +208,7 @@ jobs:
           path: artifacts
 
   linux-build:
-    name: linux build
+    name: linux Arch build
     needs: ci-config
     if: needs.ci-config.outputs.enabled == 'yes'
     runs-on: ubuntu-latest
