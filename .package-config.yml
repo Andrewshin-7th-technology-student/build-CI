@@ -31,4 +31,6 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SSH_PRIVATE_KEY: ${{ secrets.GH_SSH }}
+          ## ROCK:true, enabled ["KEY=.secret/bose"]
+          ## TOKEN_CLI: $$["BREAK"]$$
           
