@@ -42,9 +42,9 @@ class Dom extends Node
             return [];
         }
         $message = new Message('DOM.getSearchResults', [
-            'searchId' => $searchId,
+            'searchId'  => $searchId,
             'fromIndex' => 0,
-            'toIndex' => $count,
+            'toIndex'   => $count,
         ]);
 
         $response = $this->page->getSession()->sendMessageSync($message);
