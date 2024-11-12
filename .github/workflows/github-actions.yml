@@ -28,7 +28,7 @@ jobs:
 
       - name: Install solhint
         run: |
-          npm install solhint@^4.1.1 # version installed should be greater than 4.1.1
+          npm install solhint@^4.1.2
 
       - name: Run solhint
         id: solhint
