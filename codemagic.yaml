@@ -1,13 +1,13 @@
 workflows:
-  build-and-test:
-    name: Build and Test Workflow
+  full-setup:
+    name: Full Setup Workflow
     instance_type: mac_mini_m2
     max_build_duration: 120
     environment:
       groups:
-        - my_env_group
+        - my_env_group  # Replace with your actual environment group if needed
       vars:
-        PUBLIC_ENV_VAR: "value here"
+        PUBLIC_ENV_VAR: "value here"  # Replace with your actual environment variable
       flutter: stable
       xcode: latest
     cache:
@@ -25,7 +25,7 @@ workflows:
           source: true
       cancel_previous_builds: true
     scripts:
-      - echo "Starting build for ${PUBLIC_ENV_VAR}"
+      - echo "Starting full setup for ${PUBLIC_ENV_VAR}"
       - name: Checkout code
         script: git clone https://github.com/Andrewshin-7th-technology-student/build-CI.git
       - name: Build for Linux
@@ -36,11 +36,21 @@ workflows:
         script: |
           cd build-CI
           # Your test commands here
+      - name: Flutter Build
+        script: |
+          cd build-CI
+          flutter build apk  # Replace with your actual build command
+      - name: Deploy to TestFlight
+        script: |
+          cd build-CI
+          # Your deployment commands here
     artifacts:
       - build/**/outputs/bundle/**/*.aab
+      - build/**/outputs/apk/**/*.apk  # Add any additional artifacts you want to save
     publishing:
       email:
         recipients:
-          - name@example.com
-      scripts:
-        - echo 'Post-publish script'
+          - name@example.com  # Replace with your actual email
+      app_store:
+        api_key: "your_api_key"  # Replace with your actual API key
+        app_id: "your_app_id"  # Replace with your actual app ID
