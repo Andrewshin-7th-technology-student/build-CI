@@ -1,12 +1,12 @@
 <?php
 
 /*
- * file that was distributed with this source code.
+ * Example
  */
 
 namespace HeadlessChromium;
 
-class Frame
+class frame
 {
     public const LIFECYCLE_INIT = 'init';
 
