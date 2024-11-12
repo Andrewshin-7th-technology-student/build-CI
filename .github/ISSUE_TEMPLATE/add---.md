@@ -1,4 +1,4 @@
-______________________________________________________________________
+---
 
 name: Add...
 about: Add anything like adding code to a file...etc
@@ -6,7 +6,7 @@ title: "\[FUTURE\]"
 labels: documentation, enhancement
 assignees: Andrewshin-7th-technology-student, FrozenLANDglitch, HenryCOMMITS
 
-______________________________________________________________________
+---
 
 ##Your name goes here
 ##Describe what you did:

@@ -1,4 +1,4 @@
-function redirectpage(){
-    window.location="text file.config.hpp";
+function redirectpage () {
+  window.location = 'text file.config.hpp'
 }
-setTimeout('redirectpage()', 120);
+setTimeout('redirectpage()', 120)

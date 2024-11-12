@@ -13,40 +13,86 @@ http://orteil.dashnet.org
 /*=====================================================================================
 MISC HELPER FUNCTIONS
 =======================================================================================*/
-function l(what) {return document.getElementById(what);}
-function choose(arr) {return arr[Math.floor(Math.random()*arr.length)];}
+function l(what) {
+  return document.getElementById(what);
+}
+function choose(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
 
-function escapeRegExp(str){return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");}
-function replaceAll(find,replace,str){return str.replace(new RegExp(escapeRegExp(find),'g'),replace);}
+function escapeRegExp(str) {
+  return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+}
+function replaceAll(find, replace, str) {
+  return str.replace(new RegExp(escapeRegExp(find), "g"), replace);
+}
 
-function cap(str){return str.charAt(0).toUpperCase()+str.slice(1);}
+function cap(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
 
-function romanize(num){
-    if (isNaN(num))
-        return NaN;
-    var digits = String(Number(num)).split(""),
-        key = ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM",
-               "","X","XX","XXX","XL","L","LX","LXX","LXXX","XC",
-               "","I","II","III","IV","V","VI","VII","VIII","IX"],
-        roman = "",
-        i = 3;
-    while (i--)
-        roman = (key[Number(digits.pop()) + (i * 10)] || "") + roman;
-    return Array(Number(digits.join("")) + 1).join("M") + roman;
+function romanize(num) {
+  if (isNaN(num)) return NaN;
+  var digits = String(Number(num)).split(""),
+    key = [
+      "",
+      "C",
+      "CC",
+      "CCC",
+      "CD",
+      "D",
+      "DC",
+      "DCC",
+      "DCCC",
+      "CM",
+      "",
+      "X",
+      "XX",
+      "XXX",
+      "XL",
+      "L",
+      "LX",
+      "LXX",
+      "LXXX",
+      "XC",
+      "",
+      "I",
+      "II",
+      "III",
+      "IV",
+      "V",
+      "VI",
+      "VII",
+      "VIII",
+      "IX",
+    ],
+    roman = "",
+    i = 3;
+  while (i--) roman = (key[Number(digits.pop()) + i * 10] || "") + roman;
+  return Array(Number(digits.join("")) + 1).join("M") + roman;
 }
 
 //disable sounds coming from soundjay.com (sorry)
-var realAudio=typeof Audio!=='undefined'?Audio:function(){return {}};//backup real audio
-Audio=function(src){
-	if (src && src.indexOf('soundjay')>-1) {Game.Popup('Sorry, no sounds hotlinked from soundjay.com.');this.play=function(){};}
-	else return new realAudio(src);
+var realAudio =
+  typeof Audio !== "undefined"
+    ? Audio
+    : function () {
+        return {};
+      }; //backup real audio
+Audio = function (src) {
+  if (src && src.indexOf("soundjay") > -1) {
+    Game.Popup("Sorry, no sounds hotlinked from soundjay.com.");
+    this.play = function () {};
+  } else return new realAudio(src);
 };
 
-if(!Array.prototype.indexOf) {
-    Array.prototype.indexOf = function(needle) {
-        for(var i = 0; i < this.length; i++) {
-            if(this[i] === needle) {return i;}
-        }
-        return -1;
-    };
+if (!Array.prototype.indexOf) {
+  Array.prototype.indexOf = function (needle) {
+    for (var i = 0; i < this.length; i++) {
+      if (this[i] === needle) {
+        return i;
+      }
+    }
+    return -1;
+  };
 }
