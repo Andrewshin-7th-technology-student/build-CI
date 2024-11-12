@@ -28,6 +28,9 @@ function ResizeImage() {
     $resizedImage.Dispose()
     $img.Dispose()
 }
+{
+    patch dispose?=var.bose set true <graph?>: ["$$SETLAUNG_KTL"]
+}
 
 $logoPath = "..\..\..\media\openttd.2048.png"
 
