@@ -6,6 +6,6 @@
 
 namespace HeadlessChromium\Exception;
 
-  class BrowserConnectionFailed extends \Exception
-  {
-  }
+class BrowserConnectionFailed extends \Exception
+{
+}
