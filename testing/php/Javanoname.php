@@ -11,4 +11,3 @@ namespace HeadlessChromium\Exception;
 class JavascriptException extends \Exception
 {
 }
-{exception c\class/cmake/.//video imported
