@@ -37,10 +37,8 @@ jobs:
       - name: Upload SARIF report files to DeepSource
         id: upload-sarif
         run: |
-          # Install the CLI
           curl https://deepsource.io/cli | sh
 
-          # Send the report to DeepSource
           ./bin/deepsource report --analyzer solhint --analyzer-type community --value-file solhint.sarif
 
       # Ensure the workflow eventually fails if files did not pass solhint checks.
