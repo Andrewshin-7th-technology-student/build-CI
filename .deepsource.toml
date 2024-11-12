@@ -16,21 +16,6 @@ name = "java"
 name = "csharp"
 
 [[analyzers]]
-name = "javascript"
-
-  [analyzers.meta]
-  plugins = [
-    "react",
-    "angularjs",
-    "meteor"
-  ]
-  environment = [
-    "cypress",
-    "mongo",
-    "browser"
-  ]
-
-[[analyzers]]
 name = "shell"
 
 [[analyzers]]
@@ -49,12 +34,6 @@ name = "google-java-format"
 
 [[transformers]]
 name = "dotnet-format"
-
-[[transformers]]
-name = "prettier"
-
-[[transformers]]
-name = "standardjs"
 
 [[transformers]]
 name = "ktlint"
