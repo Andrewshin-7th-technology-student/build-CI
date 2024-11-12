@@ -1,0 +1,30 @@
+{
+    "name": "Andrewshin-7th-technology-student/build-CI",
+    "description": "Install",
+    "keywords": ["chrome", "chromium", "crawl", "browser", "headless", "screenshot", "pdf", "puppeteer", "ci", "ruby"],
+    "license": "AGPL-3.0",
+    "authors": [
+        {
+            "name": "Andrew Shin",
+            "email": "andrewshin90909@gmail.com",
+            "homepage": "https://github.com/Andrewshin-7th-technology-student"
+        },
+        {
+            "name": "Henry Robinson",
+            "email": "henry_coder12@hotmail.com",
+            "homepage": "https://github.com/HenryCOMMITS"
+        }
+    ]
+        "allow-plugins": {
+            "build-CI/composer-bin-plugin": true
+        },
+  
+        "preferred-install": "dist"
+    },
+    "extra": {
+        "bamarni-bin": {
+            "bin-links": true,
+            "forward-command": false
+        }
+    }
+}
