@@ -49,8 +49,8 @@ class Node
     {
         $message = new Message('DOM.setAttributeValue', [
             'nodeId' => $this->nodeId,
-            'name' => $name,
-            'value' => $value,
+            'name'   => $name,
+            'value'  => $value,
         ]);
         $response = $this->page->getSession()->sendMessageSync($message);
 
@@ -60,7 +60,7 @@ class Node
     public function querySelector(string $selector): ?self
     {
         $message = new Message('DOM.querySelector', [
-            'nodeId' => $this->nodeId,
+            'nodeId'   => $this->nodeId,
             'selector' => $selector,
         ]);
         $response = $this->page->getSession()->sendMessageSync($message);
