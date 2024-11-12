@@ -1,9 +1,13 @@
 <?php
 
+/*
+ * Example
+ */
+
 namespace HeadlessChromium\Exception;
 
 use Exception;
 
-class DomException extends Exception
+class Reachfix extends Exception
 {
 }
