@@ -42,7 +42,12 @@ workflows:
           # Your deployment commands here
     artifacts:
       - build/**/outputs/bundle/**/*.aab
-      - build/**/outputs/apk/**/*.apk  # Add any additional artifacts you want to save
+      - build/**/outputs/apk/**/*.apk
+      - build/**/
+      - build
+      - build/**
+      - build/html.sh
+      - build/**/html.sh # Add any additional artifacts you want to save
     publishing:
       email:
         recipients:
