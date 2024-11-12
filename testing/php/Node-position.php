@@ -2,6 +2,10 @@
 
 declare(strict_types=1);
 
+/*
+ * Example
+ */
+
 namespace HeadlessChromium\Dom;
 
 class NodePosition
