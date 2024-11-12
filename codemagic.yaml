@@ -36,10 +36,6 @@ workflows:
         script: |
           cd build-CI
           # Your test commands here
-      - name: Flutter Build
-        script: |
-          cd build-CI
-          flutter build apk  # Replace with your actual build command
       - name: Deploy to TestFlight
         script: |
           cd build-CI
