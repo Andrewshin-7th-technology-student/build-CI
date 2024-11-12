@@ -34,13 +34,6 @@ jobs:
         # This allows the following upload-sarif action to still upload the results.
         continue-on-error: true
 
-      - name: Upload SARIF report files to DeepSource
-        id: upload-sarif
-        run: |
-          curl https://deepsource.io/cli | sh
-
-          ./bin/deepsource report --analyzer solhint --analyzer-type community --value-file solhint.sarif
-
       # Ensure the workflow eventually fails if files did not pass solhint checks.
       - name: Verify solhint succeeded
         shell: bash
