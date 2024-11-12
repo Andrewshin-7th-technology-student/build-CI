@@ -1,6 +1,13 @@
 version = 1
 
 [[analyzers]]
+name = "solhint"
+type = "community"
+
+[[analyzers]]
+name = "test-coverage"
+
+[[analyzers]]
 name = "python"
 
   [analyzers.meta]
@@ -19,13 +26,6 @@ name = "csharp"
 name = "shell"
 
 [[analyzers]]
-name = "kotlin"
-
-  [analyzers.meta]
-  runtime_version = "13"
-  language_version = "1.7"
-
-[[analyzers]]
 name = "send-receive test"
 enabled = false
 
@@ -34,6 +34,3 @@ name = "google-java-format"
 
 [[transformers]]
 name = "dotnet-format"
-
-[[transformers]]
-name = "ktlint"
