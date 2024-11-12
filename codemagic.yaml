@@ -5,9 +5,9 @@ workflows:
     max_build_duration: 120
     environment:
       groups:
-        - my_env_group  # Replace with your actual environment group if needed
+        - my_env_group 
       vars:
-        PUBLIC_ENV_VAR: "value here"  # Replace with your actual environment variable
+        PUBLIC_ENV_VAR: "DEEPSOURCE_DSN"
       flutter: stable
       xcode: latest
     cache:
@@ -50,7 +50,4 @@ workflows:
     publishing:
       email:
         recipients:
-          - name@example.com  # Replace with your actual email
-      app_store:
-        api_key: "your_api_key"  # Replace with your actual API key
-        app_id: "your_app_id"  # Replace with your actual app ID
+          - p1480132@outlook.com
