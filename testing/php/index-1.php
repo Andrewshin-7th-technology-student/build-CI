@@ -78,7 +78,7 @@ class Node
     public function querySelectorAll(string $selector): array
     {
         $message = new Message('DOM.querySelectorAll', [
-            'nodeId' => $this->nodeId,
+            'nodeId'   => $this->nodeId,
             'selector' => $selector,
         ]);
         $response = $this->page->getSession()->sendMessageSync($message);
@@ -147,7 +147,7 @@ class Node
     public function setHTML(string $outerHTML): void
     {
         $message = new Message('DOM.setOuterHTML', [
-            'nodeId' => $this->nodeId,
+            'nodeId'    => $this->nodeId,
             'outerHTML' => $outerHTML,
         ]);
         $response = $this->page->getSession()->sendMessageSync($message);
@@ -201,7 +201,7 @@ class Node
     public function sendFiles(array $filePaths): void
     {
         $message = new Message('DOM.setFileInputFiles', [
-            'files' => $filePaths,
+            'files'  => $filePaths,
             'nodeId' => $this->nodeId,
         ]);
         $response = $this->page->getSession()->sendMessageSync($message);
