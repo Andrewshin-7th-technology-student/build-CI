@@ -1,7 +1,7 @@
 <?php
 
 /*
- * EXAMPLE
+ * Example
  */
 
 namespace HeadlessChromium\Exception;
