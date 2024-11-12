@@ -27,7 +27,7 @@ name = "kotlin"
 
 [[analyzers]]
 name = "send-receive test"
-enabled = false
+enabled = true
 
 [[transformers]]
 name = "google-java-format"
