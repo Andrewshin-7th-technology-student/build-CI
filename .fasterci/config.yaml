@@ -18,8 +18,6 @@ workflows:
     env:
       USE_BAZEL_VERSION: "5.1.1"
     steps:
-      - name: Checkout code
-        run: git checkout -f ${{ github.ref }}
 
       - name: Set up Bazel workspace
         run: |
