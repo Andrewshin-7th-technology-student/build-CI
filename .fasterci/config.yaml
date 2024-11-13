@@ -1,19 +1,42 @@
-workflows:
-  - name: faster CI
-    image: us.gcr.io/fasterci/bazelbuilder:d278ee1
-    on:
-      push:
-        branches:
-          - "*"
-          - main
-      pull_request:
-        branches:
-          - main
+name: CI Workflow
+
+on:
+  push:
+    branches:
+      - main
+      - 'main'
+      - 'feature/**'
+      - 'release/**'
+      - 'branch-test ci'
+  pull_request:
+    branches:
+      - main
+      - 'main'
+      - 'feature/**'
+      - 'release/**'
+      - 'branch-test ci'
+  push:
+    tags:
+      - 'release/v*'
+
+jobs:
+  bazel_ci:
+    runs-on: ubuntu-latest
+    env:
+      USE_BAZEL_VERSION: "5.1.1"
     steps:
-          
       - name: Checkout code
         uses: actions/checkout@v2
-        run: sudo sysctl -w vm.mmap_rnd_bits=28
 
+      - name: Set up Bazel
+        run: |
+          echo "Setting up Bazel version $USE_BAZEL_VERSION"
+          # You may want to install Bazel if it's not available by default
 
+      - name: Bazel build
+        run: |
+          cd repo-work
 
+      - name: Bazel test
+        run: |
+          cd repo-work
