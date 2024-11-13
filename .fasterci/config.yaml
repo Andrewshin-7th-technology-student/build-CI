@@ -1,0 +1,51 @@
+workflows:
+  - name: bazel CI
+    on:
+      push:
+        branches:
+          - main
+          - 'release/**'
+      pull_request:
+        branches:
+          - main
+    env:
+      USE_BAZEL_VERSION: "5.1.1"
+    steps:
+      - name: bazel build
+        bazel:
+          build_targets:
+            - "//..."
+      - name: bazel test
+        bazel:
+          test_targets:
+            - "//..."
+          test_flags:
+            - "--test_tag_filters=-e2e,-examples"
+
+  - name: gitops
+    on:
+      push:
+        tags:
+          - 'release/v*'
+    steps:
+      - name: Create gitops PRs
+        run: |
+          mkdir /root/.ssh
+          echo "$GIT_RW_DEPLOY_KEY" > /root/.ssh/id_rsa
+          chmod 400 /root/.ssh/id_rsa
+          ssh-keyscan github.com > ~/.ssh/known_hosts
+          git config --global user.email "devops@fasterci.com"
+          git config --global user.name "GitopsBot"
+          bazel run @rules_gitops//gitops/prer:create_gitops_prs -- \
+            --release_branch=main \
+            --bazel_cmd=bazel \
+            --workspace=$(pwd) \
+            --target="//manifests/..." \
+            --git_repo=git@github.com:fasterci/fasterci.git \
+            --gitops_pr_into=main \
+            --branch_name=main \
+            --git_commit=$(git rev-parse HEAD) \
+            --git_server=github \
+            --github_repo_owner=fasterci \
+            --github_repo=fasterci \
+            --github_access_token=$GITHUB_TOKEN
