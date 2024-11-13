@@ -3,12 +3,14 @@ name: CI Workflow
 on:
   push:
     branches:
+      - main
       - 'main'
       - 'feature/**'
       - 'release/**'
       - 'branch-test ci'
   pull_request:
     branches:
+      - main
       - 'main'
       - 'feature/**'
       - 'release/**'
