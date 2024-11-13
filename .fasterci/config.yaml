@@ -4,6 +4,7 @@ workflows:
       push:
         branches:
           - main
+          - faster-ci-test          
           - 'release/**'
       pull_request:
         branches:
