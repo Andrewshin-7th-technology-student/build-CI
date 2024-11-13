@@ -45,14 +45,13 @@ jobs:
   create_pull_request:
     runs-on: ubuntu-latest
     needs: bazel_ci  # This ensures that this job runs after the bazel_ci job
-    if: always()     # This ensures that this job runs regardless of the previous job's outcome
+    if: ${{ always() }}  # This should ensure the job runs regardless of the outcome
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Create pull request
         run: |
-          # Your commands to create a pull request
           mkdir -p /root/.ssh
           echo "$GIT_RW_DEPLOY_KEY" > /root/.ssh/id_rsa
           chmod 400 /root/.ssh/id_rsa
