@@ -1,76 +1,20 @@
-name: CI Workflow
-
-on:
-  push:
-    branches:
-      - main
-      - 'main'
-      - 'feature/**'
-      - 'release/**'
-      - 'branch-test ci'
-  pull_request:
-    branches:
-      - main
-      - 'main'
-      - 'feature/**'
-      - 'release/**'
-      - 'branch-test ci'
-  push:
-    tags:
-      - 'release/v*'
-
-jobs:
-  bazel_ci:
-    runs-on: ubuntu-latest
-    env:
-      USE_BAZEL_VERSION: "5.1.1"
+workflows:
+  - name: faster CI
+    image: us.gcr.io/fasterci/bazelbuilder:d278ee1
+    on:
+      push:
+        branches:
+          - "*"
+          - main
+      pull_request:
+        branches:
+          - main
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Bazel
-        run: |
-          echo "Setting up Bazel version $USE_BAZEL_VERSION"
-          # You may want to install Bazel if it's not available by default
-
-      - name: Bazel build
-        run: |
-          cd repo-work
-          bazel build //...
-
-      - name: Bazel test
-        run: |
-          cd repo-work
-          bazel test //...
-          bazel test --test_tag_filters=-e2e,-examples //...
-
-  create_pull_request:
-    runs-on: ubuntu-latest
-    needs: bazel_ci  # This ensures that this job runs after the bazel_ci job
-    if: ${{ always() }}  # This should ensure the job runs regardless of the outcome
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Create pull request
-        run: |
-          mkdir -p /root/.ssh
-          echo "$GIT_RW_DEPLOY_KEY" > /root/.ssh/id_rsa
-          chmod 400 /root/.ssh/id_rsa
-          ssh-keyscan github.com >> /root/.ssh/known_hosts
-          git config --global user.email "devops@andrewshin-7th-technology-student.com"
-          git config --global user.name "GitopsBot"
-          # Replace this with your actual command to create the PR
-          bazel run @rules_gitops//gitops/prer:create_gitops_prs -- \
-            --release_branch=main \
-            --bazel_cmd=bazel \
-            --workspace=$(pwd) \
-            --target="//manifests/..." \
-            --git_repo=git@github.com:Andrewshin-7th-technology-student/build-CI.git \
-            --gitops_pr_into=main \
-            --branch_name=main \
-            --git_commit=$(git rev-parse HEAD) \
-            --git_server=github \
-            --github_repo_owner=Andrewshin-7th-technology-student \
-            --github_repo=build-CI \
-            --github_access_token=$GITHUB_TOKEN
+      - name: build and test bazel
+        bazel:
+          build_targets:
+            - repo-work
+            - repo-work/WORKFLOW
+          test_targets:
+            - repo-work
+            - repo-work/WORKFLOW
