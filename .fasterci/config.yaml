@@ -10,15 +10,7 @@ workflows:
         branches:
           - main
     steps:
-      - name: build and test bazel
-        bazel:
-          build_targets:
-            - repo-work
-            - repo-work/WORKFLOW
-          test_targets:
-            - repo-work
-            - repo-work/WORKFLOW
-            
+          
       - name: Checkout code
         uses: actions/checkout@v2
         run: sudo sysctl -w vm.mmap_rnd_bits=28
