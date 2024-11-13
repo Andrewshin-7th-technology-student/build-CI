@@ -14,20 +14,30 @@ workflows:
           - 'feature/**'
           - 'release/**'
           - main
-          - branch-test ci
+          - branch-test ci    
     env:
       USE_BAZEL_VERSION: "5.1.1"
     steps:
+      - name: Checkout code
+        run: git checkout -f ${{ github.ref }}
+
+      - name: Set up Bazel workspace
+        run: |
+          if [ ! -f WORKSPACE ]; then
+            echo "Error: WORKSPACE file not found. Ensure you are in the correct directory."
+            exit 8
+          fi
+
       - name: bazel build
-        bazel:
-          build_targets:
-            - "//..."
+        run: |
+          cd repo-work
+          bazel build //...
+
       - name: bazel test
-        bazel:
-          test_targets:
-            - "//..."
-          test_flags:
-            - "--test_tag_filters=-e2e,-examples"
+        run: |
+          cd repo-work
+          bazel test //...
+          bazel test --test_tag_filters=-e2e,-examples //...
 
   - name: gitops
     on:
