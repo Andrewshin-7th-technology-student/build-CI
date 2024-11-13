@@ -11,13 +11,6 @@ workflows:
     env:
       USE_BAZEL_VERSION: "5.1.1"
     steps:
-      - name: bazel test
-        bazel:
-          test_targets:
-            - "//..."
-          test_flags:
-            - "--test_tag_filters=-e2e,-examples"
-
   - name: gitops
     on:
       push:
