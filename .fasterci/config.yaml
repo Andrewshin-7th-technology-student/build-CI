@@ -11,10 +11,6 @@ workflows:
     env:
       USE_BAZEL_VERSION: "5.1.1"
     steps:
-      - name: bazel build
-        bazel:
-          build_targets:
-            - "//..."
       - name: bazel test
         bazel:
           test_targets:
