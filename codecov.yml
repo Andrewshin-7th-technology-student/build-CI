@@ -1,19 +1,8 @@
-# Global YAML [lower on hierarchy]
+codecov:
+  token: 4064e915-0934-4671-86b0-4648b95be4e5
 coverage:
-  round: down
   precision: 5
-
-# Repository YAML [higher on hierarchy]
-coverage:
+  range:
+  - 0.0
+  - 10.0
   round: up
-  range: 0..10
-
-# Used in Codecov after updating
-coverage:
-  round: up
-  range: 0..10
-  precision: 5
-
-# Codecov token auth
-codecov: 
- token: 4064e915-0934-4671-86b0-4648b95be4e5
