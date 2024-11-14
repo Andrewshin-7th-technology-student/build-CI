@@ -1,30 +1,34 @@
 codecov:
   token: 4064e915-0934-4671-86b0-4648b95be4e5
+  notify:
+    require_ci_to_pass: false
+comment:
+  behavior: default
+  layout: header, diff
+  require_changes: true
+ignore:
+  - "SwiftyAttributesTests"
 coverage:
-  precision: 5
-  range:
-  - 0.0
-  - 10.0
-  round: up
-coverage:
+  precision: 2
+  range: "70...99"
+  round: down
   status:
+    changes: true
+    patch:
+      default:
+        target: 20
     project:
-      default:   # default is the status check's name, not default settings
-        target: auto 
-        threshold: 5
-        base: auto 
-        flags: 
-          - unit
-          - main
-        paths: 
-          - "src"
-       # advanced settings
-        branches: 
-          - main
-          - master
-        if_ci_failed: success #success, failure, error, ignore
-        informational: true
-        only_pulls: false
+      default:
+        target: 90
+parsers:
+  gcov:
+    branch_detection:
+      conditional: true
+      loop: true
+      macro: false
+      method: false
+  javascript:
+    enable_partials: false
 component_management:
   individual_components:
     - component_id: "calculator"
