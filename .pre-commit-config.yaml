@@ -24,3 +24,14 @@ repos:
 exclude: ^.*\.(csv|svg|wsdl(\.[^.]*)?)|weblate/trans/tests/data/memory-broken\.json|weblate/templates/browserconfig\.xml|weblate/templates/configuration/custom\.css|weblate/trans/tests/data/cs-CZ\.rc|weblate/static/vendor/.*|weblate/static/js/vendor/.*|docs/make\.bat|weblate/templates/addons/js/weblate\.js$
 ci:
   autoupdate_schedule: quarterly
+=======
+      - id: check-yaml
+      - id: check-json
+
+  - repo: https://github.com/psf/black
+    rev: 21.9b0
+    hooks:
+      - id: black
+        language_version: python3
+# Launguage [YML] may not be supported within my commands. Please visit the dashboard to configure CI.
+
