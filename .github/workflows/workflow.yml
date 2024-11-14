@@ -20,13 +20,8 @@ jobs:
         pip install -r requirements.txt
         pip install coverage  # Ensure coverage.py is installed
 
-    - name: Run tests with coverage
-      run: |
-        coverage run -m unittest discover  # Adjust as needed for your test framework
-        coverage text  # Generate XML report for Codecov
-
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v5
       with:
-        file: coverage.text.xml  # Specify the path to your coverage report
+        file: coverage.xml  # Specify the path to your coverage report
         token: 4064e915-0934-4671-86b0-4648b95be4e5
