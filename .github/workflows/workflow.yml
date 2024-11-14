@@ -23,5 +23,5 @@ jobs:
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v5
       with:
-        file: coverage.xml  # Specify the path to your coverage report
+        file: pytest-coverage.xml  # Specify the path to your coverage report
         token: 4064e915-0934-4671-86b0-4648b95be4e5
