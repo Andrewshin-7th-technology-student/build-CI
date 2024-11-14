@@ -14,6 +14,6 @@ coverage:
   range: 0..10
   precision: 5
 
-# COdecov token auth
+# Codecov token auth
 codecov: 
  token: 4064e915-0934-4671-86b0-4648b95be4e5
