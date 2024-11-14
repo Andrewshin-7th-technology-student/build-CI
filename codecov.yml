@@ -34,9 +34,6 @@ component_management:
     - component_id: "github"
       paths:
         - ".github/"
-    - component_id: "calculator"
-      paths:
-        - "calculator/"
     - component_id: "smiles"
       paths:
         - "smiles/"
