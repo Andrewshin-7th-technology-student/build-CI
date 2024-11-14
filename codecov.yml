@@ -11,15 +11,15 @@ ignore:
 coverage:
   precision: 2
   range: "70...99"
-  round: down
+  round: up
   status:
     changes: true
     patch:
       default:
-        target: 20
+        target: 99
     project:
       default:
-        target: 90
+        target: 99
 parsers:
   gcov:
     branch_detection:
@@ -31,12 +31,33 @@ parsers:
     enable_partials: false
 component_management:
   individual_components:
+    - component_id: "github"
+      paths:
+        - ".github/"
     - component_id: "calculator"
       paths:
         - "calculator/"
     - component_id: "smiles"
       paths:
         - "smiles/"
-
+    - component_id: "images"
+      paths:
+        - "images"
+        - "img"
+    - component_id: "repository"
+      paths:
+        - "pages"
+        - "repo-work"
+        - "static"
+        - "scripts"
+        - "root"
+        - "sarif"
+        - "logs"
+        - "provenance"
+        - ".adaconfig"
+        - ".botconfig"
+        - ".changeset"
+        - ".main files"
+    
 comment:
   layout: "header, diff, flags, components"  # show component info in the PR comment
