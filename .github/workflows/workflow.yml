@@ -23,7 +23,7 @@ jobs:
     - name: Run tests with coverage
       run: |
         coverage run -m unittest discover  # Adjust as needed for your test framework
-        coverage xml  # Generate XML report for Codecov
+        coverage text  # Generate XML report for Codecov
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v5
