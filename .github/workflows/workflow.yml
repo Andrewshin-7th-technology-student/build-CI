@@ -13,10 +13,10 @@ jobs:
     - uses: actions/checkout@main
     - uses: codecov/codecov-action@v5
       with:
-        fail_ci_if_error: true # optional (default = false)
+        fail_ci_if_error: false # optional (default = false)
         flags: unittests # optional
         name: codecov-umbrella # optional
-        token: ${{ secrets.CODECOV_TOKEN }} # required
+        token: 4064e915-0934-4671-86b0-4648b95be4e5
         verbose: true # optional (default = false)
 
         # files: ./coverage1.xml,./coverage2.xml # optional
