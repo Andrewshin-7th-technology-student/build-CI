@@ -1,4 +1,4 @@
-name: CI
+name: Codecov 2 [IMMEDIATE UPLOAD]
 
 on: [push, pull_request]
 
@@ -7,26 +7,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.8'
-
-    - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
-        pip install coverage  # Ensure coverage.py is installed
-
-    - name: Run tests with coverage
-      run: |
-        coverage run -m unittest discover  # Adjust as needed for your test framework
-        coverage xml  # Generate XML report for Codecov
-
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v5
       with:
-        file: coverage.xml  # Specify the path to your coverage report
-        token: ${{ secrets.CODECOV_TOKEN }}  # Ensure the token is set in your secrets
+        file: pytest-coverage2.xml  # Specify the path to your coverage report
+        token: 4064e915-0934-4671-86b0-4648b95be4e5
