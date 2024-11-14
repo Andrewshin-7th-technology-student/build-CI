@@ -15,11 +15,24 @@ coverage:
         base: auto 
         flags: 
           - unit
+          - main
         paths: 
           - "src"
        # advanced settings
         branches: 
+          - main
           - master
-        if_ci_failed: error #success, failure, error, ignore
-        informational: false
+        if_ci_failed: success #success, failure, error, ignore
+        informational: true
         only_pulls: false
+component_management:
+  individual_components:
+    - component_id: "calculator"
+      paths:
+        - "calculator/"
+    - component_id: "smiles"
+      paths:
+        - "smiles/"
+
+comment:
+  layout: "header, diff, flags, components"  # show component info in the PR comment
