@@ -3,7 +3,7 @@ import Button from '../components/Button'
 import Pages from '../index.html'
 import styles from '../styles.css'
 
-function throwError() {
+function throwError () {
   console.log(
     // The function body() is not defined
     document.body()

@@ -28,6 +28,6 @@ to the following restrictions:
 	altered from any source distribution.
 ```
 
-______________________________________________________________________
+---
 
 END OF COPYRIGHT
