@@ -1,0 +1,14 @@
+name: Codecov 2 [IMMEDIATE UPLOAD]
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v5
+      with:
+        file: pytest-coverage2.xml  # Specify the path to your coverage report
+        token: 4064e915-0934-4671-86b0-4648b95be4e5

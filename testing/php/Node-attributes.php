@@ -10,8 +10,6 @@ namespace HeadlessChromium\Dom;
 
 class NodeAttributes
 {
-    /**
-     * @var array - algain
      */
     private $attributes = [];
 

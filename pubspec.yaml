@@ -1,0 +1,31 @@
+name: your_project_name
+description: A new Flutter project.
+
+# The following line is the version of the app.
+# You can change it according to your versioning scheme.
+version: 1.0.0+1
+
+# The environment specifies the Flutter SDK version.
+environment:
+  sdk: ">=2.12.0 <3.0.0"  # Adjust according to your Dart SDK version
+
+# Dependencies are the packages your app needs to function.
+dependencies:
+  flutter:
+    sdk: flutter
+  # Add any other dependencies your project requires below
+  cupertino_icons: ^1.0.2  # Example dependency
+
+# Development dependencies are packages needed for development.
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+# This section is for Flutter-specific settings.
+flutter:
+  uses-material-design: true
+
+  # Add assets to your application.
+  assets:
+    - ./Images/  # Ensure this directory exists and contains your images
+    - ./img/

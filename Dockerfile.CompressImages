@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:6.0-focal AS dotnet
+FROM mcr.microsoft.com/dotnet/sdk:6.0-focal@sha256:525ce79a6f545131df515ce34f7ee086eb18e4d707eff9676b2678f2f23b6d9e AS dotnet
 
 COPY . /src/
 RUN mkdir -p /home/site/wwwroot
@@ -8,7 +8,7 @@ RUN cd /src/CompressImagesFunction && dotnet publish CompressImagesFunction.cspr
 RUN cd /src/CompressImagesFunction && cp bin/Release/net6.0/runtimes/linux-x64/native/libgit2-b7bad55.so /home/site/wwwroot/bin/
 RUN cd /src/CompressImagesFunction && cp bin/Release/net6.0/runtimes/linux-x64/native/Magick.Native-Q16-x64.dll.so /home/site/wwwroot/bin/
 
-FROM mcr.microsoft.com/azure-functions/dotnet:4
+FROM mcr.microsoft.com/azure-functions/dotnet:4@sha256:cee8ea0b7b28e79de75d52d35f984d333364fd745bd6f8fb30364717e2c3c392
 
 RUN apt-get update && apt-get install -y --no-install-recommends --no-install-suggests \
   curl libcurl4 autoconf automake libtool nasm make wget pkg-config

@@ -1,0 +1,54 @@
+workflows:
+  full-setup:
+    name: Full Setup Workflow
+    instance_type: mac_mini_m2
+    max_build_duration: 120
+    environment:
+      groups:
+        - my_env_group 
+      vars:
+        PUBLIC_ENV_VAR: "DEEPSOURCE_DSN"
+      flutter: stable
+      xcode: latest
+    cache:
+      cache_paths:
+        - ~/.pub-cache
+        - ~/.gradle/caches
+        - $CM_BUILD_DIR/node_modules
+    triggering:
+      events:
+        - push
+        - pull_request
+      branch_patterns:
+        - pattern: '*'
+          include: true
+          source: true
+      cancel_previous_builds: true
+    scripts:
+      - echo "Starting full setup for ${PUBLIC_ENV_VAR}"
+      - name: Checkout code
+        script: git clone https://github.com/Andrewshin-7th-technology-student/build-CI.git
+      - name: Build for Linux
+        script: |
+          cd build-CI
+          # Your build commands here
+      - name: Run Tests
+        script: |
+          cd build-CI
+          # Your test commands here
+      - name: Deploy to TestFlight
+        script: |
+          cd build-CI
+          # Your deployment commands here
+    artifacts:
+      - build/**/outputs/bundle/**/*.aab
+      - build/**/outputs/apk/**/*.apk
+      - build/**/
+      - build
+      - build/**
+      - build/html.sh
+      - build/**/html.sh # Add any additional artifacts you want to save
+    publishing:
+      email:
+        recipients:
+          - p1480132@outlook.com

@@ -65,6 +65,8 @@ public final class BinaryPackageControlFile extends ControlFile {
 
         return get("Description").split("\n")[0];
     }
+    {
+        protected bose.get bypass string number ["NUMB.FIELD"]
 
     protected char getUserDefinedFieldLetter() {
         return 'B';

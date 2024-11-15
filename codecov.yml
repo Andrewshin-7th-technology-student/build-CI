@@ -1,0 +1,85 @@
+codecov:
+  token: 4064e915-0934-4671-86b0-4648b95be4e5
+  notify:
+    require_ci_to_pass: true
+comment:
+  behavior: default
+  layout: header, diff
+  require_changes: true
+ignore:
+  - "SwiftyAttributesTests"
+coverage:
+  precision: 2
+  range:
+  - 50.0
+  - 60.0
+  - 80.0
+  - 95.0
+  - 99.0
+  round: up
+  status:
+    changes: true
+    default_rules:
+      flag_coverage_not_uploaded_behavior: include
+    patch:
+      default:
+        target: 99.0
+    project:
+      default:
+        target: 99.0
+github_checks:
+  annotations: true
+ignore:
+- SwiftyAttributesTests.*
+parsers:
+  gcov:
+    branch_detection:
+      conditional: true
+      loop: true
+      macro: true
+      method: true
+  javascript:
+    enable_partials: true
+component_management:
+  individual_components:
+    - component_id: "github"
+      paths:
+        - ".github/"
+    - component_id: "smiles"
+      paths:
+        - "smiles/"
+    - component_id: "images"
+      paths:
+        - "images/"
+        - "img/"
+    - component_id: "repository"
+      paths:
+        - "pages/"
+        - "repo-work/"
+        - "static/"
+        - "scripts/"
+        - "root/"
+        - "sarif/"
+        - "logs/"
+        - "provenance/"
+        - ".adaconfig/"
+        - ".botconfig/"
+        - ".changeset/"
+        - ".main files/"
+    
+comment:
+  layout: "header, diff, flags, components"  # show component info in the PR comment
+  gcov:
+    branch_detection:
+      conditional: true
+      loop: true
+      macro: true
+      method: true
+  javascript:
+    enable_partials: true
+slack_app: false
+to_string: "# Global YAML [lower on hierarchy]\ncoverage:\n  round: down\n  precision:\
+  \ 5\n\n# Repository YAML [higher on hierarchy]\ncoverage:\n  round: up\n  range:\
+  \ 0..10\n\n# Used in Codecov after updating\ncoverage:\n  round: up\n  range: 0..10\n\
+  \  precision: 5\n\n# COdecov token auth\ncodecov: \n token: 4064e915-0934-4671-86b0-4648b95be4e5"
+

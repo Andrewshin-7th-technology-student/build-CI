@@ -1,7 +1,12 @@
 version: 2.1
 
 orbs:
-  node: circleci/node@6.3.0  
+  codecov: codecov/codecov@4.0.1
+workflows:
+  upload-to-codecov:
+    jobs:
+      - checkout 
+      - codecov/upload
 
 jobs:
   runner-test:

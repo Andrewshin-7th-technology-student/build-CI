@@ -1,0 +1,13 @@
+# WORKSPACE file for a Bazel project
+
+# Load external dependencies
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+# Example: Adding an external dependency (e.g., a library)
+http_archive(
+    name = "example_lib",
+    urls = ["https://github.com/example/example_lib/archive/v1.0.0.zip"],
+    strip_prefix = "example_lib-1.0.0",
+)
+
+# Optionally, you can define other repository rules or load additional dependencies here.
