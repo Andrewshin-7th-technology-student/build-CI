@@ -1,0 +1,96 @@
+name: Formal Verification Tests
+
+on:
+  workflow_call:
+
+env:
+  GHA_CUSTOM_LINE_PREFIX: "▌"
+
+jobs:
+  tests-formal-verification:
+    runs-on: [self-hosted, Linux, X64, gcp-custom-runners]
+    container: ubuntu:jammy
+    strategy:
+      matrix:
+        include:
+          - name: simple
+          - name: sv2v
+          - name: yosys
+      fail-fast: false
+    name: ${{ matrix.name }}
+    env:
+      GIT_HTTP_LOW_SPEED_LIMIT: 1
+      GIT_HTTP_LOW_SPEED_TIME: 600
+      DEBIAN_FRONTEND: noninteractive
+      GHA_MACHINE_TYPE: "n2-highmem-8"
+      TEST_SUITE_NAME: ${{ matrix.name }}
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Set up common Ubuntu configuration
+        run: |
+          ./.github/scripts/set-up-common-ubuntu-configuration.sh
+          ./.github/scripts/set-up-common-git-configuration.sh
+
+      - name: Install dependencies
+        run: |
+          ./tests/scripts/run_formal.sh --name $TEST_SUITE_NAME install_dependencies
+
+
+      - name: Checkout submodules
+        run: |
+          ./tests/scripts/run_formal.sh --name $TEST_SUITE_NAME load_submodules
+
+      - name: Download binaries
+        uses: actions/download-artifact@v4
+        with:
+          name: binaries-release
+
+      # See https://github.com/actions/upload-artifact/issues/38
+      - name: Extract binaries
+        run: tar -xf binaries-release.tar
+
+      - name: Download tools
+        uses: actions/download-artifact@v4
+        with:
+          name: tools
+
+      - name: Extract tools
+        run: tar -xf tools.tar
+
+      - name: Build eqy and sby
+        run: |
+          ./tests/scripts/run_formal.sh --name $TEST_SUITE_NAME build_dependencies
+
+      - name: Test
+        run: |
+          source .github/scripts/common.sh
+          ./tests/scripts/run_formal.sh  --name $TEST_SUITE_NAME run
+
+
+      - name: Pack formal verification logs
+        run: |
+          ./tests/scripts/run_formal.sh --name $TEST_SUITE_NAME pack_logs
+
+      - name: Upload formal verification logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: formal-verification-logs-${{ matrix.name }}
+          path: |
+            ${{ matrix.name }}_formal_verification_logs.tar.gz
+
+      - name: Upload load graphs
+        uses: actions/upload-artifact@v4
+        with:
+          name: plots_formal_verification_${{ matrix.name }}
+          path: |
+            **/plot_*.svg
+
+      # Do this at the end as this can actually fail
+      - name: Check results and print a summary
+        run: |
+          set -o pipefail
+          ./tests/scripts/run_formal.sh --name $TEST_SUITE_NAME gather_results | tee $GITHUB_STEP_SUMMARY
