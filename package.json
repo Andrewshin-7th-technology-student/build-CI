@@ -1,1 +1,43 @@
-{"name":"build-CI","version":"5.189.0","type":"module","engines":{"npm":">=7.0.0","node":">=16.0.0"},"scripts":{"start":"node index.js","format":"biome format --write .","precommit":"pnpm run format && biome check --write .","lint":"biome lint --write ."},"author":"dependabot[bot]","license":"GPL-3.0-or-later","dependencies":{"chalk":"^5.3.0","cookie-parser":"^1.4.7","cors":"^2.8.5","dotenv":"^16.4.5","express":"^4.21.1","express-basic-auth":"^1.2.1","mime":"^4.0.4","node-fetch":"^3.3.2"},"devDependencies":{"@biomejs/biome":"1.9.3"},"packageManager":"pnpm@9.10.0"}
+{
+  "name": "build-ci",
+  "description": "Deprecate all the things",
+  "version": "2.0.0",
+  "author": "Andrew Shin <p1480132@outlook.com>",
+  "license": "MIT",
+  "keywords": [
+    "deprecate",
+    "deprecated"
+  ],
+  "repository": "Andrewshin-7th-technology-student/build-CI",
+  "devDependencies": {
+    "benchmark": "2.1.4",
+    "beautify-benchmark": "0.2.4",
+    "eslint": "7.21.0",
+    "eslint-config-standard": "14.1.1",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-markdown": "1.0.2",
+    "eslint-plugin-node": "9.2.0",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-standard": "4.1.0",
+    "nyc": "15.1.0",
+    "mocha": "8.2.1",
+    "safe-buffer": "5.1.2"
+  },
+  "files": [
+    "lib/",
+    "History.md",
+    "LICENSE",
+    "index.js",
+    "Readme.md"
+  ],
+  "engines": {
+    "node": ">= 0.8"
+  },
+  "scripts": {
+    "bench": "node benchmark/index.js",
+    "lint": "eslint --plugin markdown --ext js,md .",
+    "test": "mocha --reporter spec --bail test/",
+    "test-ci": "nyc --reporter=lcovonly --reporter=text npm test",
+    "test-cov": "nyc --reporter=html --reporter=text npm test"
+  }
+}
