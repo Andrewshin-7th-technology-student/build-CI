@@ -146,25 +146,25 @@ jobs:
         with:
           submodules: true
           
-  npm-install:
-    name: Install npm and Node.js
+  nvminstall:
+    name: Nvm install / verify
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-        with:
-          submodules: true
-      - uses: actions/checkout@v4
-      - name: Install Nvm
-        run: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      - name: download and install Node.js (you may need to restart the terminal)
-        run: nvm install 22
+      - name: Install NVM
+        run: |
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          nvm install 22
 
-      - name: verifies the right Node.js version is in the environment
-        run: node -v # should print `v22.11.0`
-
-      - name: verifies the right npm version is in the environment
-        run: npm -v # should print `10.9.0`
+      - name: Verify Node.js version
+        run: |
+          node -v
+          npm -v
 
   sanitize:
     name: Sanitize 1
