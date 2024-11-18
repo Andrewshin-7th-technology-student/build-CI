@@ -1,0 +1,537 @@
+name: Large Designs Tests
+
+on:
+  workflow_call:
+
+env:
+  GHA_CUSTOM_LINE_PREFIX: "▌"
+
+jobs:
+  ibex_synth:
+    name: Ibex (Vivado synthesis)
+    runs-on: [self-hosted, Linux, X64, gcp-custom-runners]
+    container: ubuntu:jammy
+    env:
+      DEBIAN_FRONTEND: noninteractive
+      GHA_EXTERNAL_DISK: "tools"
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Set up common Ubuntu configuration
+        run: |
+          ./.github/scripts/set-up-common-ubuntu-configuration.sh
+          ./.github/scripts/set-up-common-git-configuration.sh
+
+      - name: Install dependencies
+        run: |
+          ./tests/scripts/run_large_designs.sh --name ibex install_dependencies
+
+      - name: Checkout submodules
+        run: |
+          ./tests/scripts/run_large_designs.sh --name ibex load_submodules
+
+      - name: Download binaries
+        uses: actions/download-artifact@v4
+        with:
+          name: binaries-release
+
+      # See https://github.com/actions/upload-artifact/issues/38
+      - name: Extract
+        run: tar -xf binaries-release.tar
+
+      - name: Build & Test
+        run: |
+          source .github/scripts/common.sh
+          enable_vivado 2017.2
+          ./tests/scripts/run_large_designs.sh --name ibex run
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lowrisc_ibex_top_artya7_surelog_0.1.bit
+          path: tests/build/lowrisc_ibex_top_artya7_surelog_0.1/synth-vivado/lowrisc_ibex_top_artya7_surelog_0.1.bit
+
+      - name: Upload load graphs
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: plots_ibex_synth
+          path: |
+            **/plot_*.svg
+
+  ibex_synth_f4pga:
+    name: Ibex (F4PGA synthesis)
+    runs-on: [self-hosted, Linux, X64, gcp-custom-runners]
+    container: ubuntu:jammy
+    env:
+      DEBIAN_FRONTEND: noninteractive
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Set up common Ubuntu configuration
+        run: |
+          ./.github/scripts/set-up-common-ubuntu-configuration.sh
+          ./.github/scripts/set-up-common-git-configuration.sh
+
+      - name: Install dependencies
+        run: |
+          ./tests/scripts/run_large_designs.sh --name ibex_f4pga install_dependencies
+
+      - name: Checkout submodules
+        run: |
+          ./tests/scripts/run_large_designs.sh --name ibex_f4pga load_submodules
+
+      - name: Download binaries
+        uses: actions/download-artifact@v4
+        with:
+          name: binaries-plugin
+
+      # See https://github.com/actions/upload-artifact/issues/38
+      - name: Extract
+        run: tar -xf binaries-plugin.tar
+
+      - name: Setup build environment & Build & Test
+        run: |
+          ./tests/scripts/run_large_designs.sh --name ibex_f4pga run
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: top_artya7.bit
+          path: ./tests/build/lowrisc_ibex_top_artya7_surelog_0.1/synth-symbiflow/top_artya7.bit
+
+      - name: Upload load graphs
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: plots_ibex_synth_f4pga
+          path: |
+            **/plot_*.svg
+
+  opentitan_9d82960888_synth:
+    name: Opentitan 9d82960888 (synthesis)
+    runs-on: [self-hosted, Linux, X64, gcp-custom-runners]
+    # vivado is linked with libraries used in this version of ubuntu
+    container: ubuntu:jammy
+    env:
+      DEBIAN_FRONTEND: noninteractive
+      GHA_EXTERNAL_DISK: "tools"
+      GHA_MACHINE_TYPE: "n2-highmem-8"
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Set up common Ubuntu configuration
+        run: |
+          ./.github/scripts/set-up-common-ubuntu-configuration.sh
+          ./.github/scripts/set-up-common-git-configuration.sh
+
+      - name: Install dependencies
+        run: |
+          ./tests/scripts/run_large_designs.sh --name opentitan_9d82960888 install_dependencies
+
+      - name: Checkout submodules
+        run: |
+          ./tests/scripts/run_large_designs.sh --name opentitan_9d82960888 load_submodules
+
+      - name: Download binaries
+        uses: actions/download-artifact@v4
+        with:
+          name: binaries-release
+
+      # See https://github.com/actions/upload-artifact/issues/38
+      - name: Extract
+        run: tar -xf binaries-release.tar
+
+      - name: Build & Test
+        run: |
+          source .github/scripts/common.sh
+          enable_vivado 2017.2
+          ./tests/scripts/run_large_designs.sh --name opentitan_9d82960888 run
+
+      - name: Generate AST
+        run: |
+          FILE_NAME=tests/build/lowrisc_systems_top_earlgrey_nexysvideo_0.1/synth-vivado/synlig.log
+          start=$(grep -n "AST_MODULE" $FILE_NAME |cut -f1 -d:|head -n 1)
+          end=$(grep -n "AST_" $FILE_NAME |cut -f1 -d:|tail -n 1)
+
+          sed -n $start,"$end"p $FILE_NAME > synlig.ast
+
+      - name: Upload AST
+        uses: actions/upload-artifact@v4
+        if: ${{github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')}}
+        with:
+          name: opentitan-synlig.ast
+          path: synlig.ast
+
+      # # Uncomment when first job on master will pass
+      # - name: Download binaries
+      #   if: ${{ github.event_name == 'pull_request' }}
+      #   uses: actions/download-artifact@v2
+      #   with:
+      #     name: opentitan-yosys.ast
+
+      # - name: Compare AST
+      #   if: ${{ github.event_name == 'pull_request' }}
+      #   run: |
+      #     mkdir compare
+      #     ./github/scripts/compare_ast.py opentitan-yosys.ast yosys.ast
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lowrisc_systems_top_earlgrey_nexysvideo_0.1.bit
+          path: tests/build/lowrisc_systems_top_earlgrey_nexysvideo_0.1/synth-vivado/lowrisc_systems_top_earlgrey_nexysvideo_0.1.bit
+
+      - name: Upload load graphs
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: plots_opentitan_9d82960888_synth
+          path: |
+            **/plot_*.svg
+
+  opentitan_synth:
+    name: Opentitan (synthesis)
+    runs-on: [self-hosted, Linux, X64, gcp-custom-runners]
+    # vivado is linked with libraries used in this version of ubuntu
+    container: ubuntu:jammy
+    env:
+      DEBIAN_FRONTEND: noninteractive
+      GHA_EXTERNAL_DISK: "tools"
+      GHA_MACHINE_TYPE: "n2-highmem-32"
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Set up common Ubuntu configuration
+        run: |
+          ./.github/scripts/set-up-common-ubuntu-configuration.sh
+          ./.github/scripts/set-up-common-git-configuration.sh
+
+      - name: Install dependencies
+        run: |
+          ./tests/scripts/run_large_designs.sh --name opentitan install_dependencies
+
+      - name: Checkout submodules
+        run: |
+          ./tests/scripts/run_large_designs.sh --name opentitan load_submodules
+
+      - name: Download binaries
+        uses: actions/download-artifact@v4
+        with:
+          name: binaries-release
+
+      # See https://github.com/actions/upload-artifact/issues/38
+      - name: Extract
+        run: tar -xf binaries-release.tar
+
+      - name: Build & Test
+        run: |
+          source .github/scripts/common.sh
+          enable_vivado 2017.2
+          pip install virtualenv
+          ./tests/scripts/run_large_designs.sh --name opentitan run
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lowrisc_systems_custom_tiny_chip_custom_tiny_nexysvideo_0.1.edif
+          path: tests/build/lowrisc_systems_custom_tiny_chip_custom_tiny_nexysvideo_0.1/synth-yosys/lowrisc_systems_custom_tiny_chip_custom_tiny_nexysvideo_0.1.edif
+
+      - name: Upload load graphs
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: plots_opentitan_synth
+          path: |
+            **/plot_*.svg
+
+  opentitan_parse_report:
+    runs-on: [self-hosted, Linux, X64, gcp-custom-runners]
+    # vivado is linked with libraries used in this version of ubuntu
+    container: ubuntu:jammy
+    strategy:
+      matrix:
+        include:
+          - name: full/top-down
+            file-name: full
+          - name: quick
+            file-name: quick
+      fail-fast: false
+    name: Opentitan parsing (${{ matrix.name }})
+    env:
+      DEBIAN_FRONTEND: noninteractive
+      GHA_EXTERNAL_DISK: "tools"
+      GHA_MACHINE_TYPE: "n2-highmem-32"
+      PARALLEL_JOBS: 32
+      # Minimum free RAM (in percents) required to start a test
+      MIN_FREE_MEM_TO_START_TEST: 20
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Set up common Ubuntu configuration
+        run: |
+          ./.github/scripts/set-up-common-ubuntu-configuration.sh
+          ./.github/scripts/set-up-common-git-configuration.sh
+
+      - name: Install dependencies
+        run: |
+          ./tests/scripts/run_large_designs.sh --name opentitan_parse_${{ matrix.file-name }} install_dependencies
+
+      - name: Checkout submodules
+        run: |
+          ./tests/scripts/run_large_designs.sh --name opentitan_parse_${{ matrix.file-name }} load_submodules
+
+      - name: Download binaries
+        uses: actions/download-artifact@v4
+        with:
+          name: binaries-release
+
+      # See https://github.com/actions/upload-artifact/issues/38
+      - name: Extract
+        run: tar -xf binaries-release.tar
+
+      - name: Create venv & Parse OpenTitan components & Make summary
+        run: |
+          source .github/scripts/common.sh
+          enable_vivado 2017.2
+          ./tests/scripts/run_large_designs.sh --name opentitan_parse_${{ matrix.file-name }} run
+
+      - name: Upload logs
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: opentitan-logs-${{ matrix.file-name }}
+          path: |
+            ./tests/opentitan/opentitan_parsing_test/build/results
+            ./tests/opentitan/opentitan_parsing_test/build/*.log
+            ./tests/opentitan/opentitan_parsing_test/build/*.dot
+            ./tests/opentitan/opentitan_parsing_test/build/opentitan_deps.mk
+
+      - name: Upload load graphs
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: plots_opentitan_parse_report_${{ matrix.file-name }}
+          path: |
+            **/plot_*.svg
+
+  veer_synth:
+    name: VeeR-EH1 (synthesis)
+    runs-on: [self-hosted, Linux, X64, gcp-custom-runners]
+    container: ubuntu:jammy
+    env:
+      DEBIAN_FRONTEND: noninteractive
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Set up common Ubuntu configuration
+        run: |
+          ./.github/scripts/set-up-common-ubuntu-configuration.sh
+          ./.github/scripts/set-up-common-git-configuration.sh
+
+      - name: Install dependencies
+        run: |
+          ./tests/scripts/run_large_designs.sh --name veer install_dependencies
+
+      - name: Checkout submodules
+        run: |
+          ./tests/scripts/run_large_designs.sh --name veer load_submodules
+
+      - name: Download binaries
+        uses: actions/download-artifact@v4
+        with:
+          name: binaries-release
+
+      # See https://github.com/actions/upload-artifact/issues/38
+      - name: Extract
+        run: tar -xf binaries-release.tar
+
+      - name: Build & Test
+        run: |
+          ./tests/scripts/run_large_designs.sh --name veer run
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: chipsalliance.org_cores_VeeR_EH1_1.9.edif
+          path: tests/build/chipsalliance.org_cores_VeeR_EH1_1.9/synth-vivado/chipsalliance.org_cores_VeeR_EH1_1.9.edif
+
+      - name: Upload load graphs
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: plots_veer_synth
+          path: |
+            **/plot_*.svg
+
+  blackparrot_synth_xilinx:
+    name: Black Parrot (AMD (Xilinx) FPGA synthesis)
+    runs-on: [self-hosted, Linux, X64, gcp-custom-runners]
+    container: ubuntu:jammy
+    env:
+      DEBIAN_FRONTEND: noninteractive
+      GHA_MACHINE_TYPE: "n2-highmem-8"
+      # Minimum free RAM (in percents) required to start a test
+      MIN_FREE_MEM_TO_START_TEST: 20
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Set up common Ubuntu configuration
+        run: |
+          ./.github/scripts/set-up-common-ubuntu-configuration.sh
+          ./.github/scripts/set-up-common-git-configuration.sh
+
+      - name: Install dependencies
+        run: |
+          ./tests/scripts/run_large_designs.sh --name blackparrot_AMD install_dependencies
+
+      - name: Checkout submodules
+        run: |
+          ./tests/scripts/run_large_designs.sh --name blackparrot_AMD load_submodules
+
+      - name: Download binaries
+        uses: actions/download-artifact@v4
+        with:
+          name: binaries-release
+
+      # See https://github.com/actions/upload-artifact/issues/38
+      - name: Extract
+        run: tar -xf binaries-release.tar
+
+      - name: Build & Test
+        run: |
+          ./tests/scripts/run_large_designs.sh --name blackparrot_AMD run
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bp_e_bp_unicore_cfg.edif
+          path: tests/build/bp_e_bp_unicore_cfg.edif
+
+      - name: Upload load graphs
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: plots_blackparrot_synth_xilinx
+          path: |
+            **/plot_*.svg
+
+  blackparrot_synth_asic:
+    name: Black Parrot (ASIC synthesis)
+    runs-on: [self-hosted, Linux, X64, gcp-custom-runners]
+    container: ubuntu:jammy
+    env:
+      DEBIAN_FRONTEND: noninteractive
+      GHA_MACHINE_TYPE: "n2-highmem-8"
+      # Minimum free RAM (in percents) required to start a test
+      MIN_FREE_MEM_TO_START_TEST: 20
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Set up common Ubuntu configuration
+        run: |
+          ./.github/scripts/set-up-common-ubuntu-configuration.sh
+          ./.github/scripts/set-up-common-git-configuration.sh
+
+      - name: Install dependencies
+        run: |
+          ./tests/scripts/run_large_designs.sh --name blackparrot_ASIC install_dependencies
+
+      - name: Checkout submodules
+        run: |
+          ./tests/scripts/run_large_designs.sh --name blackparrot_ASIC load_submodules
+
+      - name: Download binaries
+        uses: actions/download-artifact@v4
+        with:
+          name: binaries-release
+
+      # See https://github.com/actions/upload-artifact/issues/38
+      - name: Extract
+        run: tar -xf binaries-release.tar
+
+      - name: Build & Test
+        run: |
+          ./tests/scripts/run_large_designs.sh --name blackparrot_ASIC run
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: asic-flow-logs
+          path: |
+            build
+            third_party/OpenROAD-flow-scripts/logs
+            third_party/OpenROAD-flow-scripts/reports
+            third_party/OpenROAD-flow-scripts/results
+
+      - name: Upload load graphs
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: plots_blackparrot_synth_asic
+          path: |
+            **/plot_*.svg
+
+  blackparrot_synth_xilinx_python:
+    name: Black Parrot (AMD (Xilinx) with PySynlig)
+    runs-on: [self-hosted, Linux, X64, gcp-custom-runners]
+    container: debian:bookworm
+    env:
+      DEBIAN_FRONTEND: noninteractive
+      GHA_MACHINE_TYPE: "n2-highmem-8"
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Install dependencies
+        run: |
+          ./tests/scripts/run_large_designs.sh --name blackparrot_AMD_python install_dependencies
+
+      - name: Checkout submodules
+        run: |
+          ./tests/scripts/run_large_designs.sh --name blackparrot_AMD_python load_submodules
+
+      - name: Download binaries
+        uses: actions/download-artifact@v4
+        with:
+          name: binaries-pysynlig
+
+      # See https://github.com/actions/upload-artifact/issues/38
+      - name: Extract
+        run: tar -xf binaries-pysynlig.tar
+
+      - name: Build & Test
+        run: |
+          ./tests/scripts/run_large_designs.sh --name blackparrot_AMD_python run
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: python_bp_e_bp_unicore_cfg.edif
+          path: tests/build/bp_e_bp_unicore_cfg.edif
+
+      - name: Upload load graphs
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: plots_blackparrot_synth_xilinx_python
+          path: |
+            **/plot_*.svg
