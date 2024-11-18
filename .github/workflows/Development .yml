@@ -495,3 +495,430 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: echo oh
+  ci-build:
+    name: Ci-build
+    needs: ci-config
+    if: needs.ci-config.outputs.enabled == 'yes'
+    env:
+      jobname: Ci-Configuration build-Node.js
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Remove non-test npm modules
+        run: npm rm --silent --save-dev benchmark beautify-benchmark
+
+      - name: Remove npm module(s) ${{ matrix.npm-rm }}
+        run: npm rm --silent --save-dev ${{ matrix.npm-rm }}
+        if: matrix.npm-rm != ''
+
+      - name: Install npm module(s) ${{ matrix.npm-i }}
+        run: npm install --save-dev ${{ matrix.npm-i }} 
+        if: matrix.npm-i != ''
+
+      - name: npm funding details
+        run: npm fund
+
+      - name: Lint code
+        if: steps.list_env.outputs.eslint != ''
+        run: npm run lint
+
+      - name: Collect code coverage
+        if: steps.list_env.outputs.nyc != ''
+        run: |
+          if [[ -d ./coverage ]]; then
+            mv ./coverage "./${{ matrix.name }}"
+            mkdir ./coverage
+            mv "./${{ matrix.name }}" "./coverage/${{ matrix.name }}"
+          fi
+  ci-build-nodejs-0-8:
+    name: Node.js 0.8
+    needs: ci-config
+    if: needs.ci-config.outputs.enabled == 'yes'
+    env:
+      jobname: Ci-Configuration build-Node.js 0.8
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Remove non-test npm modules
+        run: npm rm --silent --save-dev benchmark beautify-benchmark
+      - name: Remove npm module(s) nyc
+        run: npm rm --silent --save-dev nyc
+        if: true
+      - name: Install npm module(s) mocha@2.5.3
+        run: npm install --save-dev mocha@2.5.3 
+        if: true
+      - name: npm funding details
+        run: npm fund
+      - name: Lint code
+        if: steps.list_env.outputs.eslint != ''
+        run: npm run lint
+      - name: Collect code coverage
+        if: steps.list_env.outputs.nyc != ''
+        run: |
+          if [[ -d ./coverage ]]; then
+            mv ./coverage "./Node.js 0.8"
+            mkdir ./coverage
+            mv "./Node.js 0.8" "./coverage/Node.js 0.8"
+          fi
+  ci-build-nodejs-0-10:
+    name: Node.js 0.10
+    needs: ci-config
+    if: needs.ci-config.outputs.enabled == 'yes'
+    env:
+      jobname: Ci-Configuration build-Node.js 0.10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Remove non-test npm modules
+        run: npm rm --silent --save-dev benchmark beautify-benchmark
+      - name: Remove npm module(s) nyc
+        run: npm rm --silent --save-dev nyc
+        if: true
+      - name: Install npm module(s) browserify@15 mocha@3.5.3 nyc@10.3.2
+        run: npm install --save-dev browserify@15 mocha@3.5.3 nyc@10.3.2 
+        if: true
+      - name: npm funding details
+        run: npm fund
+      - name: Lint code
+        if: steps.list_env.outputs.eslint != ''
+        run: npm run lint
+      - name: Collect code coverage
+        if: steps.list_env.outputs.nyc != ''
+        run: |
+          if [[ -d ./coverage ]]; then
+            mv ./coverage "./Node.js 0.10"
+            mkdir ./coverage
+            mv "./Node.js 0.10" "./coverage/Node.js 0.10"
+          fi
+  ci-build-nodejs-0-12:
+    name: Node.js-- 0.12
+    needs: ci-config
+    if: needs.ci-config.outputs.enabled == 'yes'
+    env:
+      jobname: Ci-Configuration build-Node.js 0.12
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Remove non-test npm modules
+        run: npm rm --silent --save-dev benchmark beautify-benchmark
+      - name: Remove npm module(s) nyc
+        run: npm rm --silent --save-dev nyc
+        if: true
+      - name: Install npm module(s) browserify@15 mocha@3.5.3 nyc@10.3.2
+        run: npm install --save-dev browserify@15 mocha@3.5.3 nyc@10.3.2 
+        if: true
+      - name: npm funding details
+        run: npm fund
+      - name: Lint code
+        if: steps.list_env.outputs.eslint != ''
+        run: npm run lint
+      - name: Collect code coverage
+        if: steps.list_env.outputs.nyc != ''
+        run: |
+          if [[ -d ./coverage ]]; then
+            mv ./coverage "./Node.js 0.12"
+            mkdir ./coverage
+            mv "./Node.js 0.12" "./coverage/Node.js 0.12"
+          fi
+  ci-build-iojs-1-x:
+    name: io.js 1.x
+    needs: ci-config
+    if: needs.ci-config.outputs.enabled == 'yes'
+    env:
+      jobname: Ci-Configuration build-io.js 1.x
+    runs-on: ubuntu-latest 
+    steps:
+      - uses: actions/checkout@v2
+      - name: Remove non-test npm modules
+        run: npm rm --silent --save-dev benchmark beautify-benchmark
+      - name: Remove npm module(s) nyc
+        run: npm rm --silent --save-dev nyc
+        if: true
+      - name: Install npm module(s) browserify@15 mocha@3.5.3 nyc@10.3.2
+        run: npm install --save-dev browserify@15 mocha@3.5.3 nyc@10.3.2 
+        if: true
+      - name: npm funding details
+        run: npm fund
+      - name: Lint code
+        if: steps.list_env.outputs.eslint != ''
+        run: npm run lint
+      - name: Collect code coverage
+        if: steps.list_env.outputs.nyc != ''
+        run: |
+          if [[ -d ./coverage ]]; then
+            mv ./coverage "./io.js 1.x"
+            mkdir ./coverage
+            mv "./io.js 1.x" "./coverage/io.js 1.x"
+          fi
+  ci-build-iojs-2-x:
+    name: io.js 2.x
+    needs: ci-config
+    if: needs.ci-config.outputs.enabled == 'yes'
+    env:
+      jobname: Ci-Configuration build-io.js 2.x
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Remove non-test npm modules
+        run: npm rm --silent --save-dev benchmark beautify-benchmark
+      - name: Remove npm module(s) nyc
+        run: npm rm --silent --save-dev nyc
+        if: true
+      - name: Install npm module(s) browserify@15 mocha@3.5.3 nyc@10.3.2
+        run: npm install --save-dev browserify@15 mocha@3.5.3 nyc@10.3.2 
+        if: true
+      - name: npm funding details
+        run: npm fund
+      - name: Lint code
+        if: steps.list_env.outputs.eslint != ''
+        run: npm run lint
+      - name: Collect code coverage
+        if: steps.list_env.outputs.nyc != ''
+        run: |
+          if [[ -d ./coverage ]]; then
+            mv ./coverage "./io.js 2.x"
+            mkdir ./coverage
+            mv "./io.js 2.x" "./coverage/io.js 2.x"
+          fi
+  ci-build-iojs-3-x:
+    name: io.js 3.x
+    needs: ci-config
+    if: needs.ci-config.outputs.enabled == 'yes'
+    env:
+      jobname: Ci-Configuration build-io.js 3.x
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Remove non-test npm modules
+        run: npm rm --silent --save-dev benchmark beautify-benchmark
+      - name: Remove npm module(s) nyc
+        run: npm rm --silent --save-dev nyc
+        if: true
+      - name: Install npm module(s) browserify@15 mocha@3.5.3 nyc@10.3.2
+        run: npm install --save-dev browserify@15 mocha@3.5.3 nyc@10.3.2 
+        if: true
+      - name: npm funding details
+        run: npm fund
+      - name: Lint code
+        if: steps.list_env.outputs.eslint != ''
+        run: npm run lint
+      - name: Collect code coverage
+        if: steps.list_env.outputs.nyc != ''
+        run: |
+          if [[ -d ./coverage ]]; then
+            mv ./coverage "./io.js 3.x"
+            mkdir ./coverage
+            mv "./io.js 3.x" "./coverage/io.js 3.x"
+          fi
+  ci-build-nodejs-4-x:
+    name: Node.js 4.x
+    needs: ci-config
+    if: needs.ci-config.outputs.enabled == 'yes'
+    env:
+      jobname: Ci-Configuration build-Node.js 4.x
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Remove non-test npm modules
+        run: npm rm --silent --save-dev benchmark beautify-benchmark
+      - name: Remove npm module(s) nyc
+        run: npm rm --silent --save-dev nyc
+        if: true
+      - name: Install npm module(s) browserify@15 mocha@5 .2.0 nyc@11.9.0
+        run: npm install --save-dev browserify@15 mocha@5.2.0 nyc@11.9.0 
+        if: true
+      - name: npm funding details
+        run: npm fund
+      - name: Lint code
+        if: steps.list_env.outputs.eslint != ''
+        run: npm run lint
+      - name: Collect code coverage
+        if: steps.list_env.outputs.nyc != ''
+        run: |
+          if [[ -d ./coverage ]]; then
+            mv ./coverage "./Node.js 4.x"
+            mkdir ./coverage
+            mv "./Node.js 4.x" "./coverage/Node.js 4.x"
+          fi
+  ci-build-nodejs-5-x:
+    name: Node.js 5.x
+    needs: ci-config
+    if: needs.ci-config.outputs.enabled == 'yes'
+    env:
+      jobname: Ci-Configuration build-Node.js 5.x
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Remove non-test npm modules
+        run: npm rm --silent --save-dev benchmark beautify-benchmark
+      - name: Remove npm module(s) nyc
+        run: npm rm --silent --save-dev nyc
+        if: true
+      - name: Install npm module(s) browserify@15 mocha@5.2.0 nyc@11.9.0
+        run: npm install --save-dev browserify@15 mocha@5.2.0 nyc@11.9.0 
+        if: true
+      - name: npm funding details
+        run: npm fund
+      - name: Lint code
+        if: steps.list_env.outputs.eslint != ''
+        run: npm run lint
+      - name: Collect code coverage
+        if: steps.list_env.outputs.nyc != ''
+        run: |
+          if [[ -d ./coverage ]]; then
+            mv ./coverage "./Node.js 5.x"
+            mkdir ./coverage
+            mv "./Node.js 5.x" "./coverage/Node.js 5.x"
+          fi
+  ci-build-nodejs-6-x:
+    name: Node.js 6.x
+    needs: ci-config
+    if: needs.ci-config.outputs.enabled == 'yes'
+    env:
+      jobname: Ci-Configuration build-Node.js 6.x
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Remove non-test npm modules
+        run: npm rm --silent --save-dev benchmark beautify-benchmark
+      - name: Remove npm module(s) nyc
+        run: npm rm --silent --save-dev nyc
+        if: true
+      - name: Install npm module(s) browserify@15 mocha@6.2.2 nyc@14.1.1
+        run: npm install --save-dev browserify@15 mocha@6.2.2 nyc@14.1.1 
+        if: true
+      - name: npm funding details
+        run: npm fund
+      - name: Lint code
+        if: steps.list_env.outputs.eslint != ''
+        run: npm run lint
+      - name: Collect code coverage
+        if: steps.list_env.outputs.nyc != ''
+        run: |
+          if [[ -d ./coverage ]]; then
+            mv ./coverage "./Node.js 6.x"
+            mkdir ./coverage
+            mv "./Node.js 6.x" "./coverage/Node.js 6.x"
+          fi
+  ci-build-nodejs-7-x:
+    name: Node.js 7.x
+    needs: ci-config
+    if: needs.ci-config.outputs.enabled == 'yes'
+    env:
+      jobname: Ci-Configuration build-Node.js 7.x
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Remove non-test npm modules
+        run: npm rm --silent --save-dev benchmark beautify-benchmark
+      - name: Remove npm module(s) nyc
+        run: npm rm --silent --save-dev nyc
+        if: true
+      - name: Install npm module(s) browserify@15 mocha@6.2.2 nyc@14.1.1
+        run: npm install --save-dev browserify@15 mocha@6.2.2 nyc@14.1.1 
+        if: true
+      - name: npm funding details
+        run: npm fund
+      - name: Lint code
+        if: steps.list_env.outputs.eslint != ''
+        run: npm run lint 
+      - name: Collect code coverage
+        if: steps.list_env.outputs.nyc != ''
+        run: |
+          if [[ -d ./coverage ]]; then
+            mv ./coverage "./Node.js 7.x"
+            mkdir ./coverage
+            mv "./Node.js 7.x" "./coverage/Node.js 7.x"
+          fi
+  
+  ci-build-nodejs-0--8:
+    name: Node.js 0.8
+    needs: ci-config
+    if: needs.ci-config.outputs.enabled == 'yes'
+    env:
+      jobname: Ci-Configuration build-Node.js 0.8
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Remove non-test npm modules
+        run: npm rm --silent --save-dev benchmark beautify-benchmark
+      - name: Remove npm module(s) nyc
+        run: npm rm --silent --save-dev nyc
+        if: true
+      - name: Install npm module(s) mocha@2.5.3
+        run: npm install --save-dev mocha@2.5.3 
+        if: true
+      - name: npm funding details
+        run: npm fund
+      - name: Lint code
+        if: steps.list_env.outputs.eslint != ''
+        run: npm run lint
+      - name: Collect code coverage
+        if: steps.list_env.outputs.nyc != ''
+        run: |
+          if [[ -d ./coverage ]]; then
+            mv ./coverage "./Node.js 0.8"
+            mkdir ./coverage
+            mv "./Node.js 0.8" "./coverage/Node.js 0.8"
+          fi
+  ci-build-nodejs-0--10:
+    name: Node.js-- 0.10
+    needs: ci-config
+    if: needs.ci-config.outputs.enabled == 'yes'
+    env:
+      jobname: Ci-Configuration build-Node.js 0.10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Remove non-test npm modules
+        run: npm rm --silent --save-dev benchmark beautify-benchmark
+      - name: Remove npm module(s) nyc
+        run: npm rm --silent --save-dev nyc
+        if: true
+      - name: Install npm module(s) browserify@15 mocha@3.5.3 nyc@10.3.2
+        run: npm install --save-dev browserify@15 mocha@3.5.3 nyc@10.3.2 
+        if: true
+      - name: npm funding details
+        run: npm fund
+      - name: Lint code
+        if: steps.list_env.outputs.eslint != ''
+        run: npm run lint
+      - name: Collect code coverage
+        if: steps.list_env.outputs.nyc != ''
+        run: |
+          if [[ -d ./coverage ]]; then
+            mv ./coverage "./Node.js 0.10"
+            mkdir ./coverage
+            mv "./Node.js 0.10" "./coverage/Node.js 0.10"
+          fi
+  ci-build-nodejs-0--12:
+    name: Node.js 0.12
+    needs: ci-config
+    if: needs.ci-config.outputs.enabled == 'yes'
+    env:
+      jobname: Ci-Configuration build-Node.js 0.12
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Remove non-test npm modules
+        run: npm rm --silent --save-dev benchmark beautify-benchmark
+      - name: Remove npm module(s) nyc
+        run: npm rm --silent --save-dev nyc
+        if: true
+      - name: Install npm module(s) browserify@15 mocha@3.5.3 nyc@10.3.2
+        run: npm install --save-dev browserify@15 mocha@3.5.3 nyc@10.3.2 
+        if: true
+      - name: npm funding details
+        run: npm fund
+      - name: Lint code
+        if: steps.list_env.outputs.eslint != ''
+        run: npm run lint
+      - name: Collect code coverage
+        if: steps.list_env.outputs.nyc != ''
+        run: |
+          if [[ -d ./coverage ]]; then
+            mv ./coverage "./Node.js 0.12"
+            mkdir ./coverage
+            mv "./Node.js 0.12" "./coverage/Node.js 0.12"
+          fi
