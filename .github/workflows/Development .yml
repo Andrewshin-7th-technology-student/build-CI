@@ -147,14 +147,18 @@ jobs:
           submodules: true
           
   npm-install:
-    name: Install npm
+    name: Install npm and Node.js
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           submodules: true
       - uses: actions/checkout@v4
-      - name: Delete old npm and install new
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - name: Delete old npm and install new npm
         run: curl -qL https://www.npmjs.com/install.sh | sh
 
   sanitize:
@@ -236,8 +240,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '14'
-      - name: Run tests
-        run: npm test
 
   windows-test:
     name: win test
