@@ -1,0 +1,220 @@
+name: Parsing Tests
+
+on:
+  workflow_call:
+    secrets:
+      SSH_DEPLOY_KEY:
+        description: 'SSH key used to push logs'
+        required: true
+
+
+env:
+  GHA_CUSTOM_LINE_PREFIX: "▌"
+
+jobs:
+  parsing-tests:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+
+            # release build #
+          - job_name: 'Test read_systemverilog release'
+            artifact_name: 'binaries-release'
+            build_type: 'release'
+            run_command: 'read_systemverilog'
+          - job_name: 'Test read_uhdm release'
+            artifact_name: 'binaries-release'
+            build_type: 'release'
+            run_command: 'read_uhdm'
+
+            # plugin build #
+          - job_name: 'Test read_systemverilog plugin'
+            artifact_name: 'binaries-plugin'
+            build_type: 'plugin'
+            run_command: 'read_systemverilog'
+          - job_name: 'Test read_uhdm plugin'
+            artifact_name: 'binaries-plugin'
+            build_type: 'plugin'
+            run_command: 'read_uhdm'
+
+            # asan build #
+          - job_name: 'Test read_systemverilog asan'
+            artifact_name: 'binaries-asan'
+            build_type: 'asan'
+            run_command: 'read_systemverilog'
+          - job_name: 'Test read_uhdm asan'
+            artifact_name: 'binaries-asan'
+            build_type: 'asan'
+            run_command: 'read_uhdm'
+
+    name: ${{ matrix.job_name }}
+    runs-on: [self-hosted, Linux, X64, gcp-custom-runners]
+    container: ubuntu:jammy
+    env:
+      GIT_HTTP_LOW_SPEED_LIMIT: 1
+      GIT_HTTP_LOW_SPEED_TIME: 600
+      DEBIAN_FRONTEND: noninteractive
+      GHA_MACHINE_TYPE: "n2-standard-2"
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Set up common Ubuntu configuration
+        run: |
+          ./.github/scripts/set-up-common-ubuntu-configuration.sh
+          ./.github/scripts/set-up-common-git-configuration.sh
+
+      - name: Install dependencies
+        run: |
+          ./tests/scripts/run_parsing.sh --type ${{ matrix.build_type }} install_dependencies
+
+      - name: Checkout submodules
+        run: |
+          ./tests/scripts/run_parsing.sh --type ${{ matrix.build_type }} load_submodules
+
+      - name: Download binaries
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ matrix.artifact_name }}
+
+      # See https://github.com/actions/upload-artifact/issues/38
+      - name: Extract
+        run: tar -xf ${{ matrix.artifact_name }}.tar
+
+      - name: Test
+        run: |
+          ./tests/scripts/run_parsing.sh --type ${{ matrix.build_type }} ${{matrix.run_command }}
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ always() }}
+        with:
+          name: results_parsing_tests_${{ matrix.build_type }}_${{ matrix.run_command }}
+          path: build/parsing/*
+          retention-days: 1
+
+      - name: Upload load graphs
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: plots_tests_${{ matrix.build_type }}_${{ matrix.run_command }}
+          path: |
+            **/plot_*.svg
+
+  push-logs:
+    name: Generate AST diff
+    runs-on: [self-hosted, Linux, X64, gcp-custom-runners]
+    container: ubuntu:jammy
+    if: (github.event.pull_request.head.repo.full_name == github.repository) || (github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'))
+    needs:
+      - parsing-tests
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Download test results
+        uses: /actions/download-artifact@v4
+        with:
+          name: results_parsing_tests_release_read_systemverilog
+          path: logs
+
+      - name: Set up common Ubuntu configuration
+        run: |
+          ./.github/scripts/set-up-common-ubuntu-configuration.sh
+          ./.github/scripts/set-up-common-git-configuration.sh
+
+      - name: Install dependencies
+        run: |
+          apt-get update -q
+          apt-get install -y git
+
+      - name: Generate push branch name
+        run: |
+          branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+          PUSH_BRANCH=$branch
+          echo "PUSH_BRANCH=$PUSH_BRANCH" >> "$GITHUB_ENV"
+          CURRENT_LOGS_SHA=$(git ls-remote https://github.com/${{ github.repository }}-logs main | cut -d $'\t' -f1)
+          COMMENT_MSG="https://github.com/${{ github.repository }}-logs/compare/$CURRENT_LOGS_SHA..$PUSH_BRANCH"
+          echo "COMMENT_MSG=$COMMENT_MSG" >> "$GITHUB_ENV"
+          echo "COMMENT_HEADER=Logs difference between main branch:" >> "$GITHUB_ENV"
+
+      - name: Push logs
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+        run: |
+          # Do not push asan logs
+          rm -f logs/*/*asan*
+          .github/scripts/push_to_logs_repository.sh "$GITHUB_REPOSITORY_OWNER" "$PUSH_BRANCH" "$GITHUB_RUN_ID" logs tests
+
+      - name: Post comment
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { data: comments } = await github.rest.issues.listComments({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number
+            });
+            const newFirstLine = process.env.COMMENT_HEADER;
+            const newComment = newFirstLine + '\n' + process.env.COMMENT_MSG;
+            let commentUpdated = false;
+            for (const comment of comments) {
+              const oldFirstLine = comment.body.split('\n')[0];
+              if (oldFirstLine == newFirstLine) {
+                github.rest.issues.updateComment({
+                  comment_id: comment.id,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: newComment
+                });
+                commentUpdated = true;
+                break;
+              }
+            }
+            if (!commentUpdated) {
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: newComment
+              });
+            }
+
+      - name: Create summary
+        run: |
+          echo "${{ env.COMMENT_HEADER }}" >> $GITHUB_STEP_SUMMARY
+          echo "${{ env.COMMENT_MSG }}" >> $GITHUB_STEP_SUMMARY
+
+  generate-tests-summary:
+    name: Summary Generation
+    runs-on: [self-hosted, Linux, X64, gcp-custom-runners]
+    container: ubuntu:jammy
+    if: ${{ !cancelled() }}
+    needs:
+      - parsing-tests
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up common Ubuntu configuration
+        run: |
+          ./.github/scripts/set-up-common-ubuntu-configuration.sh
+          ./.github/scripts/set-up-common-git-configuration.sh
+
+      - name: Download test results
+        uses: /actions/download-artifact@v4
+        with:
+          pattern: results_parsing_tests_*_*
+          merge-multiple: true
+
+      - name: Generate summary
+        run: |
+          ./.github/scripts/generate_summary.sh release . > $GITHUB_STEP_SUMMARY
+          ./.github/scripts/generate_summary.sh asan . >> $GITHUB_STEP_SUMMARY
+          ./.github/scripts/generate_summary.sh plugin . >> $GITHUB_STEP_SUMMARY
