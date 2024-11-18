@@ -10,7 +10,7 @@ jobs:
   ibex_synth:
     name: Ibex (Vivado synthesis)
     runs-on: [self-hosted, Linux, X64, gcp-custom-runners]
-    container: ubuntu:jammy
+    container: ubuntu:noble
     env:
       DEBIAN_FRONTEND: noninteractive
       GHA_EXTERNAL_DISK: "tools"
@@ -64,7 +64,7 @@ jobs:
   ibex_synth_f4pga:
     name: Ibex (F4PGA synthesis)
     runs-on: [self-hosted, Linux, X64, gcp-custom-runners]
-    container: ubuntu:jammy
+    container: ubuntu:noble
     env:
       DEBIAN_FRONTEND: noninteractive
 
@@ -116,7 +116,7 @@ jobs:
     name: Opentitan 9d82960888 (synthesis)
     runs-on: [self-hosted, Linux, X64, gcp-custom-runners]
     # vivado is linked with libraries used in this version of ubuntu
-    container: ubuntu:jammy
+    container: ubuntu:noble
     env:
       DEBIAN_FRONTEND: noninteractive
       GHA_EXTERNAL_DISK: "tools"
@@ -200,7 +200,7 @@ jobs:
     name: Opentitan (synthesis)
     runs-on: [self-hosted, Linux, X64, gcp-custom-runners]
     # vivado is linked with libraries used in this version of ubuntu
-    container: ubuntu:jammy
+    container: ubuntu:noble
     env:
       DEBIAN_FRONTEND: noninteractive
       GHA_EXTERNAL_DISK: "tools"
@@ -256,7 +256,7 @@ jobs:
   opentitan_parse_report:
     runs-on: [self-hosted, Linux, X64, gcp-custom-runners]
     # vivado is linked with libraries used in this version of ubuntu
-    container: ubuntu:jammy
+    container: ubuntu:noble
     strategy:
       matrix:
         include:
@@ -329,7 +329,7 @@ jobs:
   veer_synth:
     name: VeeR-EH1 (synthesis)
     runs-on: [self-hosted, Linux, X64, gcp-custom-runners]
-    container: ubuntu:jammy
+    container: ubuntu:noble
     env:
       DEBIAN_FRONTEND: noninteractive
 
@@ -380,7 +380,7 @@ jobs:
   blackparrot_synth_xilinx:
     name: Black Parrot (AMD (Xilinx) FPGA synthesis)
     runs-on: [self-hosted, Linux, X64, gcp-custom-runners]
-    container: ubuntu:jammy
+    container: ubuntu:noble
     env:
       DEBIAN_FRONTEND: noninteractive
       GHA_MACHINE_TYPE: "n2-highmem-8"
@@ -434,7 +434,7 @@ jobs:
   blackparrot_synth_asic:
     name: Black Parrot (ASIC synthesis)
     runs-on: [self-hosted, Linux, X64, gcp-custom-runners]
-    container: ubuntu:jammy
+    container: ubuntu:noble
     env:
       DEBIAN_FRONTEND: noninteractive
       GHA_MACHINE_TYPE: "n2-highmem-8"

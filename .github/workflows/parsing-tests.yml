@@ -50,7 +50,7 @@ jobs:
 
     name: ${{ matrix.job_name }}
     runs-on: [self-hosted, Linux, X64, gcp-custom-runners]
-    container: ubuntu:jammy
+    container: ubuntu:noble
     env:
       GIT_HTTP_LOW_SPEED_LIMIT: 1
       GIT_HTTP_LOW_SPEED_TIME: 600
@@ -106,7 +106,7 @@ jobs:
   push-logs:
     name: Generate AST diff
     runs-on: [self-hosted, Linux, X64, gcp-custom-runners]
-    container: ubuntu:jammy
+    container: ubuntu:noble
     if: (github.event.pull_request.head.repo.full_name == github.repository) || (github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'))
     needs:
       - parsing-tests
@@ -192,7 +192,7 @@ jobs:
   generate-tests-summary:
     name: Summary Generation
     runs-on: [self-hosted, Linux, X64, gcp-custom-runners]
-    container: ubuntu:jammy
+    container: ubuntu:noble
     if: ${{ !cancelled() }}
     needs:
       - parsing-tests

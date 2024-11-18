@@ -10,7 +10,7 @@ env:
 jobs:
   diff-bsg-tests:
     runs-on: [self-hosted, Linux, X64, gcp-custom-runners]
-    container: ubuntu:jammy
+    container: ubuntu:noble
     name: Parse and diff BSG Micro Designs
     env:
       DEBIAN_FRONTEND: noninteractive
