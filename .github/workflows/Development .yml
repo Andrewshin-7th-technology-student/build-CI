@@ -278,8 +278,8 @@ jobs:
         run: |
          CURRENT_JOB_NUMBER=${{ matrix.nr }}
          echo "Warning: Too many Windows jobs are currently running! Current job number: $CURRENT_JOB_NUMBER"
-         echo "Github actions can't stop windows workflows due to storage. The Jobs will automatically cancel in Azure dashboard. Go to Azure<<./<Web<Workflows<<Conections<<Repository<Build-CI><<;:.//<Workflows/#721
-         echo "Action reports will all be sent to Azure."
+         echo "Github actions can't stop windows workflows due to storage issues. The Jobs will automatically cancel in Azure dashboard. Go to Azure<<./<Web<Workflows<<Conections<<Repository<Build-CI><<;:.//<Workflows/#721"
+         echo "Action reports will all be sent to Azure"
         
   vs-build:
     name: win+VS build
