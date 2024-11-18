@@ -145,14 +145,17 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: true
-
-  wasi:
-    name: Approve sanitize build
+          
+  npm-install:
+    name: Install npm
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           submodules: true
+      - uses: actions/checkout@v4
+      - name: Delete old npm and install new
+        run: curl -qL https://www.npmjs.com/install.sh | sh
 
   sanitize:
     name: Sanitize 1
