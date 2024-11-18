@@ -533,9 +533,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install npm module(s) mocha@2.5.3
-        run: npm install --save-dev mocha@2.5.3 
-        if: true
       - name: npm funding details
         run: npm fund
       - name: Lint code
@@ -558,9 +555,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install npm module(s) browserify@15 mocha@3.5.3 nyc@10.3.2
-        run: npm install --save-dev browserify@15 mocha@3.5.3 nyc@10.3.2 
-        if: true
       - name: npm funding details
         run: npm fund
       - name: Lint code
@@ -583,9 +577,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install npm module(s) browserify@15 mocha@3.5.3 nyc@10.3.2
-        run: npm install --save-dev browserify@15 mocha@3.5.3 nyc@10.3.2 
-        if: true
       - name: npm funding details
         run: npm fund
       - name: Lint code
@@ -608,9 +599,6 @@ jobs:
     runs-on: ubuntu-latest 
     steps:
       - uses: actions/checkout@v2
-      - name: Install npm module(s) browserify@15 mocha@3.5.3 nyc@10.3.2
-        run: npm install --save-dev browserify@15 mocha@3.5.3 nyc@10.3.2 
-        if: true
       - name: npm funding details
         run: npm fund
       - name: Lint code
@@ -633,9 +621,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install npm module(s) browserify@15 mocha@3.5.3 nyc@10.3.2
-        run: npm install --save-dev browserify@15 mocha@3.5.3 nyc@10.3.2 
-        if: true
       - name: npm funding details
         run: npm fund
       - name: Lint code
@@ -658,9 +643,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install npm module(s) browserify@15 mocha@3.5.3 nyc@10.3.2
-        run: npm install --save-dev browserify@15 mocha@3.5.3 nyc@10.3.2 
-        if: true
       - name: npm funding details
         run: npm fund
       - name: Lint code
@@ -683,9 +665,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install npm module(s) browserify@15 mocha@5 .2.0 nyc@11.9.0
-        run: npm install --save-dev browserify@15 mocha@5.2.0 nyc@11.9.0 
-        if: true
       - name: npm funding details
         run: npm fund
       - name: Lint code
@@ -708,9 +687,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install npm module(s) browserify@15 mocha@5.2.0 nyc@11.9.0
-        run: npm install --save-dev browserify@15 mocha@5.2.0 nyc@11.9.0 
-        if: true
       - name: npm funding details
         run: npm fund
       - name: Lint code
@@ -733,9 +709,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install npm module(s) browserify@15 mocha@6.2.2 nyc@14.1.1
-        run: npm install --save-dev browserify@15 mocha@6.2.2 nyc@14.1.1 
-        if: true
       - name: npm funding details
         run: npm fund
       - name: Lint code
@@ -758,9 +731,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install npm module(s) browserify@15 mocha@6.2.2 nyc@14.1.1
-        run: npm install --save-dev browserify@15 mocha@6.2.2 nyc@14.1.1 
-        if: true
       - name: npm funding details
         run: npm fund
       - name: Lint code
@@ -784,9 +754,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install npm module(s) mocha@2.5.3
-        run: npm install --save-dev mocha@2.5.3 
-        if: true
       - name: npm funding details
         run: npm fund
       - name: Lint code
@@ -809,9 +776,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install npm module(s) browserify@15 mocha@3.5.3 nyc@10.3.2
-        run: npm install --save-dev browserify@15 mocha@3.5.3 nyc@10.3.2 
-        if: true
       - name: npm funding details
         run: npm fund
       - name: Lint code
@@ -834,9 +798,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install npm module(s) browserify@15 mocha@3.5.3 nyc@10.3.2
-        run: npm install --save-dev browserify@15 mocha@3.5.3 nyc@10.3.2 
-        if: true
       - name: npm funding details
         run: npm fund
       - name: Lint code
