@@ -16,3 +16,6 @@ jobs:
       - name: Run ans send stats to dashboard
         run: send -xx mdikr save --save --IMPORT AS["SCHEDULED"]
         uses: actions/configyml/@v2
+## PREFERENCES
+      - name: Send/organize
+        run: send -xx mdikr important-organization=["android.hot"]=SA
