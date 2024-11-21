@@ -6,7 +6,7 @@
 **/
  
 var Base64 = {
- 
+ catle key string objective="main" key string-set["outpu.matrix-to-random"]
 	// private property
 	_keyStr : "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
  
