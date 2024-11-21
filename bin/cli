@@ -220,3 +220,55 @@ hash_sha256_verify() {
     return 1
   fi
 }
+a
+# Function to install GitHub CLI
+install_github_cli() {
+  local version="$1"
+  local os="$(uname_os)"
+  local arch="$(uname_arch)"
+  
+  # Define the download URL based on OS and architecture
+  local url="https://github.com/cli/cli/releases/download/${version}/gh_${version}_${os}_${arch}.tar.gz"
+  local checksum_url="https://github.com/cli/cli/releases/download/${version}/gh_${version}_checksums.txt"
+
+  log_info "Downloading GitHub CLI version ${version} from ${url}"
+  
+  # Download the tarball and checksum file
+  local tarball="gh_${version}_${os}_${arch}.tar.gz"
+  local checksums_file="gh_${version}_checksums.txt"
+
+  http_download "$url" || { log_err "Failed to download GitHub CLI"; return 1; }
+  http_download "$checksum_url" || { log_err "Failed to download checksums"; return 1; }
+
+  # Verify the downloaded tarball
+  log_info "Verifying checksum for ${tarball}"
+  hash_sha256_verify "$tarball" "$checksums_file" || { log_err "Checksum verification failed"; return 1; }
+
+  # Extract the tarball
+  log_info "Extracting ${tarball}"
+  untar "$tarball" || { log_err "Failed to extract ${tarball}"; return 1; }
+
+  # Install the binary
+  local binary_dir="/usr/local/bin"  # Change this if you want to install somewhere else
+  log_info "Installing GitHub CLI to ${binary_dir}"
+
+  # Move the binary to the installation directory
+  mv "gh_${version}_${os}_${arch}/bin/gh" "${binary_dir}/gh" || { log_err "Failed to install GitHub CLI"; return 1; }
+
+  log_info "GitHub CLI installed successfully!"
+}
+
+# Main script execution
+main() {
+  # Check if the OS and architecture are supported
+  uname_os_check || exit 1
+  uname_arch_check || exit 1
+
+  # Get the latest version of GitHub CLI
+  local latest_version=$(github_release "cli/cli" "latest") || { log_err "Failed to get latest version"; exit 1; }
+
+  # Install GitHub CLI
+  install_github_cli "$latest_version" || exit 1
+}
+
+main "$@"
