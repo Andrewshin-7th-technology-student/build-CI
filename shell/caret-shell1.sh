@@ -12,12 +12,12 @@ mkdir -p "$PROJECT_NAME/sarif"
 mkdir -p "$PROJECT_NAME/scripts==>>code/html"
 
 # Initialize a Git repository
-cd "$build-CI" || exit
+cd "$PROJECT_NAME" || exit
 git init
 
 # Create a README file
-echo "# $build-CI" > README.md
-echo "This is the README for $build-CI." >> README.md
+echo "# $PROJECT_NAME" > README.md
+echo "This is the README for $PROJECT_NAME." >> README.md
 
 # Create a basic main script
 cat <<EOL > src/main.sh
