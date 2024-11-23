@@ -1,20 +1,28 @@
 version: 2
 updates:
-
-  - package-ecosystem: "docker"
-    directories:
-      - "/"
-    schedule:
-      interval: "daily"
-
+  # Node.js (npm) updates
   - package-ecosystem: "npm"
-    directories:
-      - "/"
+    directory: "/"  # Location of package.json
     schedule:
-      interval: "daily" # Frequency of updates
+      interval: "daily"  # Frequency of updates
     commit-message:
-      prefix: "fix" # Prefix for the commit message
-    open-pull-requests-limit: 10 # Limit for open PR
+      prefix: "fix"  # Prefix for the commit message
+    open-pull-requests-limit: 5  # Limit for open PRs
+    ignore:
+      - dependency-name: "express"
+        versions: ["4.x.x"]  # Ignore updates for specific versions
+
+  # Python (pip) updates
+  - package-ecosystem: "pip"
+    directory: "/"  # Location of requirements.txt
+    schedule:
+      interval: "daily"  # Frequency of updates
+    commit-message:
+      prefix: "fix"  # Prefix for the commit message
+    open-pull-requests-limit: 5  # Limit for open PRs
+    ignore:
+      - dependency-name: "Django"
+        versions: ["2.2.x"]  # Ignore updates for specific versions
 
   # Ruby (Bundler) updates
   - package-ecosystem: "bundler"
@@ -25,29 +33,23 @@ updates:
       prefix: "fix"  # Prefix for the commit message
     open-pull-requests-limit: 10  # Limit for open PRs
 
-  # Python (pip) updates
-  - package-ecosystem: "pip"
-    directory: "/"  # Location of requirements.txt
+  # Docker updates
+  - package-ecosystem: "docker"
+    directory: "/"  # Location of the Dockerfile
     schedule:
       interval: "daily"  # Frequency of updates
     commit-message:
       prefix: "fix"  # Prefix for the commit message
-    open-pull-requests-limit: 10  # Limit for open PRs
+    open-pull-requests-limit: 5  # Limit for open PRs
+    ignore:
+      - dependency-name: "node"
+        versions: ["14.x"]  # Ignore updates for specific versions
 
   # Go modules updates
   - package-ecosystem: "gomod"
     directory: "/"  # Location of go.mod
     schedule:
-      interval: "weekly"  # Frequency of updates
-    commit-message:
-      prefix: "fix"  # Prefix for the commit message
-    open-pull-requests-limit: 5  # Limit for open PRs
-
-  # Composer (PHP) updates
-  - package-ecosystem: "composer"
-    directory: "/"  # Location of composer.json
-    schedule:
-      interval: "monthly"  # Frequency of updates
+      interval: "daily"  # Frequency of updates
     commit-message:
       prefix: "fix"  # Prefix for the commit message
     open-pull-requests-limit: 5  # Limit for open PRs
@@ -56,7 +58,25 @@ updates:
   - package-ecosystem: "hex"
     directory: "/"  # Location of mix.exs
     schedule:
+      interval: "daily"  # Frequency of updates
+    commit-message:
+      prefix: "fix"  # Prefix for the commit message
+    open-pull-requests-limit: 5  # Limit for open PRs
+
+  # Composer (PHP) updates
+  - package-ecosystem: "composer"
+    directory: "/"  # Location of composer.json
+    schedule:
       interval: "weekly"  # Frequency of updates
     commit-message:
       prefix: "fix"  # Prefix for the commit message
     open-pull-requests-limit: 5  # Limit for open PRs
+
+  # Rust (Cargo) updates
+  - package-ecosystem: "cargo"
+    directory: "/"  # Location of Cargo.toml
+    schedule:
+      interval: "weekly"  # Frequency of updates
+    commit-message:
+      prefix: "fix"  # Prefix for the commit message
+    open-pull-requests-limit: 10  # Limit for open PRs
