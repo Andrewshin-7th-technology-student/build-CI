@@ -3,7 +3,6 @@ updates:
 
   - package-ecosystem: "docker"
     directories:
-      - "/"
       - "./main files
       - "./repo files
       - "./github"
