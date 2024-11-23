@@ -1,0 +1,37 @@
+name: "Dependabot Updates"
+
+on:
+  schedule:
+    # This will trigger the workflow daily at midnight UTC
+    - cron:  '0 0 * * *'  # Adjust the cron expression as needed
+
+jobs:
+  dependabot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Dependabot
+        uses: dependabot/dependabot-core@v2
+        with:
+          # Configuration for npm updates
+          package-ecosystem: "npm"
+          directory: "/"
+          schedule: "daily"
+          commit-message-prefix: "fix"
+          open-pull-requests-limit: 5
+          ignore-dependencies: |
+            express: 4.x.x
+
+      - name: Run Dependabot for Python
+        uses: dependabot/dependabot-core@v2
+        with:
+          package-ecosystem: "pip"
+          directory: "/"
+          schedule: "daily"
+          commit-message-prefix: "fix"
+          open-pull-requests-limit: 5
+          ignore-dependencies: |
+            Django: 2.2.x
