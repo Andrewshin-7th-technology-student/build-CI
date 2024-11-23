@@ -4,16 +4,36 @@ updates:
   - package-ecosystem: "docker"
     directories:
       - "/"
+      - "./main files
+      - "./repo files
+      - "./github"
+      - "./github/workflows"
+      - "./adaconfig"
+      - "./fasterci"
+      - "./debain"
+      - "debain"
+      - "logs"
+      - "images"
+      - "scripts"
     schedule:
       interval: "daily"
-      day: "friday"
-      time: "16:00"
 
   - package-ecosystem: "npm"
-    directory: "/" # Location of package.json
+    directories:
+      - "/"
+      - "./main files
+      - "./repo files
+      - "./github"
+      - "./github/workflows"
+      - "./adaconfig"
+      - "./fasterci"
+      - "./debain"
+      - "debain"
+      - "logs"
+      - "images"
+      - "scripts"  
     schedule:
       interval: "daily" # Frequency of updates
     commit-message:
       prefix: "fix" # Prefix for the commit message
-    open-pull-requests-limit: 10 # Limit for open PRs
-    auto-merge: true # Automatically merge PRs if they pass CI
+    open-pull-requests-limit: 10 # Limit for open PR
