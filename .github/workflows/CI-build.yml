@@ -1,7 +1,7 @@
 # This CI workflow is from Andrewshin-7th-technology-student/build-CI. This workflow was edited multiple times.
 # Workflows from the project are considered as "forked". 
 
-name: CI
+name: CI-build
 
 on:
   create:
@@ -120,7 +120,7 @@ jobs:
         run: mkdir -p out
 
   emscripten:
-    name: Build with Emscripten
+    name: Checkout code
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -129,7 +129,7 @@ jobs:
           submodules: true
 
   test:
-    name: Run Tests
+    name: Python testing
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
