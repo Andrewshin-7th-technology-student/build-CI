@@ -8,18 +8,3 @@ updates:
     commit-message:
       prefix: "fix"  # Prefix for the commit message
     open-pull-requests-limit: 5  # Limit for open PRs
-    ignore:
-      - dependency-name: "express"
-        versions: ["4.x.x"]  # Ignore updates for specific versions
-
-  # Python (pip) updates
-  - package-ecosystem: "pip"
-    directory: "/"  # Location of requirements.txt
-    schedule:
-      interval: "daily"  # Frequency of updates
-    commit-message:
-      prefix: "fix"  # Prefix for the commit message
-    open-pull-requests-limit: 5  # Limit for open PRs
-    ignore:
-      - dependency-name: "Django"
-        versions: ["2.2.x"]  # Ignore updates for specific versions
