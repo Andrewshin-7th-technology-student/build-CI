@@ -1,9 +1,11 @@
-name: "Dependabot Updates"
+name: "Dependabot auto workflow"
 
 on:
-  schedule:
-    # This will trigger the workflow daily at midnight UTC
-    - cron:  '0 0 * * *'  # Adjust the cron expression as needed
+  create:
+    tags:
+  push:
+    branches:
+      - main
 
 jobs:
   dependabot:
