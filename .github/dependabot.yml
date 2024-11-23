@@ -3,34 +3,13 @@ updates:
 
   - package-ecosystem: "docker"
     directories:
-      - "./main files
-      - "./repo files
-      - "./github"
-      - "./github/workflows"
-      - "./adaconfig"
-      - "./fasterci"
-      - "./debain"
-      - "debain"
-      - "logs"
-      - "images"
-      - "scripts"
+      - "/"
     schedule:
       interval: "daily"
 
   - package-ecosystem: "npm"
     directories:
       - "/"
-      - "./main files
-      - "./repo files
-      - "./github"
-      - "./github/workflows"
-      - "./adaconfig"
-      - "./fasterci"
-      - "./debain"
-      - "debain"
-      - "logs"
-      - "images"
-      - "scripts"  
     schedule:
       interval: "daily" # Frequency of updates
     commit-message:
