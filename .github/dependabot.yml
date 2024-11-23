@@ -15,3 +15,48 @@ updates:
     commit-message:
       prefix: "fix" # Prefix for the commit message
     open-pull-requests-limit: 10 # Limit for open PR
+
+  # Ruby (Bundler) updates
+  - package-ecosystem: "bundler"
+    directory: "/"  # Location of Gemfile
+    schedule:
+      interval: "daily"  # Frequency of updates
+    commit-message:
+      prefix: "fix"  # Prefix for the commit message
+    open-pull-requests-limit: 10  # Limit for open PRs
+
+  # Python (pip) updates
+  - package-ecosystem: "pip"
+    directory: "/"  # Location of requirements.txt
+    schedule:
+      interval: "daily"  # Frequency of updates
+    commit-message:
+      prefix: "fix"  # Prefix for the commit message
+    open-pull-requests-limit: 10  # Limit for open PRs
+
+  # Go modules updates
+  - package-ecosystem: "gomod"
+    directory: "/"  # Location of go.mod
+    schedule:
+      interval: "weekly"  # Frequency of updates
+    commit-message:
+      prefix: "fix"  # Prefix for the commit message
+    open-pull-requests-limit: 5  # Limit for open PRs
+
+  # Composer (PHP) updates
+  - package-ecosystem: "composer"
+    directory: "/"  # Location of composer.json
+    schedule:
+      interval: "monthly"  # Frequency of updates
+    commit-message:
+      prefix: "fix"  # Prefix for the commit message
+    open-pull-requests-limit: 5  # Limit for open PRs
+
+  # Elixir (Hex) updates
+  - package-ecosystem: "hex"
+    directory: "/"  # Location of mix.exs
+    schedule:
+      interval: "weekly"  # Frequency of updates
+    commit-message:
+      prefix: "fix"  # Prefix for the commit message
+    open-pull-requests-limit: 5  # Limit for open PRs
