@@ -8,3 +8,12 @@ updates:
       interval: "daily"
       day: "friday"
       time: "16:00"
+
+  - package-ecosystem: "npm"
+    directory: "/" # Location of package.json
+    schedule:
+      interval: "daily" # Frequency of updates
+    commit-message:
+      prefix: "fix" # Prefix for the commit message
+    open-pull-requests-limit: 10 # Limit for open PRs
+    auto-merge: true # Automatically merge PRs if they pass CI
