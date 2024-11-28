@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Run Dependabot
-        uses: dependabot/dependabot-core@v2
+        uses: dependabot/dependabot-core@v3
         with:
           # Configuration for npm updates
           package-ecosystem: "npm"
