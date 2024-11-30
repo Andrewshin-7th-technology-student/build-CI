@@ -94,7 +94,7 @@ jobs:
           branch_name: welcome-workflow2e25421
 
       - name: Update to step 2
-        uses: skills/action-update@v2
+        uses: skills/action-update-step@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           from_step: 2
@@ -110,7 +110,7 @@ jobs:
           branch_name: welcome-workflow2e25421
 
       - name: Update to step 4
-        uses: skills/action-update@v2
+        uses: skills/action-update-step@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           from_step: 4
