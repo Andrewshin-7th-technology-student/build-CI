@@ -93,6 +93,30 @@ jobs:
         uses: skills/action-update-step@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          from_step: 0
-          to_step: 1
+          from_step: 1
+          to_step: 2
+          branch_name: welcome-workflow2e25421
+
+      - name: Update to step 2
+        uses: skills/action-update@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          from_step: 2
+          to_step: 3
+          branch_name: welcome-workflow2e25421
+
+      - name: Update to step 3
+        uses: skills/action-update-step@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          from_step: 3
+          to_step: 4
+          branch_name: welcome-workflow2e25421
+
+      - name: Update to step 4
+        uses: skills/action-update@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          from_step: 4
+          to_step: 5
           branch_name: welcome-workflow2e25421
