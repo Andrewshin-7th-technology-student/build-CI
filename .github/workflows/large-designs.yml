@@ -34,7 +34,7 @@ jobs:
           ./tests/scripts/run_large_designs.sh --name ibex load_submodules
 
       - name: Download binaries
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: binaries-release
 
@@ -87,7 +87,7 @@ jobs:
           ./tests/scripts/run_large_designs.sh --name ibex_f4pga load_submodules
 
       - name: Download binaries
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: binaries-plugin
 
@@ -141,7 +141,7 @@ jobs:
           ./tests/scripts/run_large_designs.sh --name opentitan_9d82960888 load_submodules
 
       - name: Download binaries
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: binaries-release
 
@@ -225,7 +225,7 @@ jobs:
           ./tests/scripts/run_large_designs.sh --name opentitan load_submodules
 
       - name: Download binaries
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: binaries-release
 
@@ -293,7 +293,7 @@ jobs:
           ./tests/scripts/run_large_designs.sh --name opentitan_parse_${{ matrix.file-name }} load_submodules
 
       - name: Download binaries
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: binaries-release
 
@@ -352,7 +352,7 @@ jobs:
           ./tests/scripts/run_large_designs.sh --name veer load_submodules
 
       - name: Download binaries
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: binaries-release
 
@@ -406,7 +406,7 @@ jobs:
           ./tests/scripts/run_large_designs.sh --name blackparrot_AMD load_submodules
 
       - name: Download binaries
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: binaries-release
 
@@ -460,7 +460,7 @@ jobs:
           ./tests/scripts/run_large_designs.sh --name blackparrot_ASIC load_submodules
 
       - name: Download binaries
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: binaries-release
 
@@ -511,7 +511,7 @@ jobs:
           ./tests/scripts/run_large_designs.sh --name blackparrot_AMD_python load_submodules
 
       - name: Download binaries
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: binaries-pysynlig
 
