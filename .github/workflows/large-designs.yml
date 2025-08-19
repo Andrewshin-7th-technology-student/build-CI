@@ -492,7 +492,7 @@ jobs:
   blackparrot_synth_xilinx_python:
     name: Black Parrot (AMD (Xilinx) with PySynlig)
     runs-on: [self-hosted, Linux, X64, gcp-custom-runners]
-    container: debian:bookworm
+    container: debian:trixie
     env:
       DEBIAN_FRONTEND: noninteractive
       GHA_MACHINE_TYPE: "n2-highmem-8"
