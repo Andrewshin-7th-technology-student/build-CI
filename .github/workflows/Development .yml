@@ -27,7 +27,7 @@ jobs:
         with:
           submodules: recursive
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v6
         with:
           python-version: "3.11"
       - name: Use Node.js
@@ -35,7 +35,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           architecture: ${{ matrix.arch }} 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.x'
       - uses: actions/checkout@v4
@@ -129,7 +129,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, ubuntu-22.04, ubuntu-20.04, ubuntu-18.04, macos-13, macos-14, macos-15, windows-latest, windows-2022, windows-2019]
     steps:
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.x'
       - uses: actions/checkout@v4
@@ -184,7 +184,7 @@ jobs:
         sanitizer: [asan, ubsan, fuzz]
         type: [debug, release]
     steps:
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.x'
       - uses: actions/checkout@v4
@@ -199,7 +199,7 @@ jobs:
       CC: "clang"
       WASM2C_CFLAGS: "-march=x86-64-v2 -fsanitize=address -DWASM_RT_USE_MMAP=0"
     steps:
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.x'
       - uses: actions/checkout@v4
@@ -292,7 +292,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           architecture: ${{ matrix.arch }} 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.x'
       - uses: actions/checkout@v4
@@ -371,7 +371,7 @@ jobs:
         with:
           submodules: recursive
       - name: Set up Windows platform using python - checkout
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v6
         with:
           python-version: "3.11"
       - name: Use Node.js - same as linux connect
