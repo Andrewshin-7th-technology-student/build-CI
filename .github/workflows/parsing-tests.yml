@@ -76,7 +76,7 @@ jobs:
           ./tests/scripts/run_parsing.sh --type ${{ matrix.build_type }} load_submodules
 
       - name: Download binaries
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: ${{ matrix.artifact_name }}
 
@@ -88,7 +88,7 @@ jobs:
         run: |
           ./tests/scripts/run_parsing.sh --type ${{ matrix.build_type }} ${{matrix.run_command }}
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         if: ${{ always() }}
         with:
           name: results_parsing_tests_${{ matrix.build_type }}_${{ matrix.run_command }}
@@ -97,7 +97,7 @@ jobs:
 
       - name: Upload load graphs
         if: ${{ always() }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: plots_tests_${{ matrix.build_type }}_${{ matrix.run_command }}
           path: |
