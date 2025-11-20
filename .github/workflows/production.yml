@@ -15,7 +15,7 @@ jobs:
     environment: Production
     steps:
     - name: connect to linux server
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     # If you want to use Azure RBAC instead of Publish Profile, then uncomment the task below
     # - name: 'Login via Azure CLI'

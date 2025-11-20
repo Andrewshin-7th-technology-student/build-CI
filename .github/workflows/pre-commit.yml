@@ -4,7 +4,7 @@ jobs:
   pre-commit:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Set up pre-commit.ci
         uses: pre-commit/action@v3.0.1
         with:

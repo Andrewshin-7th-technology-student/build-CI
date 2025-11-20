@@ -11,6 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v1
+      uses: actions/checkout@v6
     - name: Get optimization package
       run: wget https://eversql.com/install/eversql_github_sql_file_optimizer.py

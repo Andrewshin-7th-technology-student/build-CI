@@ -58,7 +58,7 @@ jobs:
       GHA_MACHINE_TYPE: "n2-standard-2"
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 1
 
@@ -111,7 +111,7 @@ jobs:
     needs:
       - parsing-tests
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 1
 
@@ -198,7 +198,7 @@ jobs:
       - parsing-tests
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 1
 

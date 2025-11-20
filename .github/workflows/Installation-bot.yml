@@ -13,7 +13,7 @@ jobs:
         working-directory: action
     steps:
       - name: Build repo, and add packages through checkout.
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           sparse-checkout: action
           sparse-checkout-cone-mode: true

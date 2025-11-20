@@ -28,7 +28,7 @@ jobs:
   
     steps:
     - name: Scan dependabot packages [bin root]
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     - if: matrix.build-mode == 'autobuild'
       shell: bash
@@ -40,7 +40,7 @@ jobs:
         exit 1
 
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
