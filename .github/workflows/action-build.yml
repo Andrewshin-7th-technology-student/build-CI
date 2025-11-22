@@ -18,7 +18,7 @@ jobs:
         working-directory: action
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           sparse-checkout: action
           sparse-checkout-cone-mode: false
