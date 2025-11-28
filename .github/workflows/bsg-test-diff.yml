@@ -59,7 +59,7 @@ jobs:
               ;
 
       - name: Download binaries
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: binaries-plugin
 
@@ -78,7 +78,7 @@ jobs:
           cat tests/bsg_micro_designs/build/bsg_micro_designs_summary.md > $GITHUB_STEP_SUMMARY
 
       - name: Upload BSG Micro Design tests' output
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: bsg-outputs
           path: |
@@ -87,7 +87,7 @@ jobs:
             tests/bsg_micro_designs/build/*/parameters.txt
 
       - name: Upload BSG Micro Design tests' logs
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: bsg-logs
           path: |
