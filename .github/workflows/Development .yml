@@ -316,7 +316,7 @@ jobs:
       cancel-in-progress: ${{ needs.ci-config.outputs.skip_concurrent == 'yes' }}
     steps:
       - uses: actions/checkout@v4
-      - uses: git-for-windows/setup-git-for-windows-sdk@v1
+      - uses: git-for-windows/setup-git-for-windows-sdk@v2.0.0
       - name: initialize vcpkg
         uses: actions/checkout@v4
         with:
