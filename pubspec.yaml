@@ -14,7 +14,7 @@ dependencies:
   flutter:
     sdk: flutter
   # Add any other dependencies your project requires below
-  cupertino_icons: ^1.0.2  # Example dependency
+  cupertino_icons: ^2.0.0  # Example dependency
 
 # Development dependencies are packages needed for development.
 dev_dependencies:
