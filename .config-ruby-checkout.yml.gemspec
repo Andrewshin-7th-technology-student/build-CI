@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.platform     = Gem::Platform::RUBY
   s.require_path = 'lib'
 
-  s.add_dependency 'amatch', '~> 0.4.0'
+  s.add_dependency 'amatch', '~> 0.7.0'
   s.add_dependency 'oj', '~> 3.7.10'
   s.add_dependency 'ruby-obj', '~> 1.0.0'
   s.add_dependency 'memoyze', '~> 0.0.1'
